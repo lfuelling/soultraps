@@ -1,0 +1,39 @@
+#Greenfoot Project File
+# Class definitions
+class.io.lerk.soultraps.Launcher.image=images/world.png
+
+# Editor Settings
+editor.fx.0.height=0
+editor.fx.0.width=0
+editor.fx.0.x=0
+editor.fx.0.y=0
+
+# Main Window Settings
+mainWindow.height=800
+mainWindow.width=850
+mainWindow.x=40
+mainWindow.y=40
+
+# Misc Project Settings
+package.numDependencies=0
+package.numTargets=1
+project.charset=UTF-8
+readme.height=58
+readme.name=@README
+readme.width=47
+readme.x=10
+readme.y=10
+
+# Target definitions (unknown use)
+target1.height=50
+target1.name=io.lerk.soultraps.Launcher
+target1.showInterface=false
+target1.type=ClassTarget
+target1.typeParameters=
+target1.width=80
+target1.x=0
+target1.y=0
+
+# Misc/Unknown
+version=3.0.0
+world.lastInstantiated=io.lerk.soultraps.Launcher
