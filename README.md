@@ -20,3 +20,9 @@ Soultraps is a 2D RPG made with Greenfoot.
     - Weight (`Integer`)
     - Damage (`Integer`)
     - Effects (`List<Effect>`)
+    
+## Third Party Stuff
+
+- Skyrim Font by [DarkX ShadowX21](https://www.dafont.com/de/darkx-shadowx21.d5582)
+- Daedra Font by [Levi Webster](https://www.dafont.com/de/levi-webster.d7357)
+- Forest Tiles by [surt](https://opengameart.org/users/surt)
