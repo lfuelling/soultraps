@@ -1,11 +1,9 @@
-package io.lerk.soultraps;
+package io.lerk.soultraps.sys;
 
 import greenfoot.Actor;
 import greenfoot.GreenfootImage;
 
-import java.util.stream.Collectors;
-
-enum Tiles {
+public enum Tiles {
     Grass01("grass01"),
     Grass02("grass02"),
     Tree01("tree01"),
@@ -79,7 +77,7 @@ enum Tiles {
         return null;
     }
 
-    static class Tile extends Actor {
+    public static class Tile extends Actor {
         private final Tiles tileType;
 
         Tile(Tiles tileType, GreenfootImage image) {

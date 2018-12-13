@@ -1,18 +1,15 @@
-package io.lerk.soultraps;
+package io.lerk.soultraps.sys;
 
 import bluej.Config;
 import greenfoot.Greenfoot;
-import greenfoot.export.GreenfootScenarioMain;
 import greenfoot.export.GreenfootScenarioViewer;
 import greenfoot.util.StandalonePropStringManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.Properties;
 

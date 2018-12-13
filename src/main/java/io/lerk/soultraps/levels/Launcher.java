@@ -1,4 +1,7 @@
-package io.lerk.soultraps;
+package io.lerk.soultraps.levels;
+
+import greenfoot.Greenfoot;
+import io.lerk.soultraps.components.Button;
 
 public class Launcher extends Level {
 
@@ -9,6 +12,22 @@ public class Launcher extends Level {
         super();
         Button title = getTitle();
         addObject(title, getWidth() / 2, 0);
+
+        Button startButton = new Button("Start Game", 100, 200, 32);
+        Button optionsButton = new Button("Options", 100, 200, 32);
+
+        startButton.setHandler(() -> {
+            Greenfoot.setWorld(new IntroLevel());
+            return null;
+        });
+
+        optionsButton.setHandler(() -> {
+            Greenfoot.setWorld(new Options());
+            return null;
+        });
+
+        addObject(startButton, getWidth() / 2, 11);
+        addObject(optionsButton, getWidth() / 2, 13);
     }
 
     private Button getTitle() {
@@ -18,7 +37,7 @@ public class Launcher extends Level {
             private int throttleCount = 0;
 
             private final int throttle = 12;
-            private final int hoverAmount = 3;
+            private final int hoverAmount = 2;
 
             @Override
             public void act() {

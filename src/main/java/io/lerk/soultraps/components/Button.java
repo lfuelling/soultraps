@@ -1,7 +1,8 @@
-package io.lerk.soultraps;
+package io.lerk.soultraps.components;
 
 import greenfoot.*;
-import greenfoot.Color;
+import io.lerk.soultraps.sys.Fonts;
+import io.lerk.soultraps.sys.Handler;
 
 public class Button extends Actor {
 

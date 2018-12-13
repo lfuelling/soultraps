@@ -58,7 +58,7 @@
                     </excludes>
                     <archive>
                         <manifest>
-                            <mainClass>io.lerk.soultraps.SoultrapsApp</mainClass>
+                            <mainClass>io.lerk.soultraps.sys.SoultrapsApp</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -68,7 +68,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>io.lerk.soultraps.SoultrapsApp</mainClass>
+                            <mainClass>io.lerk.soultraps.sys.SoultrapsApp</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

@@ -1,4 +1,4 @@
-package io.lerk.soultraps;
+package io.lerk.soultraps.sys;
 
 import greenfoot.SoultrapsFont;
 import org.slf4j.Logger;
@@ -26,7 +26,7 @@ public class Fonts {
         return null;
     }
 
-    enum Types {
+    public enum Types {
 
         SKYRIM("skyrim"),
         DAEDRA("daedra");

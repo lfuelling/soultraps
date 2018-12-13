@@ -1,6 +1,6 @@
 #Greenfoot Project File
 # Class definitions
-class.io.lerk.soultraps.Launcher.image=images/world.png
+class.io.lerk.soultraps.levels.Launcher.image=images/world.png
 
 # Editor Settings
 editor.fx.0.height=0
@@ -26,7 +26,7 @@ readme.y=10
 
 # Target definitions (unknown use)
 target1.height=50
-target1.name=io.lerk.soultraps.Launcher
+target1.name=io.lerk.soultraps.levels.Launcher
 target1.showInterface=false
 target1.type=ClassTarget
 target1.typeParameters=
@@ -36,4 +36,4 @@ target1.y=0
 
 # Misc/Unknown
 version=3.0.0
-world.lastInstantiated=io.lerk.soultraps.Launcher
+world.lastInstantiated=io.lerk.soultraps.levels.Launcher

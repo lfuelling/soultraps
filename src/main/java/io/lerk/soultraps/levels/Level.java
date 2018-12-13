@@ -1,15 +1,16 @@
-package io.lerk.soultraps;
+package io.lerk.soultraps.levels;
 
 import greenfoot.World;
+import io.lerk.soultraps.sys.Tiles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.Random;
 
-import static io.lerk.soultraps.Launcher.BASE_HEIGHT;
-import static io.lerk.soultraps.Launcher.BASE_WIDTH;
-import static io.lerk.soultraps.Tiles.*;
+import static io.lerk.soultraps.levels.Launcher.BASE_HEIGHT;
+import static io.lerk.soultraps.levels.Launcher.BASE_WIDTH;
+import static io.lerk.soultraps.sys.Tiles.*;
 
 public class Level extends World {
 
@@ -33,7 +34,7 @@ public class Level extends World {
     private void renderViewportItems() {
         for (int widthCount = 0; widthCount < getWidth(); widthCount++) {
             for (int heightCount = 0; heightCount < getHeight(); heightCount++) {
-                Tile tile = byName(levelTiles[widthCount][heightCount]);
+                Tiles.Tile tile = byName(levelTiles[widthCount][heightCount]);
                 addObject(tile,
                         ((getWidth()) * widthCount) / (getCellSize()*4), // x
                         ((getHeight()) * heightCount) / (getCellSize()*2)); // y
@@ -70,8 +71,8 @@ public class Level extends World {
 
     private Tiles.Tile randomGrassTile() {
         return (new Random().nextInt(2) == 0)
-                ? Tiles.byName(Grass01.getName())
-                : Tiles.byName(Grass02.getName());
+                ? byName(Grass01.getName())
+                : byName(Grass02.getName());
     }
 
     private String getRandomTile() {
