@@ -1,22 +1,14 @@
 package io.lerk.soultraps;
 
-import greenfoot.*;
-import io.lerk.soultraps.Button;
-
 public class Launcher extends Level {
 
-    public static final int BASE_WIDTH = 1000;
-    public static final int BASE_HEIGHT = 750;
+    public static final int BASE_WIDTH = 64;
+    public static final int BASE_HEIGHT = 32;
 
     public Launcher() {
-        //super(1000, 750, 1);
-        super(() -> 0);
-        prepare();
-    }
-
-    private void prepare() {
+        super();
         Button title = getTitle();
-        addObject(title, getWidth() / 2, 50);
+        addObject(title, getWidth() / 2, 0);
     }
 
     private Button getTitle() {
@@ -25,28 +17,26 @@ public class Launcher extends Level {
             private int count = 0;
             private int throttleCount = 0;
 
-            private final int throttle = 3;
-            private final int hoverAmount = 18;
+            private final int throttle = 12;
+            private final int hoverAmount = 3;
 
             @Override
             public void act() {
                 if (throttleCount >= throttle) {
                     if (up) {
                         setLocation(getX(), getY() + 1);
-                        if (count >= hoverAmount) {
+                        if (count > hoverAmount) {
                             count = 0;
                             up = false;
-                        } else {
-                            count++;
                         }
+                        count++;
                     } else {
                         setLocation(getX(), getY() - 1);
-                        if (count >= hoverAmount) {
+                        if (count > hoverAmount) {
                             count = 0;
                             up = true;
-                        } else {
-                            count++;
                         }
+                        count++;
                     }
                     throttleCount = 0;
                 } else {
