@@ -1,6 +1,7 @@
 package io.lerk.soultraps.levels;
 
 import greenfoot.World;
+import io.lerk.soultraps.sys.StopWatch;
 import io.lerk.soultraps.sys.Tiles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,9 @@ public class Level extends World {
     public void act() { }
 
     private void renderViewportItems() {
+        log.debug("Rendering viewport...");
+        StopWatch watch = new StopWatch(StopWatch.LogLevel.DEBUG);
+        watch.start();
         for (int widthCount = 0; widthCount < getWidth(); widthCount++) {
             for (int heightCount = 0; heightCount < getHeight(); heightCount++) {
                 Tiles.Tile tile = byName(levelTiles[widthCount][heightCount]);
@@ -43,9 +47,13 @@ public class Level extends World {
                 }
             }
         }
+        watch.stop("renderViewportItems()");
     }
 
     private void fillTiles() {
+        log.debug("Generating level...");
+        StopWatch watch = new StopWatch(StopWatch.LogLevel.DEBUG);
+        watch.start();
         for (int widthCount = 0; widthCount < LEVEL_WIDTH; widthCount++) {
             String[] tmp = new String[LEVEL_HEIGHT];
             for (int heightCount = 0; heightCount < LEVEL_HEIGHT; heightCount++) {
@@ -57,9 +65,13 @@ public class Level extends World {
             }
             levelTiles[widthCount] = tmp;
         }
+        watch.stop("fillTiles()");
     }
 
     private void drawGrass() {
+        log.debug("Drawing grass...");
+        StopWatch watch = new StopWatch(StopWatch.LogLevel.DEBUG);
+        watch.start();
         for (int widthCount = 0; widthCount < getWidth(); widthCount++) {
             for (int heightCount = 0; heightCount < getHeight(); heightCount++) {
                 addObject(randomGrassTile(),
@@ -67,6 +79,7 @@ public class Level extends World {
                         ((getHeight()) * heightCount) / (getCellSize()*2)); // y
             }
         }
+        watch.stop("drawGrass()");
     }
 
     private Tiles.Tile randomGrassTile() {
@@ -76,17 +89,19 @@ public class Level extends World {
     }
 
     private String getRandomTile() {
+        StopWatch watch = new StopWatch(StopWatch.LogLevel.DEBUG);
+        watch.start();
         final String[] res = {null};
         while (res[0] == null) {
-            Arrays.asList(Tiles.values()).stream().forEach(t -> {
+            Arrays.stream(Tiles.values()).forEach(t -> {
                 if ((t.equals(Grass01) || t.equals(Grass02)) && new Random().nextInt(2) == 0) { // 50% chance of grass
                     res[0] = t.getName();
-                } else if (new Random().nextInt(100) == 0) {
+                } else if (new Random().nextInt(250) == 0) {
                     res[0] = t.getName();
                 }
             });
         }
+        watch.stop("getRandomTile()");
         return res[0];
-        //return Tiles.values()[new Random().nextInt(Tiles.values().length - 1)].getName();
     }
 }
