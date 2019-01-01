@@ -15,6 +15,12 @@ import java.util.Properties;
 
 public class SoultrapsApp {
 
+    /**
+     * This is used to enable debug stuff like button backgrounds.
+     */
+    public static final boolean DEBUG = true;
+
+
     private static final Logger log = LoggerFactory.getLogger(SoultrapsApp.class);
     private static final Properties properties = new Properties();
 

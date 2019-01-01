@@ -12,10 +12,10 @@ public class Launcher extends Level {
     public Launcher() {
         super();
         Button title = getTitle();
-        addObject(title, getWidth() / 2, 0);
+        addObject(title, getWidth() / 2, 3);
 
-        Button startButton = new Button("Start Game", 100, 200, 32, Color.WHITE);
-        Button optionsButton = new Button("Options", 100, 200, 32, Color.WHITE);
+        Button startButton = new Button("Start Game", 32, 200, 32, Color.WHITE);
+        Button optionsButton = new Button("Options", 32, 200, 32, Color.WHITE);
 
         startButton.setHandler(() -> {
             Greenfoot.setWorld(new IntroLevel());
@@ -28,11 +28,11 @@ public class Launcher extends Level {
         });
 
         addObject(startButton, getWidth() / 2, 11);
-        addObject(optionsButton, getWidth() / 2, 13);
+        addObject(optionsButton, getWidth() / 2, 14);
     }
 
     private Button getTitle() {
-        return new Button("Soultraps", 256, 320, 72f, Color.WHITE) {
+        return new Button("Soultraps", 64, 320, 72f, Color.WHITE) {
             private boolean up = true;
             private int count = 1;
             private int throttleCount = 0;
