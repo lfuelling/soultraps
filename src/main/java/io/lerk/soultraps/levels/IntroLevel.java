@@ -2,9 +2,11 @@ package io.lerk.soultraps.levels;
 
 import io.lerk.soultraps.components.HUD;
 import io.lerk.soultraps.mobs.BaseMob;
+import io.lerk.soultraps.mobs.Enemies.Bat;
+import io.lerk.soultraps.mobs.Enemies.Zombie;
 import io.lerk.soultraps.mobs.Lumberjack;
 import io.lerk.soultraps.mobs.Player;
-import io.lerk.soultraps.mobs.Wolf;
+import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.sys.StopWatch;
 import io.lerk.soultraps.sys.Tiles;
 import org.slf4j.Logger;
@@ -36,6 +38,10 @@ public class IntroLevel extends Level {
         addMob(new Lumberjack());
         addMob(new Wolf());
         addMob(new Wolf());
+        addMob(new Bat());
+        addMob(new Bat());
+        addMob(new Zombie());
+        addMob(new Zombie());
         log.debug("Adding HUD...");
         drawHUD();
     }

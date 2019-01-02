@@ -2,6 +2,7 @@ package io.lerk.soultraps.mobs;
 
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.items.Item;
+import io.lerk.soultraps.mobs.Enemies.Enemy;
 import io.lerk.soultraps.sys.DialogManager;
 import io.lerk.soultraps.sys.Handler;
 

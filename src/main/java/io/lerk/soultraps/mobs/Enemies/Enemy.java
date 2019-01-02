@@ -1,4 +1,4 @@
-package io.lerk.soultraps.mobs;
+package io.lerk.soultraps.mobs.Enemies;
 
 /**
  * Interface that mobs implement to be able to make fights.
