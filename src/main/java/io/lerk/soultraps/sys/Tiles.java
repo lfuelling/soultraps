@@ -33,6 +33,18 @@ public enum Tiles {
         return name;
     }
 
+    /**
+     * Checks a given tile for fulfilling spawnpoint requirements.
+     * @param t the tile
+     * @return true if the tile is okay to use as spawn
+     */
+    public static boolean evaluateSpawn(Tiles.Tile t) {
+        boolean grassOrEmpty = t.getTileType().equals(Tiles.Grass01) ||
+                t.getTileType().equals(Tiles.Grass02) ||
+                t.getTileType().equals(Tiles.Empty);
+        return grassOrEmpty && !t.isOverlappingTileOtherThanEmptyOrGrass();
+    }
+
     public static Tile byName(String name) {
         if (name != null) {
             //noinspection IfCanBeSwitch switch won't work with "variables" 👀

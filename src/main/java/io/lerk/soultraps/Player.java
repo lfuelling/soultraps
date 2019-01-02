@@ -1,7 +1,12 @@
 package io.lerk.soultraps;
 
 import greenfoot.Greenfoot;
+import greenfoot.GreenfootImage;
 import io.lerk.soultraps.components.BaseMob;
+import io.lerk.soultraps.sys.StopWatch;
+import io.lerk.soultraps.sys.Tiles;
+
+import java.util.stream.Collectors;
 
 public class Player extends BaseMob {
 
@@ -12,6 +17,7 @@ public class Player extends BaseMob {
     private int seqIdx = 0;
 
     private Player() {
+
     }
 
     public static Player getSelf() {
@@ -21,26 +27,56 @@ public class Player extends BaseMob {
         return self;
     }
 
-    @Override
-    public void act() {
-        updateWalkingState();
-        animateWalking();
-        orientPlayer();
+    private void walk() {
+        if (canWalk()) {
+            this.move(1);
+        }
+    }
+
+    private boolean canWalk() {
+        if (walking) {
+            if (direction.equals(Direction.NORTH)) {
+                return this.getObjectsAtOffset(0, -1, Tiles.Tile.class).stream()
+                        .filter(tile -> !(tile.getTileType().equals(Tiles.Grass01) ||
+                                tile.getTileType().equals(Tiles.Grass02) ||
+                                tile.getTileType().equals(Tiles.Empty)))
+                        .collect(Collectors.toList()).size() == 0;
+            } else if (direction.equals(Direction.EAST)) {
+                return this.getObjectsAtOffset(1, 0, Tiles.Tile.class).stream()
+                        .filter(tile -> !(tile.getTileType().equals(Tiles.Grass01) ||
+                                tile.getTileType().equals(Tiles.Grass02) ||
+                                tile.getTileType().equals(Tiles.Empty)))
+                        .collect(Collectors.toList()).size() == 0;
+            } else if (direction.equals(Direction.SOUTH)) {
+                return this.getObjectsAtOffset(0, 1, Tiles.Tile.class).stream()
+                        .filter(tile -> !(tile.getTileType().equals(Tiles.Grass01) ||
+                                tile.getTileType().equals(Tiles.Grass02) ||
+                                tile.getTileType().equals(Tiles.Empty)))
+                        .collect(Collectors.toList()).size() == 0;
+            } else if (direction.equals(Direction.WEST)) {
+                return this.getObjectsAtOffset(-1, 0, Tiles.Tile.class).stream()
+                        .filter(tile -> !(tile.getTileType().equals(Tiles.Grass01) ||
+                                tile.getTileType().equals(Tiles.Grass02) ||
+                                tile.getTileType().equals(Tiles.Empty)))
+                        .collect(Collectors.toList()).size() == 0;
+            }
+        }
+        return false;
     }
 
     private void updateWalkingState() {
-        if(Greenfoot.isKeyDown("w")) {
+        if (Greenfoot.isKeyDown("w")) {
             walking = true;
             direction = Direction.NORTH;
-        } else if(Greenfoot.isKeyDown("a")) {
-            walking = true;
-            direction = Direction.EAST;
-        } else if(Greenfoot.isKeyDown("s")) {
-            walking = true;
-            direction = Direction.SOUTH;
-        } else if(Greenfoot.isKeyDown("d")) {
+        } else if (Greenfoot.isKeyDown("a")) {
             walking = true;
             direction = Direction.WEST;
+        } else if (Greenfoot.isKeyDown("s")) {
+            walking = true;
+            direction = Direction.SOUTH;
+        } else if (Greenfoot.isKeyDown("d")) {
+            walking = true;
+            direction = Direction.EAST;
         } else {
             walking = false;
         }
@@ -48,13 +84,16 @@ public class Player extends BaseMob {
 
     private void orientPlayer() {
         this.setRotation(direction.getRotation());
-        if (direction.isMirrorred()) {
+        if (direction.isMirrorredV()) {
+            this.getImage().mirrorVertically();
+        }
+        if (direction.isMirroredH()) {
             this.getImage().mirrorHorizontally();
         }
     }
 
     private void animateWalking() {
-        if(seqIdx>4) {
+        if (seqIdx > 4) {
             seqIdx = 0;
         }
         if (walking) {
@@ -63,5 +102,13 @@ public class Player extends BaseMob {
             this.setImage("images/player/player_walking1.png");
         }
         seqIdx++;
+    }
+
+    @Override
+    protected void doAct() {
+        updateWalkingState();
+        animateWalking();
+        orientPlayer();
+        walk();
     }
 }

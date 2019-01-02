@@ -13,7 +13,7 @@ import static io.lerk.soultraps.levels.Launcher.BASE_HEIGHT;
 import static io.lerk.soultraps.levels.Launcher.BASE_WIDTH;
 import static io.lerk.soultraps.sys.Tiles.*;
 
-public class Level extends World {
+public abstract class Level extends World {
 
     public static final int LEVEL_WIDTH = 128;
     public static final int LEVEL_HEIGHT = 128;
@@ -27,7 +27,6 @@ public class Level extends World {
         fillTiles();
         renderViewportItems();
     }
-
 
     @Override
     public void act() { }
