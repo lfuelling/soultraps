@@ -1,5 +1,6 @@
 package io.lerk.soultraps.levels;
 
+import io.lerk.soultraps.components.HUD;
 import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.mobs.Lumberjack;
 import io.lerk.soultraps.mobs.Player;
@@ -20,6 +21,12 @@ public class IntroLevel extends Level {
         addMob(Player.getSelf());
         log.debug("Adding mobs...");
         addMob(new Lumberjack());
+        log.debug("Adding HUD...");
+        drawHUD();
+    }
+
+    protected void drawHUD() {
+        addObject(new HUD(Player.getSelf()), 0, 0);
     }
 
     private void addMob(BaseMob mob) {

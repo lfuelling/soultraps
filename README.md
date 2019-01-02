@@ -21,6 +21,17 @@ Soultraps is a 2D RPG made with Greenfoot.
     - Damage (`Integer`)
     - Effects (`List<Effect>`)
     
+### Controls
+
+- Walk
+    - Up `w`
+    - Left `a`
+    - Down `s`
+    - Right `d`
+- Interact
+    - Start fight `e`
+    - Next Message `space`
+    
 ## Third Party Stuff
 
 - Skyrim Font by [DarkX ShadowX21](https://www.dafont.com/de/darkx-shadowx21.d5582)

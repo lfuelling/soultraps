@@ -1,6 +1,7 @@
 package io.lerk.soultraps.levels;
 
 import greenfoot.World;
+import io.lerk.soultraps.components.HUD;
 import io.lerk.soultraps.sys.StopWatch;
 import io.lerk.soultraps.sys.Tiles;
 import org.slf4j.Logger;

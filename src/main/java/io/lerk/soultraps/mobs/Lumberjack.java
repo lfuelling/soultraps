@@ -1,7 +1,9 @@
 package io.lerk.soultraps.mobs;
 
+import io.lerk.soultraps.items.Axe;
 import io.lerk.soultraps.sys.Tiles;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -12,6 +14,14 @@ public class Lumberjack extends BaseMob {
 
     @Override
     protected void updateWalkingState() {
+        if(getIntersectingObjects(Player.class).size() > 0) {
+            walking = false;
+            Player.getSelf().startDialog(getDialog(), () ->  {
+                Player.getSelf().addItem(new Axe());
+                return null;
+            });
+            return;
+        }
         if(new Random().nextBoolean()) {
             if (isTreeInRangeNorth()) {
                 walking = true;
@@ -31,6 +41,14 @@ public class Lumberjack extends BaseMob {
         } else {
             randomWalkingState();
         }
+    }
+
+    private ArrayList<String> getDialog() {
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("Hi, I'm Jack, a lumberjack.");
+        strings.add("Do you see the trees around you?");
+        strings.add("You can use this axe to chop them down.");
+        return strings;
     }
 
     private void randomWalkingState() {
@@ -77,6 +95,11 @@ public class Lumberjack extends BaseMob {
             this.setImage("images/lumberjack/lumberjack1.png");
         }
         seqIdx++;
+    }
+
+    @Override
+    protected int maxHealth() {
+        return 100;
     }
 
     @Override

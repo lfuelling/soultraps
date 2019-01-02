@@ -12,7 +12,13 @@ public abstract class BaseMob extends Actor {
 
     protected boolean walking = false;
     protected Direction direction = Direction.NORTH;
+    private Integer health;
 
+    public BaseMob() {
+        health = maxHealth();
+    }
+
+    protected abstract int maxHealth();
     protected abstract void doAct();
 
     private long lastActTimeMillis = 0;
@@ -78,6 +84,14 @@ public abstract class BaseMob extends Actor {
             }
         }
         return false;
+    }
+
+    public Integer getHealth() {
+        return health;
+    }
+
+    public void setHealth(Integer health) {
+        this.health = health;
     }
 
     public enum Direction {
