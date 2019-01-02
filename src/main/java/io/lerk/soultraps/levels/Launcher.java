@@ -4,11 +4,26 @@ import greenfoot.Color;
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.components.Button;
 
+/**
+ * The launcher or main menu.
+ *
+ * @author Lukas Fülling (lukas@k40s.net)
+ */
 public class Launcher extends Level {
 
+    /**
+     * Base world width.
+     */
     public static final int BASE_WIDTH = 64;
+
+    /**
+     * Base world height.
+     */
     public static final int BASE_HEIGHT = 32;
 
+    /**
+     * Constructor.
+     */
     public Launcher() {
         super();
         Button title = getTitle();
@@ -31,6 +46,11 @@ public class Launcher extends Level {
         addObject(optionsButton, getWidth() / 2, 14);
     }
 
+    /**
+     * Generates the title which is a {@link Button} anonymous inner class.
+     *
+     * @return the title.
+     */
     private Button getTitle() {
         return new Button("Soultraps", 64, 320, 72f, Color.WHITE) {
             private boolean up = true;

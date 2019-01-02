@@ -6,23 +6,60 @@ import io.lerk.soultraps.sys.Tiles;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+/**
+ * Basic mob class that contains stuff shared by all mobs.
+ *
+ * @author Lukas Fülling (lukas@k40s.net)
+ */
 public abstract class BaseMob extends Actor {
 
+    /**
+     * Update interval in milliseconds.
+     */
     private final long UPDATE_INTERVAL = 100L;
 
+    /**
+     * If mob is walking.
+     */
     protected boolean walking = false;
+
+    /**
+     * Direction of mob,
+     */
     protected Direction direction = Direction.NORTH;
+
+    /**
+     * Mob health.
+     */
     private Integer health;
 
+    /**
+     * Constructor.
+     */
     public BaseMob() {
         health = maxHealth();
     }
 
+    /**
+     * Get the mobs max possible health.
+     *
+     * @return max possible health of mob.
+     */
     protected abstract int maxHealth();
+
+    /**
+     * Throttled method used for stuff other than walking.
+     */
     protected abstract void doAct();
 
+    /**
+     * Last time the mob was refreshed.
+     */
     private long lastActTimeMillis = 0;
 
+    /**
+     * Method that throttles the mobs behavior.
+     */
     @Override
     public void act() {
         if (System.currentTimeMillis() - UPDATE_INTERVAL >= lastActTimeMillis) {
@@ -35,19 +72,33 @@ public abstract class BaseMob extends Actor {
         }
     }
 
+    /**
+     * Moves the mob if possible. This is called in {@link #act()}.
+     */
     protected void walk() {
         if (canWalk()) {
             this.move(1);
         }
     }
 
+    /**
+     * Animate mob. This is called in {@link #act()}.
+     */
     protected abstract void animateWalking();
 
+    /**
+     * This method should update {@link #walking} and {@link #direction} according to mob state.
+     * This is called in {@link #act()}.
+     */
     protected abstract void updateWalkingState();
 
+    /**
+     * Orients (rotates) the mob.
+     * This is called in {@link #act()}.
+     */
     protected void orientMob() {
         this.setRotation(direction.getRotation());
-        if (direction.isMirrorredV()) {
+        if (direction.isMirroredV()) {
             this.getImage().mirrorVertically();
         }
         if (direction.isMirroredH()) {
@@ -55,6 +106,12 @@ public abstract class BaseMob extends Actor {
         }
     }
 
+    /**
+     * Decides if the mob can walk (ie. not standing in front of anything).
+     * This is called in {@link #walk()}.
+     *
+     * @return true if the mob can walk in the {@link #direction} it's facing.
+     */
     protected boolean canWalk() {
         if (walking) {
             if (direction.equals(Direction.NORTH)) {
@@ -86,34 +143,89 @@ public abstract class BaseMob extends Actor {
         return false;
     }
 
+    /**
+     * Getter for health.
+     *
+     * @return mob health.
+     */
     public Integer getHealth() {
         return health;
     }
 
+    /**
+     * Setter for health.
+     *
+     * @param health mob health
+     */
     public void setHealth(Integer health) {
         this.health = health;
     }
 
+    /**
+     * Direction enum.
+     *
+     * @author Lukas Fülling (lukas@k40s.net)
+     */
     public enum Direction {
+        /**
+         * North (up)
+         */
         NORTH(270),
+        /**
+         * East (right)
+         */
         EAST(0),
+        /**
+         * South (down)
+         */
         SOUTH(90, true, false),
+        /**
+         * West (left)
+         */
         WEST(180, true, false);
 
+        /**
+         * Image rotation for this direction.
+         */
         private final int rotation;
-        private final boolean mirroredH;
-        private final boolean mirrorredV;
 
+        /**
+         * Should image be mirrored horizontally.
+         */
+        private final boolean mirroredH;
+
+        /**
+         * Should image be mirrored vertically.
+         */
+        private final boolean mirroredV;
+
+        /**
+         * Constructor.
+         *
+         * @param rotation image rotation.
+         */
         Direction(int rotation) {
             this(rotation, false, false);
         }
 
-        Direction(int rotation, boolean mirrorredV, boolean mirroredH) {
+        /**
+         * Constructor.
+         *
+         * @param rotation  image rotation
+         * @param mirroredV mirror image horizontally
+         * @param mirroredH mirror image vertically
+         */
+        Direction(int rotation, boolean mirroredV, boolean mirroredH) {
             this.rotation = rotation;
             this.mirroredH = mirroredH;
-            this.mirrorredV = mirrorredV;
+            this.mirroredV = mirroredV;
         }
 
+        /**
+         * Generates a random {@link Direction}.
+         *
+         * @return random direction
+         */
         public static Direction random() {
             switch (new Random().nextInt(3)) {
                 case 0:
@@ -127,14 +239,29 @@ public abstract class BaseMob extends Actor {
             }
         }
 
+        /**
+         * Getter for mirror image horizontally.
+         *
+         * @return {@link #mirroredH}
+         */
         public boolean isMirroredH() {
             return mirroredH;
         }
 
-        public boolean isMirrorredV() {
-            return mirrorredV;
+        /**
+         * Getter for mirror image vertically.
+         *
+         * @return {@link #mirroredV}
+         */
+        public boolean isMirroredV() {
+            return mirroredV;
         }
 
+        /**
+         * Getter for image rotation.
+         *
+         * @return image rotation
+         */
         public int getRotation() {
             return rotation;
         }

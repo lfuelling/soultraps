@@ -13,6 +13,11 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
+/**
+ * Main Soultraps application.
+ *
+ * @author Lukas Fülling (lukas@k40s.net)
+ */
 public class SoultrapsApp {
 
     /**
@@ -20,10 +25,21 @@ public class SoultrapsApp {
      */
     public static final boolean DEBUG = true;
 
-
+    /**
+     * Logger.
+     */
     private static final Logger log = LoggerFactory.getLogger(SoultrapsApp.class);
+
+    /**
+     * The properties.
+     */
     private static final Properties properties = new Properties();
 
+    /**
+     * Main method.
+     *
+     * @param args program arguments.
+     */
     public static void main(String[] args) {
         // load properties
         initProperties();
@@ -54,6 +70,9 @@ public class SoultrapsApp {
 
     }
 
+    /**
+     * Initializes project properties.
+     */
     private static void initProperties() {
         try (InputStream is = SoultrapsApp.class.getClassLoader().getResourceAsStream("standalone.properties")) {
             properties.load(is);

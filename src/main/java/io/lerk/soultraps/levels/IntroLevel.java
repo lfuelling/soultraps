@@ -11,10 +11,22 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
+/**
+ * The first level the player reches after the main menu.
+ * The player will get all necessary items here and will (hopefully) learn to kill mobs.
+ *
+ * @author Lukas Fülling (lukas@k40s.net)
+ */
 public class IntroLevel extends Level {
 
+    /**
+     * Logger.
+     */
     private static final Logger log = LoggerFactory.getLogger(IntroLevel.class);
 
+    /**
+     * Constructor.
+     */
     public IntroLevel() {
         super();
         log.debug("Adding player...");
@@ -25,10 +37,19 @@ public class IntroLevel extends Level {
         drawHUD();
     }
 
+    /**
+     * Draws HUD.
+     */
     protected void drawHUD() {
-        addObject(new HUD(Player.getSelf()), 0, 0);
+        addObject(new HUD(), 0, 0);
     }
 
+    /**
+     * Adds a mob at a random "free" (of trees, bushes, stones, etc.) tile.
+     * This method also runs a {@link StopWatch} that logs the added mob at debug level.
+     *
+     * @param mob the mob to add.
+     */
     private void addMob(BaseMob mob) {
         StopWatch stopWatch = new StopWatch(StopWatch.LogLevel.DEBUG);
         stopWatch.start();
