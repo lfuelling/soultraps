@@ -1,0 +1,41 @@
+image: maven:3.6.0-jdk-8
+
+stages:
+  - build
+  - deploy
+
+build_skip_tests:
+  stage: build
+  script:
+    - mvn clean install -DskipTests=true
+
+build_with_tests:
+  stage: build
+  script:
+    - mvn clean install
+  only:
+    - master
+
+javadoc:
+  stage: build
+  script:
+    - mvn javadoc:javadoc
+  artifacts:
+    paths:
+      - target/
+  only:
+    - master
+
+pages:
+  stage: deploy
+  dependencies:
+    - javadoc
+  before_script: []
+  script:
+    - mv target/site/apidocs public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  only:
+    - master
