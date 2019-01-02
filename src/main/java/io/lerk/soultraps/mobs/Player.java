@@ -135,7 +135,7 @@ public class Player extends BaseMob {
         DialogManager.displayMessage("You received: " + item.getName());
     }
 
-    public void startAttck(Enemy enemy) {
+    public void startAttack(Enemy enemy) {
         //TODO: implement
     }
 }

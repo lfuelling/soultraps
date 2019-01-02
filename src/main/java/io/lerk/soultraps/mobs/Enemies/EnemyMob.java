@@ -13,7 +13,7 @@ public abstract class EnemyMob extends BaseMob implements Enemy {
     protected void updateWalkingState() {
         if (getIntersectingObjects(Player.class).size() > 0) {
             walking = false;
-            Player.getSelf().startAttck(this);
+            Player.getSelf().startAttack(this);
             return;
         }
         if (new Random().nextBoolean()) {
