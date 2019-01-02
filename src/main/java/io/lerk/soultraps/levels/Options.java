@@ -3,7 +3,6 @@ package io.lerk.soultraps.levels;
 import greenfoot.Color;
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.components.Button;
-import io.lerk.soultraps.levels.Level;
 
 public class Options extends Level {
     public Options(final Launcher launcher) {

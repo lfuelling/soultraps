@@ -1,7 +1,6 @@
 package io.lerk.soultraps.components;
 
 import greenfoot.*;
-import greenfoot.core.WorldHandler;
 import io.lerk.soultraps.sys.Fonts;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.SoultrapsApp;

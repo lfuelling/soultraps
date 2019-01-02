@@ -1,9 +1,7 @@
 package io.lerk.soultraps;
 
 import greenfoot.Greenfoot;
-import greenfoot.GreenfootImage;
 import io.lerk.soultraps.components.BaseMob;
-import io.lerk.soultraps.sys.StopWatch;
 import io.lerk.soultraps.sys.Tiles;
 
 import java.util.stream.Collectors;
