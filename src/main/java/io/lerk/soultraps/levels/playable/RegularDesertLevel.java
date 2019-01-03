@@ -27,13 +27,13 @@ public class RegularDesertLevel extends DesertLevel {
         super(); // call super() or level won't be initialized
         log.debug("Adding DialogManager...");
         addObject(DialogManager.get(), 0, 0);
-        log.info("Adding player...");
-        addMob(Player.getSelf());
         log.debug("Adding portal...");
         addMob(new Portal());
         log.info("Adding Mobs...");
         addMob(new Zombie()); // only zombies in the desert
         addMob(new Zombie());
         addMob(new Zombie());
+        log.info("Adding player...");
+        addMob(Player.getSelf());
     }
 }

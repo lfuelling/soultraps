@@ -32,8 +32,6 @@ public class IntroLevel extends GrasslandLevel {
         super(); // call super() or level won't be initialized
         log.debug("Adding DialogManager...");
         addObject(DialogManager.get(), 0, 0);
-        log.debug("Adding player...");
-        addMob(Player.getSelf());
         log.debug("Adding portal...");
         addMob(new Portal());
         log.debug("Adding mobs...");
@@ -44,15 +42,8 @@ public class IntroLevel extends GrasslandLevel {
         addMob(new Bat());
         addMob(new Zombie());
         addMob(new Zombie());
-        log.debug("Adding HUD...");
-        drawHUD();
-    }
-
-    /**
-     * Draws HUD.
-     */
-    protected void drawHUD() {
-        addObject(new HUD(), 0, 0);
+        log.debug("Adding player...");
+        addMob(Player.getSelf());
     }
 
 }

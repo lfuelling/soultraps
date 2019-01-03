@@ -25,6 +25,18 @@ public class Portal extends DialogMob {
     private static final Logger log = LoggerFactory.getLogger(Portal.class);
 
     /**
+     * Index used for the animation.
+     */
+    private int seqIdx = 0;
+
+    /**
+     * Constructor.
+     */
+    public Portal() {
+        this.setImage("images/portal/portal1.png");
+    }
+
+    /**
      * In this method it's checked if teh player is stepping on the portal.
      * If so, a dialog will be shown and the player will be moved afterwards.
      */
@@ -83,5 +95,14 @@ public class Portal extends DialogMob {
      */
     @Override
     protected void animateWalking() {
+        if (seqIdx > 4) {
+            seqIdx = 0;
+        }
+        if (walking) {
+            this.setImage("images/portal/portal" + (seqIdx + 1) + ".png");
+        } else {
+            this.setImage("images/portal/portal1.png");
+        }
+        seqIdx++;
     }
 }

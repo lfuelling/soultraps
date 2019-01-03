@@ -29,13 +29,13 @@ public class RegularGrasslandLevel extends GrasslandLevel {
         super(); // call super() or level won't be initialized
         log.debug("Adding DialogManager...");
         addObject(DialogManager.get(), 0, 0);
-        log.info("Adding player...");
-        addMob(Player.getSelf());
         log.debug("Adding portal...");
         addMob(new Portal());
         log.info("Adding Mobs...");
         addMob(new Wolf());
         addMob(new Zombie());
         addMob(new Bat());
+        log.info("Adding player...");
+        addMob(Player.getSelf());
     }
 }
