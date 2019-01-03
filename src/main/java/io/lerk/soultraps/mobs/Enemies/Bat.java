@@ -3,7 +3,7 @@ package io.lerk.soultraps.mobs.Enemies;
 import java.util.Random;
 
 /**
- * This is probably the most easiest enemy mobs in the game.
+ * This is probably the asiest enemy mobs in the game.
  *
  * @author Lukas Fülling (lukas@k40s.net)
  * @author Nicolai Süper (nico@k40s.net)

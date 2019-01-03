@@ -5,10 +5,21 @@ import nl.paulinternet.gtasaveedit.view.swing.YBox;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This is a simple about window.
+ *
+ * @author Lukas Fülling (lukas@k40s.net)
+ */
 public class AboutWindow extends JFrame {
 
+    /**
+     * The main content of this window.
+     */
     private YBox yBox;
 
+    /**
+     * Constructor.
+     */
     public AboutWindow() {
 
         JLabel label = new JLabel(
@@ -18,8 +29,9 @@ public class AboutWindow extends JFrame {
                         "<br />" +
                         "<br />Controls:<br />" +
                         "<br />W/A/S/D: Move<br />" +
+                        "<br />E: Start conversation<br />" +
                         "<br />SPACE: Dismiss Message<br />" +
-                "</html>"
+                        "</html>"
         );
         yBox = new YBox();
         yBox.add(label);

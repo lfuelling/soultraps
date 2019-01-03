@@ -1,21 +1,18 @@
 package io.lerk.soultraps.levels;
 
 import io.lerk.soultraps.components.HUD;
-import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.mobs.Enemies.Bat;
-import io.lerk.soultraps.mobs.Enemies.Zombie;
-import io.lerk.soultraps.mobs.Lumberjack;
-import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
-import io.lerk.soultraps.sys.StopWatch;
-import io.lerk.soultraps.sys.Tiles;
+import io.lerk.soultraps.mobs.Enemies.Zombie;
+import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.Portal;
+import io.lerk.soultraps.mobs.friendly.Lumberjack;
+import io.lerk.soultraps.sys.dialog.DialogManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Random;
-
 /**
- * The first level the player reches after the main menu.
+ * The first level the player reaches after the main menu.
  * The player will get all necessary items here and will (hopefully) learn to kill mobs.
  *
  * @author Lukas Fülling (lukas@k40s.net)
@@ -32,8 +29,12 @@ public class IntroLevel extends Level {
      */
     public IntroLevel() {
         super();
+        log.debug("Adding DialogManager...");
+        addObject(DialogManager.get(), 0, 0);
         log.debug("Adding player...");
         addMob(Player.getSelf());
+        log.debug("Adding portal...");
+        addMob(new Portal());
         log.debug("Adding mobs...");
         addMob(new Lumberjack());
         addMob(new Wolf());
@@ -51,27 +52,6 @@ public class IntroLevel extends Level {
      */
     protected void drawHUD() {
         addObject(new HUD(), 0, 0);
-    }
-
-    /**
-     * Adds a mob at a random "free" (of trees, bushes, stones, etc.) tile.
-     * This method also runs a {@link StopWatch} that logs the added mob at debug level.
-     *
-     * @param mob the mob to add.
-     */
-    private void addMob(BaseMob mob) {
-        StopWatch stopWatch = new StopWatch(StopWatch.LogLevel.DEBUG);
-        stopWatch.start();
-        int randomX = 0;
-        int randomY = 0;
-        final boolean[] goodTile = {false};
-        while (!goodTile[0]) {
-            randomX = new Random().nextInt(Level.LEVEL_WIDTH);
-            randomY = new Random().nextInt(Level.LEVEL_HEIGHT);
-            getObjectsAt(randomX, randomY, Tiles.Tile.class).forEach(t -> goodTile[0] = Tiles.evaluateSpawn(t));
-        }
-        addObject(mob, randomX, randomY);
-        stopWatch.stop("addMob(" + mob.getClass().getName() + ")");
     }
 
 }

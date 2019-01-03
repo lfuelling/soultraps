@@ -26,7 +26,7 @@ public class Soultraps {
     /**
      * This is used to enable debug stuff like button backgrounds.
      */
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
 
     /**
      * Logger.

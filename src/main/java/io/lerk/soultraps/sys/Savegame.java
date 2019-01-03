@@ -5,7 +5,6 @@ import io.lerk.soultraps.mobs.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -47,7 +46,7 @@ public class Savegame {
      * Writes a savegame to the default location.
      */
     public void write() {
-        try(FileWriter fw = new FileWriter(getSavegameDir() + "/save.json")) {
+        try (FileWriter fw = new FileWriter(getSavegameDir() + "/save.json")) {
             try (BufferedWriter bw = new BufferedWriter(fw)) {
                 bw.write(new Gson().toJson(this));
             } catch (IOException e) {

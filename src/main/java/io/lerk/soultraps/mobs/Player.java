@@ -3,8 +3,10 @@ package io.lerk.soultraps.mobs;
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.items.Item;
 import io.lerk.soultraps.mobs.Enemies.Enemy;
-import io.lerk.soultraps.sys.DialogManager;
 import io.lerk.soultraps.sys.Handler;
+import io.lerk.soultraps.sys.dialog.Dialog;
+import io.lerk.soultraps.sys.dialog.DialogManager;
+import io.lerk.soultraps.sys.dialog.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,11 +77,31 @@ public class Player extends DialogMob {
     /**
      * Dummy method, the player has no dialog.
      *
-     * @return a new {@link ArrayList<String>}.
+     * @return a new {@link ArrayList<Message>}
      */
     @Override
-    protected ArrayList<String> getDialog() {
+    protected List<Message> getDialogMessages() {
         return new ArrayList<>();
+    }
+
+    /**
+     * Dummy method, the player has no dialog.
+     *
+     * @return a {@link Handler} that returns null
+     */
+    @Override
+    protected Handler<Void> getDialogDoneAction() {
+        return () -> null;
+    }
+
+    /**
+     * Dummy method, the player has no dialog.
+     *
+     * @return false
+     */
+    @Override
+    protected boolean shouldStartConversation() {
+        return false;
     }
 
     /**
@@ -116,31 +138,36 @@ public class Player extends DialogMob {
     }
 
     /**
-     * Method used to start a dialog.
-     *
-     * @param dialog     the dialogs content.
-     * @param doneAction the action to be done after the dialog is complete
-     * @param mob        the mob the player is talking with
-     */
-    public void startDialog(List<String> dialog, Handler doneAction, DialogMob mob) {
-        dialog.forEach(m -> DialogManager.displayMessage(m, getWorld(), mob));
-        doneAction.handle();
-    }
-
-    /**
      * Method used to add an {@link Item} to the players inventory.
      *
      * @param item the item to add
      */
     public void addItem(Item item) {
-        items.add(item);
-        DialogManager.displayMessage("You received: " + item.getName(), getWorld(), null);
+        Dialog dialog = new Dialog();
+        ArrayList<Message> messageList = new ArrayList<>();
+        messageList.add(new Message("You received: " + item.getName(), dialog));
+        dialog.setMessages(messageList);
+        dialog.setDoneAction(() -> {
+            items.add(item);
+            return null;
+        });
+        DialogManager.startDialog(dialog);
     }
 
+    /**
+     * Starts a fight with a given enemy.
+     *
+     * @param enemy the enemy to start the fight with
+     */
     public void startAttack(Enemy enemy) {
         //TODO: implement
     }
 
+    /**
+     * Getter for the player's {@link #items}.
+     *
+     * @return the player's items
+     */
     public ArrayList<Item> getItems() {
         return items;
     }

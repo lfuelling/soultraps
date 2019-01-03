@@ -1,6 +1,12 @@
 package io.lerk.soultraps.mobs;
 
+import io.lerk.soultraps.sys.Handler;
+import io.lerk.soultraps.sys.dialog.Dialog;
+import io.lerk.soultraps.sys.dialog.DialogManager;
+import io.lerk.soultraps.sys.dialog.Message;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A mob that can talk.
@@ -8,6 +14,11 @@ import java.util.ArrayList;
  * @author Lukas Fülling (lukas@k40s.net)
  */
 public abstract class DialogMob extends BaseMob {
+
+    /**
+     * The mob's dialog.
+     */
+    protected Dialog dialog = new Dialog();
 
     /**
      * Mob currently talking.
@@ -21,7 +32,12 @@ public abstract class DialogMob extends BaseMob {
     @Override
     protected void updateWalkingState() {
         if (!talking) {
-            updateWalkingStateNotTalking();
+            walking = false;
+            if (shouldStartConversation()) {
+                DialogManager.startDialog(getDialog());
+            } else {
+                updateWalkingStateNotTalking();
+            }
         } else {
             walking = false;
         }
@@ -39,7 +55,42 @@ public abstract class DialogMob extends BaseMob {
      *
      * @return the full dialog of the mob.
      */
-    protected abstract ArrayList<String> getDialog();
+    protected abstract List<Message> getDialogMessages();
+
+    /**
+     * Method to get the mobs dialog.
+     *
+     * @return the dialog
+     */
+    protected Dialog getDialog() {
+        if (dialog.getMob() == null) {
+            buildDialog();
+        }
+        return dialog;
+    }
+
+    /**
+     * Method that fills the dialog with it's content using the abstract methods.
+     */
+    private void buildDialog() {
+        dialog.setMob(this);
+        dialog.setMessages(new ArrayList<>(getDialogMessages()));
+        dialog.setDoneAction(getDialogDoneAction());
+    }
+
+    /**
+     * Method to get the {@link Handler} that is run after the dialog is done.
+     *
+     * @return the Handler to be run
+     */
+    protected abstract Handler<Void> getDialogDoneAction();
+
+    /**
+     * Method to determine if the mob should start a conversation.
+     *
+     * @return true if a conversation should be started.
+     */
+    protected abstract boolean shouldStartConversation();
 
     /**
      * Getter for {@link #talking}.

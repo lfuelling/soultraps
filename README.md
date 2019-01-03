@@ -29,7 +29,7 @@ Soultraps is a 2D RPG made with Greenfoot.
     - Down `s`
     - Right `d`
 - Interact
-    - Start fight `e`
+    - Start conversation `e`
     - Next Message `space`
     
 ## Third Party Stuff

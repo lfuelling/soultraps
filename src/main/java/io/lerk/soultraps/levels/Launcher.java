@@ -3,6 +3,9 @@ package io.lerk.soultraps.levels;
 import greenfoot.Color;
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.components.Button;
+import io.lerk.soultraps.mobs.Enemies.Bat;
+import io.lerk.soultraps.mobs.Enemies.Wolf;
+import io.lerk.soultraps.mobs.Enemies.Zombie;
 
 /**
  * The launcher or main menu.
@@ -26,6 +29,11 @@ public class Launcher extends Level {
      */
     public Launcher() {
         super();
+
+        addMob(new Wolf());
+        addMob(new Bat());
+        addMob(new Zombie());
+
         Button title = getTitle();
         addObject(title, getWidth() / 2, 3);
 

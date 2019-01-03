@@ -1,7 +1,12 @@
-package io.lerk.soultraps.mobs;
+package io.lerk.soultraps.mobs.friendly;
 
+import greenfoot.Greenfoot;
 import io.lerk.soultraps.items.Axe;
+import io.lerk.soultraps.mobs.DialogMob;
+import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.Tiles;
+import io.lerk.soultraps.sys.dialog.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +31,6 @@ public class Lumberjack extends DialogMob {
      */
     @Override
     protected void updateWalkingStateNotTalking() {
-        if (getIntersectingObjects(Player.class).size() > 0 && !playerHasAxe()) {
-            walking = false;
-            //TODO: add different dialog if player has an axe.
-            Player.getSelf().startDialog(getDialog(), () -> {
-                Player.getSelf().addItem(new Axe());
-                return null;
-            }, Lumberjack.this);
-            return;
-        }
         if (new Random().nextBoolean()) {
             if (isTreeInRangeNorth()) {
                 walking = true;
@@ -66,17 +62,38 @@ public class Lumberjack extends DialogMob {
     }
 
     /**
-     * Method to get the lumberjacks dialog messages.
+     * Method to get the lumberjacks dialog.
      *
-     * @return the dialog contents
+     * @return the dialog
      */
     @Override
-    protected ArrayList<String> getDialog() {
-        ArrayList<String> strings = new ArrayList<>();
-        strings.add("Hi, I'm Jack, a lumberjack.");
-        strings.add("Do you see the trees around you?");
-        strings.add("You can use this axe to chop them down.");
-        return strings;
+    protected List<Message> getDialogMessages() {
+        ArrayList<Message> messages = new ArrayList<>();
+        messages.add(new Message("Hi, I'm Jack, a lumberjack.", dialog));
+        messages.add(new Message("Do you see the trees around you?", dialog));
+        messages.add(new Message("You can use this axe to chop them down.", dialog));
+        return messages;
+    }
+
+    /**
+     * Method to get the dialog done action handler.
+     *
+     * @return the handler
+     */
+    @Override
+    protected Handler<Void> getDialogDoneAction() {
+        return () -> {
+            Player.getSelf().addItem(new Axe());
+            return null;
+        };
+    }
+
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    protected boolean shouldStartConversation() {
+        return getIntersectingObjects(Player.class).size() > 0 && !playerHasAxe() && Greenfoot.isKeyDown("e");
     }
 
     /**
@@ -132,7 +149,7 @@ public class Lumberjack extends DialogMob {
     }
 
     /**
-     * Checks a list of {@link io.lerk.soultraps.sys.Tiles.Tile} for containing a tree.
+     * Checks a list of {@link Tiles.Tile} for containing a tree.
      *
      * @param tiles the {@link List} of tiles
      * @return true if there are trees
