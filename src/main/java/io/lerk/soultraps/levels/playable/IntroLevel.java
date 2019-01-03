@@ -1,6 +1,7 @@
-package io.lerk.soultraps.levels;
+package io.lerk.soultraps.levels.playable;
 
 import io.lerk.soultraps.components.HUD;
+import io.lerk.soultraps.levels.types.GrasslandLevel;
 import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
@@ -17,7 +18,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class IntroLevel extends Level {
+public class IntroLevel extends GrasslandLevel {
 
     /**
      * Logger.
@@ -28,7 +29,7 @@ public class IntroLevel extends Level {
      * Constructor.
      */
     public IntroLevel() {
-        super();
+        super(); // call super() or level won't be initialized
         log.debug("Adding DialogManager...");
         addObject(DialogManager.get(), 0, 0);
         log.debug("Adding player...");

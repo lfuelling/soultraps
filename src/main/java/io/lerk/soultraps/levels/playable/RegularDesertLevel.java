@@ -1,7 +1,6 @@
-package io.lerk.soultraps.levels;
+package io.lerk.soultraps.levels.playable;
 
-import io.lerk.soultraps.mobs.Enemies.Bat;
-import io.lerk.soultraps.mobs.Enemies.Wolf;
+import io.lerk.soultraps.levels.types.DesertLevel;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
 import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.mobs.Portal;
@@ -14,18 +13,18 @@ import org.slf4j.LoggerFactory;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class RegularLevel extends Level {
+public class RegularDesertLevel extends DesertLevel {
 
     /**
      * Logger.
      */
-    private static final Logger log = LoggerFactory.getLogger(RegularLevel.class);
+    private static final Logger log = LoggerFactory.getLogger(RegularDesertLevel.class);
 
     /**
      * Constructor.
      */
-    public RegularLevel() {
-        super();
+    public RegularDesertLevel() {
+        super(); // call super() or level won't be initialized
         log.debug("Adding DialogManager...");
         addObject(DialogManager.get(), 0, 0);
         log.info("Adding player...");
@@ -33,8 +32,8 @@ public class RegularLevel extends Level {
         log.debug("Adding portal...");
         addMob(new Portal());
         log.info("Adding Mobs...");
-        addMob(new Wolf());
+        addMob(new Zombie()); // only zombies in the desert
         addMob(new Zombie());
-        addMob(new Bat());
+        addMob(new Zombie());
     }
 }

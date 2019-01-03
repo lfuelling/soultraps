@@ -1,5 +1,7 @@
 package io.lerk.soultraps.mobs.Enemies;
 
+import io.lerk.soultraps.mobs.EnemyMob;
+
 import java.util.Random;
 
 /**
@@ -14,6 +16,14 @@ public class Wolf extends EnemyMob {
      * Index used for the walking animation.
      */
     private int seqIdx = 0;
+
+    /**
+     * Constructor.
+     */
+    public Wolf() {
+        super();
+        this.setImage("images/wolf/wolf1.png");
+    }
 
     /**
      * Animates walking of the lumberjack.

@@ -5,8 +5,10 @@ import io.lerk.soultraps.items.Axe;
 import io.lerk.soultraps.mobs.DialogMob;
 import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.sys.Handler;
-import io.lerk.soultraps.sys.Tiles;
 import io.lerk.soultraps.sys.dialog.Message;
+import io.lerk.soultraps.tiles.DesertTiles;
+import io.lerk.soultraps.tiles.GrasslandTiles;
+import io.lerk.soultraps.tiles.TileActor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,9 +112,9 @@ public class Lumberjack extends DialogMob {
      * @return true if there are trees in range.
      */
     private boolean isTreeInRangeNorth() {
-        return isTreeInRange(getObjectsAtOffset(0, -1, Tiles.Tile.class)) ||
-                isTreeInRange(getObjectsAtOffset(0, -2, Tiles.Tile.class)) || //TODO: maybe add something like #isAccessible()
-                isTreeInRange(getObjectsAtOffset(0, -3, Tiles.Tile.class));
+        return isTreeInRange(getObjectsAtOffset(0, -1, TileActor.class)) ||
+                isTreeInRange(getObjectsAtOffset(0, -2, TileActor.class)) || //TODO: maybe add something like #isAccessible()
+                isTreeInRange(getObjectsAtOffset(0, -3, TileActor.class));
     }
 
     /**
@@ -121,9 +123,9 @@ public class Lumberjack extends DialogMob {
      * @return true if there are trees in range.
      */
     private boolean isTreeInRangeEast() {
-        return isTreeInRange(getObjectsAtOffset(1, 0, Tiles.Tile.class)) ||
-                isTreeInRange(getObjectsAtOffset(2, 0, Tiles.Tile.class)) || //TODO: maybe add something like #isAccessible()
-                isTreeInRange(getObjectsAtOffset(3, 0, Tiles.Tile.class));
+        return isTreeInRange(getObjectsAtOffset(1, 0, TileActor.class)) ||
+                isTreeInRange(getObjectsAtOffset(2, 0, TileActor.class)) || //TODO: maybe add something like #isAccessible()
+                isTreeInRange(getObjectsAtOffset(3, 0, TileActor.class));
     }
 
     /**
@@ -132,9 +134,9 @@ public class Lumberjack extends DialogMob {
      * @return true if there are trees in range.
      */
     private boolean isTreeInRangeSouth() {
-        return isTreeInRange(getObjectsAtOffset(0, 1, Tiles.Tile.class)) ||
-                isTreeInRange(getObjectsAtOffset(0, 2, Tiles.Tile.class)) || //TODO: maybe add something like #isAccessible()
-                isTreeInRange(getObjectsAtOffset(0, 3, Tiles.Tile.class));
+        return isTreeInRange(getObjectsAtOffset(0, 1, TileActor.class)) ||
+                isTreeInRange(getObjectsAtOffset(0, 2, TileActor.class)) || //TODO: maybe add something like #isAccessible()
+                isTreeInRange(getObjectsAtOffset(0, 3, TileActor.class));
     }
 
     /**
@@ -143,19 +145,25 @@ public class Lumberjack extends DialogMob {
      * @return true if there are trees in range.
      */
     private boolean isTreeInRangeWest() {
-        return isTreeInRange(getObjectsAtOffset(-1, 0, Tiles.Tile.class)) ||
-                isTreeInRange(getObjectsAtOffset(-2, 0, Tiles.Tile.class)) || //TODO: maybe add something like #isAccessible()
-                isTreeInRange(getObjectsAtOffset(-3, 0, Tiles.Tile.class));
+        return isTreeInRange(getObjectsAtOffset(-1, 0, TileActor.class)) ||
+                isTreeInRange(getObjectsAtOffset(-2, 0, TileActor.class)) || //TODO: maybe add something like #isAccessible()
+                isTreeInRange(getObjectsAtOffset(-3, 0, TileActor.class));
     }
 
     /**
-     * Checks a list of {@link Tiles.Tile} for containing a tree.
+     * Checks a list of {@link TileActor} for containing a tree.
      *
      * @param tiles the {@link List} of tiles
      * @return true if there are trees
      */
-    private boolean isTreeInRange(List<Tiles.Tile> tiles) {
-        return tiles.stream().filter(t -> t.getTileType().equals(Tiles.Tree01) || t.getTileType().equals(Tiles.Tree02) || t.getTileType().equals(Tiles.Tree03)).collect(Collectors.toList()).size() >= 1;
+    private boolean isTreeInRange(List<TileActor> tiles) {
+        return tiles.stream()
+                .filter(t -> t.getTileType().equals(GrasslandTiles.Tree01) ||
+                        t.getTileType().equals(GrasslandTiles.Tree02) ||
+                        t.getTileType().equals(GrasslandTiles.Tree03) ||
+                        t.getTileType().equals(DesertTiles.Tree01) ||
+                        t.getTileType().equals(DesertTiles.Tree02))
+                .collect(Collectors.toList()).size() >= 1;
     }
 
     /**

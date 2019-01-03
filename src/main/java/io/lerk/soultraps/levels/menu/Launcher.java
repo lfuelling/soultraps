@@ -1,8 +1,10 @@
-package io.lerk.soultraps.levels;
+package io.lerk.soultraps.levels.menu;
 
 import greenfoot.Color;
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.components.Button;
+import io.lerk.soultraps.levels.types.GrasslandLevel;
+import io.lerk.soultraps.levels.playable.IntroLevel;
 import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
@@ -12,7 +14,7 @@ import io.lerk.soultraps.mobs.Enemies.Zombie;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class Launcher extends Level {
+public class Launcher extends GrasslandLevel {
 
     /**
      * Base world width.

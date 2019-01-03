@@ -1,15 +1,16 @@
-package io.lerk.soultraps.levels;
+package io.lerk.soultraps.levels.menu;
 
 import greenfoot.Color;
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.components.Button;
+import io.lerk.soultraps.levels.types.GrasslandLevel;
 
 /**
  * Options screen.
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class Options extends Level {
+public class Options extends GrasslandLevel {
 
     /**
      * Constructor.

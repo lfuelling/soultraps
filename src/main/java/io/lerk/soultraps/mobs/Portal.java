@@ -1,7 +1,8 @@
 package io.lerk.soultraps.mobs;
 
 import greenfoot.Greenfoot;
-import io.lerk.soultraps.levels.RegularLevel;
+import io.lerk.soultraps.levels.playable.RegularDesertLevel;
+import io.lerk.soultraps.levels.playable.RegularGrasslandLevel;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.dialog.Message;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * The portal that takes the player to the next level.
@@ -46,7 +48,7 @@ public class Portal extends DialogMob {
     protected Handler<Void> getDialogDoneAction() {
         return () -> {
             log.info("Player stepped on a portal. Teleporting...");
-            Greenfoot.setWorld(new RegularLevel());
+            Greenfoot.setWorld((new Random().nextBoolean()) ? new RegularDesertLevel() : new RegularGrasslandLevel());
             return null;
         };
     }

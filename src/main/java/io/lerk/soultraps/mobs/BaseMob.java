@@ -1,10 +1,18 @@
 package io.lerk.soultraps.mobs;
 
 import greenfoot.Actor;
-import io.lerk.soultraps.sys.Tiles;
+import io.lerk.soultraps.tiles.Tile;
+import io.lerk.soultraps.tiles.TileActor;
+import io.lerk.soultraps.tiles.Tiles;
 
 import java.util.Random;
 import java.util.stream.Collectors;
+
+import static io.lerk.soultraps.tiles.DesertTiles.Ground01;
+import static io.lerk.soultraps.tiles.DesertTiles.Ground02;
+import static io.lerk.soultraps.tiles.GrasslandTiles.Grass01;
+import static io.lerk.soultraps.tiles.GrasslandTiles.Grass02;
+import static io.lerk.soultraps.tiles.MiscTiles.Empty;
 
 /**
  * Basic mob class that contains stuff shared by all mobs.
@@ -115,28 +123,20 @@ public abstract class BaseMob extends Actor {
     protected boolean canWalk() {
         if (walking) {
             if (direction.equals(Direction.NORTH)) {
-                return this.getObjectsAtOffset(0, -1, Tiles.Tile.class).stream()
-                        .filter(tile -> !(tile.getTileType().equals(Tiles.Grass01) ||
-                                tile.getTileType().equals(Tiles.Grass02) ||
-                                tile.getTileType().equals(Tiles.Empty)))
+                return this.getObjectsAtOffset(0, -1, TileActor.class).stream()
+                        .filter(TileActor::isTileOtherThanGround)
                         .collect(Collectors.toList()).size() == 0;
             } else if (direction.equals(Direction.EAST)) {
-                return this.getObjectsAtOffset(1, 0, Tiles.Tile.class).stream()
-                        .filter(tile -> !(tile.getTileType().equals(Tiles.Grass01) ||
-                                tile.getTileType().equals(Tiles.Grass02) ||
-                                tile.getTileType().equals(Tiles.Empty)))
+                return this.getObjectsAtOffset(1, 0, TileActor.class).stream()
+                        .filter(TileActor::isTileOtherThanGround)
                         .collect(Collectors.toList()).size() == 0;
             } else if (direction.equals(Direction.SOUTH)) {
-                return this.getObjectsAtOffset(0, 1, Tiles.Tile.class).stream()
-                        .filter(tile -> !(tile.getTileType().equals(Tiles.Grass01) ||
-                                tile.getTileType().equals(Tiles.Grass02) ||
-                                tile.getTileType().equals(Tiles.Empty)))
+                return this.getObjectsAtOffset(0, 1, TileActor.class).stream()
+                        .filter(TileActor::isTileOtherThanGround)
                         .collect(Collectors.toList()).size() == 0;
             } else if (direction.equals(Direction.WEST)) {
-                return this.getObjectsAtOffset(-1, 0, Tiles.Tile.class).stream()
-                        .filter(tile -> !(tile.getTileType().equals(Tiles.Grass01) ||
-                                tile.getTileType().equals(Tiles.Grass02) ||
-                                tile.getTileType().equals(Tiles.Empty)))
+                return this.getObjectsAtOffset(-1, 0, TileActor.class).stream()
+                        .filter(TileActor::isTileOtherThanGround)
                         .collect(Collectors.toList()).size() == 0;
             }
         }

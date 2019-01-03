@@ -1,7 +1,4 @@
-package io.lerk.soultraps.mobs.Enemies;
-
-import io.lerk.soultraps.mobs.BaseMob;
-import io.lerk.soultraps.mobs.Player;
+package io.lerk.soultraps.mobs;
 
 import java.util.Random;
 

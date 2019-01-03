@@ -1,5 +1,7 @@
 package io.lerk.soultraps.mobs.Enemies;
 
+import io.lerk.soultraps.mobs.EnemyMob;
+
 import java.util.Random;
 
 /**
@@ -14,6 +16,14 @@ public class Zombie extends EnemyMob {
      * Index used for the walking animation.
      */
     private int seqIdx = 0;
+
+    /**
+     * Constructor.
+     */
+    public Zombie() {
+        super();
+        this.setImage("images/zombie/zombie_0.png");
+    }
 
     /**
      * Animates walking of the lumberjack.

@@ -3,16 +3,16 @@ package io.lerk.soultraps.levels;
 import greenfoot.World;
 import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.sys.StopWatch;
-import io.lerk.soultraps.sys.Tiles;
+import io.lerk.soultraps.tiles.TileActor;
+import io.lerk.soultraps.tiles.Tiles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.Random;
 
-import static io.lerk.soultraps.levels.Launcher.BASE_HEIGHT;
-import static io.lerk.soultraps.levels.Launcher.BASE_WIDTH;
-import static io.lerk.soultraps.sys.Tiles.*;
+import static io.lerk.soultraps.levels.menu.Launcher.BASE_HEIGHT;
+import static io.lerk.soultraps.levels.menu.Launcher.BASE_WIDTH;
+import static io.lerk.soultraps.tiles.Tiles.*;
 
 /**
  * Base level class with word generation logic.
@@ -44,14 +44,14 @@ public abstract class Level extends World {
     /**
      * Table containing all the level tiles.
      */
-    private final String[][] levelTiles = new String[LEVEL_WIDTH][LEVEL_HEIGHT];
+    protected final String[][] levelTiles = new String[LEVEL_WIDTH][LEVEL_HEIGHT];
 
     /**
      * Constructor.
      */
     public Level() {
         super(BASE_WIDTH, BASE_HEIGHT, CELL_SIZE);
-        drawGrass();
+        drawGround();
         fillTiles();
         renderViewportItems();
     }
@@ -65,11 +65,11 @@ public abstract class Level extends World {
         watch.start();
         for (int widthCount = 0; widthCount < getWidth(); widthCount++) {
             for (int heightCount = 0; heightCount < getHeight(); heightCount++) {
-                Tiles.Tile tile = byName(levelTiles[widthCount][heightCount]);
+                TileActor tile = byName(levelTiles[widthCount][heightCount]);
                 addObject(tile,
                         ((getWidth()) * widthCount) / (getCellSize() * 4), // x
                         ((getHeight()) * heightCount) / (getCellSize() * 2)); // y
-                if (tile.isOverlappingTileOtherThanEmptyOrGrass()) {
+                if (tile.isOverlappingTileOtherThanEmptyOrGround()) {
                     removeObject(tile); // remove overlapping tiles
                 }
             }
@@ -80,73 +80,38 @@ public abstract class Level extends World {
     /**
      * Populates {@link #levelTiles} with random tiles.
      */
-    private void fillTiles() {
-        log.debug("Generating level...");
-        StopWatch watch = new StopWatch(StopWatch.LogLevel.DEBUG);
-        watch.start();
-        for (int widthCount = 0; widthCount < LEVEL_WIDTH; widthCount++) {
-            String[] tmp = new String[LEVEL_HEIGHT];
-            for (int heightCount = 0; heightCount < LEVEL_HEIGHT; heightCount++) {
-                String randomTile = getRandomTile();
-                if (randomTile.equals(Grass01.getName()) || randomTile.equals(Grass02.getName())) {
-                    randomTile = Empty.getName(); // replace grass with empty
-                }
-                tmp[heightCount] = randomTile;
-            }
-            levelTiles[widthCount] = tmp;
-        }
-        watch.stop("fillTiles()");
-    }
+    protected abstract void fillTiles();
 
     /**
-     * Draws grass across the {@link #levelTiles}.
+     * Draws ground across the {@link #levelTiles}.
      */
-    private void drawGrass() {
-        log.debug("Drawing grass...");
+    private void drawGround() {
+        log.debug("Drawing ground...");
         StopWatch watch = new StopWatch(StopWatch.LogLevel.DEBUG);
         watch.start();
         for (int widthCount = 0; widthCount < getWidth(); widthCount++) {
             for (int heightCount = 0; heightCount < getHeight(); heightCount++) {
-                addObject(randomGrassTile(),
+                addObject(randomGroundTile(),
                         ((getWidth()) * widthCount) / (getCellSize() * 4), // x
                         ((getHeight()) * heightCount) / (getCellSize() * 2)); // y
             }
         }
-        watch.stop("drawGrass()");
+        watch.stop("drawGround()");
     }
 
     /**
-     * Generate a random grass tile.
+     * Generate a random ground tile.
      *
-     * @return a random grass tile.
+     * @return a random ground tile.
      */
-    private Tiles.Tile randomGrassTile() {
-        return (new Random().nextInt(2) == 0)
-                ? byName(Grass01.getName())
-                : byName(Grass02.getName());
-    }
+    protected abstract TileActor randomGroundTile();
 
     /**
      * Generates a random tile name.
      *
      * @return a new random tile name.
      */
-    private String getRandomTile() {
-        StopWatch watch = new StopWatch(StopWatch.LogLevel.DEBUG);
-        watch.start();
-        final String[] res = {null};
-        while (res[0] == null) {
-            Arrays.stream(Tiles.values()).forEach(t -> {
-                if ((t.equals(Grass01) || t.equals(Grass02)) && new Random().nextInt(2) == 0) { // 50% chance of grass
-                    res[0] = t.getName();
-                } else if (new Random().nextInt(250) == 0) {
-                    res[0] = t.getName();
-                }
-            });
-        }
-        watch.stop("getRandomTile()");
-        return res[0];
-    }
+    protected abstract String getRandomTile();
 
     /**
      * Adds a mob at a random "free" (of trees, bushes, stones, etc.) tile.
@@ -163,7 +128,7 @@ public abstract class Level extends World {
         while (!goodTile[0]) {
             randomX = new Random().nextInt(Level.LEVEL_WIDTH);
             randomY = new Random().nextInt(Level.LEVEL_HEIGHT);
-            getObjectsAt(randomX, randomY, Tiles.Tile.class).forEach(t -> goodTile[0] = Tiles.evaluateSpawn(t));
+            getObjectsAt(randomX, randomY, TileActor.class).forEach(t -> goodTile[0] = Tiles.evaluateSpawn(t));
         }
         addObject(mob, randomX, randomY);
         stopWatch.stop("addMob(" + mob.getClass().getName() + ")");
