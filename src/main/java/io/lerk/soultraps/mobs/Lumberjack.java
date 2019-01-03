@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class Lumberjack extends BaseMob {
+public class Lumberjack extends DialogMob {
 
     /**
      * Index used for the walking animation.
@@ -25,13 +25,14 @@ public class Lumberjack extends BaseMob {
      * Updates the walking state according to trees in range or if the player is currently overlapping.
      */
     @Override
-    protected void updateWalkingState() {
-        if (getIntersectingObjects(Player.class).size() > 0) {
+    protected void updateWalkingStateNotTalking() {
+        if (getIntersectingObjects(Player.class).size() > 0 && !playerHasAxe()) {
             walking = false;
+            //TODO: add different dialog if player has an axe.
             Player.getSelf().startDialog(getDialog(), () -> {
                 Player.getSelf().addItem(new Axe());
                 return null;
-            });
+            }, Lumberjack.this);
             return;
         }
         if (new Random().nextBoolean()) {
@@ -56,11 +57,21 @@ public class Lumberjack extends BaseMob {
     }
 
     /**
+     * Checks if the {@link Player}'s inventory contains an {@link Axe}.
+     *
+     * @return true if the player already has an axe.
+     */
+    private boolean playerHasAxe() {
+        return Player.getSelf().getItems().stream().anyMatch(Axe.class::isInstance);
+    }
+
+    /**
      * Method to get the lumberjacks dialog messages.
      *
      * @return the dialog contents
      */
-    private ArrayList<String> getDialog() {
+    @Override
+    protected ArrayList<String> getDialog() {
         ArrayList<String> strings = new ArrayList<>();
         strings.add("Hi, I'm Jack, a lumberjack.");
         strings.add("Do you see the trees around you?");

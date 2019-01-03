@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class Player extends BaseMob {
+public class Player extends DialogMob {
 
     /**
      * Player instance.
@@ -32,15 +32,10 @@ public class Player extends BaseMob {
     private int seqIdx = 0;
 
     /**
-     * True if player is in a dialog.
-     */
-    private boolean talking;
-
-    /**
      * Constructor.
      */
     private Player() {
-        items = null;
+        items = new ArrayList<>();
     }
 
     /**
@@ -59,24 +54,32 @@ public class Player extends BaseMob {
      * Updates {@link #walking} and {@link #direction} according to currently pressed buttons.
      */
     @Override
-    protected void updateWalkingState() {
-        if (!talking) {
-            if (Greenfoot.isKeyDown("w")) {
-                walking = true;
-                direction = Direction.NORTH;
-            } else if (Greenfoot.isKeyDown("a")) {
-                walking = true;
-                direction = Direction.WEST;
-            } else if (Greenfoot.isKeyDown("s")) {
-                walking = true;
-                direction = Direction.SOUTH;
-            } else if (Greenfoot.isKeyDown("d")) {
-                walking = true;
-                direction = Direction.EAST;
-            } else {
-                walking = false;
-            }
+    protected void updateWalkingStateNotTalking() {
+        if (Greenfoot.isKeyDown("w")) {
+            walking = true;
+            direction = Direction.NORTH;
+        } else if (Greenfoot.isKeyDown("a")) {
+            walking = true;
+            direction = Direction.WEST;
+        } else if (Greenfoot.isKeyDown("s")) {
+            walking = true;
+            direction = Direction.SOUTH;
+        } else if (Greenfoot.isKeyDown("d")) {
+            walking = true;
+            direction = Direction.EAST;
+        } else {
+            walking = false;
         }
+    }
+
+    /**
+     * Dummy method, the player has no dialog.
+     *
+     * @return a new {@link ArrayList<String>}.
+     */
+    @Override
+    protected ArrayList<String> getDialog() {
+        return new ArrayList<>();
     }
 
     /**
@@ -117,12 +120,11 @@ public class Player extends BaseMob {
      *
      * @param dialog     the dialogs content.
      * @param doneAction the action to be done after the dialog is complete
+     * @param mob        the mob the player is talking with
      */
-    public void startDialog(List<String> dialog, Handler doneAction) {
-        talking = true;
-        dialog.forEach(DialogManager::displayMessage);
+    public void startDialog(List<String> dialog, Handler doneAction, DialogMob mob) {
+        dialog.forEach(m -> DialogManager.displayMessage(m, getWorld(), mob));
         doneAction.handle();
-        talking = false;
     }
 
     /**
@@ -132,10 +134,14 @@ public class Player extends BaseMob {
      */
     public void addItem(Item item) {
         items.add(item);
-        DialogManager.displayMessage("You received: " + item.getName());
+        DialogManager.displayMessage("You received: " + item.getName(), getWorld(), null);
     }
 
     public void startAttack(Enemy enemy) {
         //TODO: implement
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
     }
 }

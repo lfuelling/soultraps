@@ -32,6 +32,11 @@ public abstract class Level extends World {
     public static final int LEVEL_HEIGHT = 128;
 
     /**
+     * Level cell size.
+     */
+    public static final int CELL_SIZE = 16;
+
+    /**
      * Logger.
      */
     private static final Logger log = LoggerFactory.getLogger(Level.class);
@@ -45,7 +50,7 @@ public abstract class Level extends World {
      * Constructor.
      */
     public Level() {
-        super(BASE_WIDTH, BASE_HEIGHT, 16);
+        super(BASE_WIDTH, BASE_HEIGHT, CELL_SIZE);
         drawGrass();
         fillTiles();
         renderViewportItems();

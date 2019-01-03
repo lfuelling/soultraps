@@ -3,12 +3,12 @@ package io.lerk.soultraps.components;
 import greenfoot.*;
 import io.lerk.soultraps.sys.Fonts;
 import io.lerk.soultraps.sys.Handler;
-import io.lerk.soultraps.sys.SoultrapsApp;
+import io.lerk.soultraps.sys.Soultraps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Simple Button that shows a black background when {@link SoultrapsApp#DEBUG} is set.
+ * Simple Button that shows a black background when {@link Soultraps#DEBUG} is set.
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
@@ -99,7 +99,7 @@ public class Button extends Actor {
     public Button(String text, int height, int width, float fontSize, Color fontColor) {
         this.text = text;
         GreenfootImage buttonBg = new GreenfootImage(width, height);
-        if (SoultrapsApp.DEBUG) {
+        if (Soultraps.DEBUG) {
             buttonBg.setColor(Color.BLACK);
             buttonBg.fillRect(0, 0, buttonBg.getWidth(), buttonBg.getHeight());
         }
