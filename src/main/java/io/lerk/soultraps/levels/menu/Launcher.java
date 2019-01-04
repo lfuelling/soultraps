@@ -5,9 +5,12 @@ import greenfoot.Greenfoot;
 import io.lerk.soultraps.components.Button;
 import io.lerk.soultraps.levels.playable.IntroLevel;
 import io.lerk.soultraps.levels.types.GrasslandLevel;
+import io.lerk.soultraps.levels.types.LevelType;
 import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
+import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.sys.Savegame;
 
 /**
  * The launcher or main menu.
@@ -39,8 +42,10 @@ public class Launcher extends GrasslandLevel {
         Button title = getTitle();
         addObject(title, getWidth() / 2, 3);
 
-        Button startButton = new Button("Start Game", 32, 200, 32, Color.WHITE);
+        Button startButton = new Button("Start New Game", 32, 200, 32, Color.WHITE);
         Button optionsButton = new Button("Options", 32, 200, 32, Color.WHITE);
+
+        Button loadButton = new Button("Load", 32, 200, 32, Color.WHITE);
 
         startButton.setHandler(() -> {
             Greenfoot.setWorld(new IntroLevel());
@@ -53,6 +58,16 @@ public class Launcher extends GrasslandLevel {
         });
 
         addObject(startButton, getWidth() / 2, 11);
+
+        Savegame savegame = Savegame.read();
+        if (savegame != null) {
+            loadButton.setHandler(() -> {
+                Player.restore(savegame.getPlayer());
+                Greenfoot.setWorld(savegame.getLevel());
+                return null;
+            });
+        }
+
         addObject(optionsButton, getWidth() / 2, 14);
     }
 
@@ -94,6 +109,14 @@ public class Launcher extends GrasslandLevel {
                 }
             }
         };
+    }
+
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    public LevelType getType() {
+        return LevelType.MENU;
     }
 
 }

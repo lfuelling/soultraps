@@ -1,6 +1,7 @@
 package io.lerk.soultraps.levels;
 
 import greenfoot.World;
+import io.lerk.soultraps.levels.types.LevelType;
 import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.sys.StopWatch;
 import io.lerk.soultraps.tiles.TileActor;
@@ -45,6 +46,11 @@ public abstract class Level extends World {
      * Table containing all the level tiles.
      */
     protected final String[][] levelTiles = new String[LEVEL_WIDTH][LEVEL_HEIGHT];
+
+    /**
+     * Level type.
+     */
+    protected final LevelType type = LevelType.UNDEFINED;
 
     /**
      * Constructor.
@@ -133,4 +139,20 @@ public abstract class Level extends World {
         addObject(mob, randomX, randomY);
         stopWatch.stop("addMob(" + mob.getClass().getName() + ")");
     }
+
+    /**
+     * Getter for levelTiles.
+     *
+     * @return level tiles
+     */
+    public String[][] getLevelTiles() {
+        return levelTiles;
+    }
+
+    /**
+     * Getter for level type.
+     *
+     * @return level type
+     */
+    public abstract LevelType getType();
 }

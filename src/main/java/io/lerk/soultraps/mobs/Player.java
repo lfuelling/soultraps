@@ -52,6 +52,20 @@ public class Player extends DialogMob {
     }
 
     /**
+     * Restores state from a {@link Player} loaded from a file.
+     *
+     * @param player the player to load state from
+     */
+    public static void restore(Player player) {
+        if (self == null) {
+            self = player;
+            return;
+        }
+        self.items.clear();
+        self.items.addAll(player.items);
+    }
+
+    /**
      * Updates {@link #walking} and {@link #direction} according to currently pressed buttons.
      */
     @Override

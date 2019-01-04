@@ -4,6 +4,7 @@ import greenfoot.Color;
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.components.Button;
 import io.lerk.soultraps.levels.types.GrasslandLevel;
+import io.lerk.soultraps.levels.types.LevelType;
 
 /**
  * Options screen.
@@ -34,6 +35,14 @@ public class Options extends GrasslandLevel {
 
         addObject(difficultyButton, getWidth() / 2, 11);
         addObject(backButton, getWidth() / 2, getHeight() - 5);
+    }
+
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    public LevelType getType() {
+        return LevelType.MENU;
     }
 
 }

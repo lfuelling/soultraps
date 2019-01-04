@@ -1,8 +1,10 @@
-package io.lerk.soultraps.mobs;
+package io.lerk.soultraps.mobs.stat1c;
 
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.levels.playable.RegularDesertLevel;
 import io.lerk.soultraps.levels.playable.RegularGrasslandLevel;
+import io.lerk.soultraps.mobs.DialogMob;
+import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.dialog.Message;
 import org.slf4j.Logger;

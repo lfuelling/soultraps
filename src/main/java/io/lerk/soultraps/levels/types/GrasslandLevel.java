@@ -79,4 +79,12 @@ public class GrasslandLevel extends Level {
         watch.stop("getRandomTile()");
         return res[0];
     }
+
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    public LevelType getType() {
+        return LevelType.GRASS;
+    }
 }

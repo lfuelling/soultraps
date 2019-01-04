@@ -5,7 +5,8 @@ import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
 import io.lerk.soultraps.mobs.Player;
-import io.lerk.soultraps.mobs.Portal;
+import io.lerk.soultraps.mobs.stat1c.Floppy;
+import io.lerk.soultraps.mobs.stat1c.Portal;
 import io.lerk.soultraps.sys.dialog.DialogManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,8 @@ public class RegularGrasslandLevel extends GrasslandLevel {
         addObject(DialogManager.get(), 0, 0);
         log.debug("Adding portal...");
         addMob(new Portal());
+        log.debug("Adding floppy...");
+        addMob(new Floppy());
         log.info("Adding Mobs...");
         addMob(new Wolf());
         addMob(new Zombie());
