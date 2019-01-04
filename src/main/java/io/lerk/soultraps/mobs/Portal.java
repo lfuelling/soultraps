@@ -37,15 +37,6 @@ public class Portal extends DialogMob {
     }
 
     /**
-     * In this method it's checked if teh player is stepping on the portal.
-     * If so, a dialog will be shown and the player will be moved afterwards.
-     */
-    @Override
-    protected void updateWalkingStateNotTalking() {
-        walking = false;
-    }
-
-    /**
      * {@inheritDoc}.
      */
     @Override
@@ -88,6 +79,21 @@ public class Portal extends DialogMob {
      */
     @Override
     protected void doAct() {
+    }
+
+    /**
+     * Stub. The Portal doesn't walk.
+     */
+    @Override
+    protected void walk() {
+    }
+
+    /**
+     * Stub. The Portal doesn't walk.
+     */
+    @Override
+    protected void updateWalkingStateNotTalking() {
+        walking = true;
     }
 
     /**
