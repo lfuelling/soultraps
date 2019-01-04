@@ -49,7 +49,7 @@ class TileActorTest {
 
     @Test
     void isOverlappingTileOtherThanEmptyOrGround() {
-        
+
     }
 
     @Test
