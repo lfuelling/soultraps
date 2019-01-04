@@ -6,6 +6,7 @@ package io.lerk.soultraps.tiles;
  * @author Lukas Fülling (lukas@k40s.net)
  */
 public enum GrasslandTiles implements Tile {
+
     /**
      * Grass tile 1.
      */

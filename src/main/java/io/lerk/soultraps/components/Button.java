@@ -1,6 +1,9 @@
 package io.lerk.soultraps.components;
 
-import greenfoot.*;
+import greenfoot.Actor;
+import greenfoot.Color;
+import greenfoot.Greenfoot;
+import greenfoot.GreenfootImage;
 import io.lerk.soultraps.sys.Fonts;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.Soultraps;

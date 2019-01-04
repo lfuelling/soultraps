@@ -6,6 +6,7 @@ package io.lerk.soultraps.mobs;
  * @author Lukas Fülling (lukas@k40s.net)
  */
 public interface Enemy {
+
     /**
      * This method is called in combat and determines the damage the player gets.
      *

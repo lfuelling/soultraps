@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * @author Lukas Fülling (lukas@k40s.net)
  */
 public class Axe extends Item {
+
     /**
      * Constructor.
      */

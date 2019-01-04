@@ -12,7 +12,7 @@ import java.util.Random;
 
 import static io.lerk.soultraps.levels.menu.Launcher.BASE_HEIGHT;
 import static io.lerk.soultraps.levels.menu.Launcher.BASE_WIDTH;
-import static io.lerk.soultraps.tiles.Tiles.*;
+import static io.lerk.soultraps.tiles.Tiles.byName;
 
 /**
  * Base level class with word generation logic.

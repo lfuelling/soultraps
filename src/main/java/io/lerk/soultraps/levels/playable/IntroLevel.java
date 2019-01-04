@@ -1,6 +1,5 @@
 package io.lerk.soultraps.levels.playable;
 
-import io.lerk.soultraps.components.HUD;
 import io.lerk.soultraps.levels.types.GrasslandLevel;
 import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;

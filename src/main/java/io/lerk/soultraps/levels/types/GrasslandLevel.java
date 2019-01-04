@@ -6,12 +6,13 @@ import io.lerk.soultraps.tiles.GrasslandTiles;
 import io.lerk.soultraps.tiles.TileActor;
 import io.lerk.soultraps.tiles.Tiles;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.Random;
 
-import static io.lerk.soultraps.tiles.GrasslandTiles.*;
+import static io.lerk.soultraps.tiles.GrasslandTiles.Grass01;
+import static io.lerk.soultraps.tiles.GrasslandTiles.Grass02;
 import static io.lerk.soultraps.tiles.MiscTiles.Empty;
 
 /**

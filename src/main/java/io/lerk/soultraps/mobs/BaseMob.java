@@ -1,18 +1,10 @@
 package io.lerk.soultraps.mobs;
 
 import greenfoot.Actor;
-import io.lerk.soultraps.tiles.Tile;
 import io.lerk.soultraps.tiles.TileActor;
-import io.lerk.soultraps.tiles.Tiles;
 
 import java.util.Random;
 import java.util.stream.Collectors;
-
-import static io.lerk.soultraps.tiles.DesertTiles.Ground01;
-import static io.lerk.soultraps.tiles.DesertTiles.Ground02;
-import static io.lerk.soultraps.tiles.GrasslandTiles.Grass01;
-import static io.lerk.soultraps.tiles.GrasslandTiles.Grass02;
-import static io.lerk.soultraps.tiles.MiscTiles.Empty;
 
 /**
  * Basic mob class that contains stuff shared by all mobs.

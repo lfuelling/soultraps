@@ -1,5 +1,10 @@
 package io.lerk.soultraps.tiles;
 
+/**
+ * Enum that contains some misc tiles.
+ *
+ * @author Lukas Fülling (lukas@k40s.net)
+ */
 public enum MiscTiles implements Tile {
 
     /**

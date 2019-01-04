@@ -3,6 +3,7 @@ package io.lerk.soultraps.mobs;
 import java.util.Random;
 
 public abstract class EnemyMob extends BaseMob implements Enemy {
+
     /**
      * Updates the walking state according to trees in range or if the player is currently overlapping.
      */

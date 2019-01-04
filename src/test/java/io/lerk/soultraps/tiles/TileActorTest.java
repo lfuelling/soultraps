@@ -8,7 +8,6 @@ import static io.lerk.soultraps.tiles.DesertTiles.Ground01;
 import static io.lerk.soultraps.tiles.GrasslandTiles.Grass01;
 import static io.lerk.soultraps.tiles.GrasslandTiles.Tree01;
 import static io.lerk.soultraps.tiles.MiscTiles.Empty;
-import static org.junit.jupiter.api.Assertions.*;
 
 class TileActorTest {
 
