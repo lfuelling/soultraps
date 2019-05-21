@@ -11,6 +11,5 @@ io.lerk.soultraps.mobs.friendly
 io.lerk.soultraps.mobs.stat1c
 io.lerk.soultraps.sys
 io.lerk.soultraps.sys.dialog
-io.lerk.soultraps.sys.window
+io.lerk.soultraps.sys.savegame
 io.lerk.soultraps.tiles
-nl.paulinternet.gtasaveedit.view.swing
