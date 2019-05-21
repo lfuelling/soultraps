@@ -13,8 +13,8 @@ jobs:
     - stage: build
       script:
         - mvn clean install -B -V -DskipTests
-        - mkdir target/deploy
-        - cp -v "target/$(ls target | grep jar-with-dependencies.jar)" target/deploy/soultraps.jar
+        - mkdir deploy
+        - cp -v "target/$(ls target | grep jar-with-dependencies.jar)" deploy/soultraps.jar
         - mvn javadoc:javadoc
         - .util/pages.sh
       deploy:
