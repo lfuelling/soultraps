@@ -3,6 +3,7 @@ package io.lerk.soultraps.sys;
 import bluej.Config;
 import com.apple.eawt.Application;
 import greenfoot.Greenfoot;
+import greenfoot.export.GreenfootScenarioApplication;
 import greenfoot.export.GreenfootScenarioViewer;
 import greenfoot.util.StandalonePropStringManager;
 import io.lerk.soultraps.sys.window.AboutWindow;
@@ -21,7 +22,8 @@ import java.util.Properties;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class Soultraps {
+public class Soultraps extends GreenfootScenarioApplication
+{
 
     /**
      * This is used to enable debug stuff like button backgrounds.
@@ -51,37 +53,7 @@ public class Soultraps {
         // load properties
         initProperties();
 
-        // window references
-        final JFrame frame = new JFrame();
-        final GreenfootScenarioViewer gsv = new GreenfootScenarioViewer(frame);
-        gsv.init();
-        frame.setDefaultCloseOperation(3);
-        frame.setResizable(false);
-
-        URL resource = Soultraps.class.getClassLoader().getResource("images/logo.png");
-        if (resource != null) {
-            ImageIcon icon = new ImageIcon(resource);
-            frame.setIconImage(icon.getImage());
-        }
-
-        if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
-            // macOS stuff
-            System.setProperty("apple.laf.useScreenMenuBar", "true");
-
-            if (resource != null) {
-                Application.getApplication().setDockIconImage(new ImageIcon(resource).getImage());
-            }
-
-            Application.getApplication().setPreferencesHandler(pe -> new PreferenceWindow().setVisible(true));
-            Application.getApplication().setAboutHandler(aboutEvent -> new AboutWindow().setVisible(true));
-            Application.getApplication().setQuitHandler((quitEvent, quitResponse) -> System.exit(0));
-        }
-        frame.setTitle("Soultraps");
-        frame.pack();
-        frame.setVisible(true);
-        if (Config.getPropBoolean("scenario.hideControls", false)) {
-            Greenfoot.start();
-        }
+        launch(args);
     }
 
     /**
