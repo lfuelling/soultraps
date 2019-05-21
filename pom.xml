@@ -174,9 +174,7 @@
                 <configuration>
                     <show>protected</show>
                     <nohelp>true</nohelp>
-                    <additionalOptions>-Xdoclint:none</additionalOptions>
-                    <additionalJOption>-Xdoclint:none</additionalJOption>
-
+                    <doclint>none</doclint>
                 </configuration>
             </plugin>
             <plugin>
