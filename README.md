@@ -11,17 +11,9 @@ Soultraps is a 2D RPG made with Greenfoot.
 - A single level consists of 128x128 tiles of 16x16px.
 - In each level is a portal to another (the "next" as there is no way back) level.
 - The level is randomly generated each time the player enters a portal
-- The items collected in each level are save throughout the game
+- The items collected in each level are saved throughout the game
 - Every level contains a savepoint (this also persists the level)
-
-### Items 
-
-- Each item has the following properties:
-    - Name (`String`)
-    - Description (`String`)
-    - Weight (`Integer`)
-    - Damage (`Integer`)
-    - Effects (`List<Effect>`)
+- When restarting the game after saving, a "Load Game" button will appear
     
 ### Controls
 
@@ -31,9 +23,9 @@ Soultraps is a 2D RPG made with Greenfoot.
     - Down `s`
     - Right `d`
 - Interact
-    - Start conversation `e`
+    - Start conversation `e` (only for friendly mobs)
     - Next Message `space`
-    
+
 ## Third Party Stuff
 
 - Skyrim Font by [DarkX ShadowX21](https://www.dafont.com/de/darkx-shadowx21.d5582)
