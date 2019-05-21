@@ -4,12 +4,16 @@ import greenfoot.World;
 import io.lerk.soultraps.levels.types.LevelType;
 import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.stat1c.Floppy;
+import io.lerk.soultraps.mobs.stat1c.Portal;
 import io.lerk.soultraps.sys.StopWatch;
 import io.lerk.soultraps.tiles.TileActor;
 import io.lerk.soultraps.tiles.Tiles;
+import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.sound.sampled.Port;
 import java.util.Random;
 
 import static io.lerk.soultraps.levels.menu.Launcher.BASE_HEIGHT;
@@ -54,6 +58,16 @@ public abstract class Level extends World {
     protected final LevelType type = LevelType.UNDEFINED;
 
     /**
+     * Coordinates of the {@link Portal} in this level.
+     */
+    protected Pair<Integer, Integer> portalCoordinates;
+
+    /**
+     * Coordinates of the {@link Floppy} in this level.
+     */
+    protected Pair<Integer, Integer> floppyCoordinates;
+
+    /**
      * Constructor.
      */
     public Level() {
@@ -61,15 +75,19 @@ public abstract class Level extends World {
         drawGround();
         fillTiles();
         renderViewportItems();
+        this.portalCoordinates = null;
+        this.floppyCoordinates = null;
     }
 
     /**
      * Constructor that allows the level to be constructed using a predefined set of tiles.
      * @param tiles the tiles to use
      */
-    public Level(String[][] tiles) {
+    public Level(String[][] tiles, Pair<Integer, Integer> portalCoordinates, Pair<Integer, Integer> floppyCoordinates) {
         super(BASE_WIDTH, BASE_HEIGHT, CELL_SIZE);
-        drawGround();
+      this.portalCoordinates = portalCoordinates;
+      this.floppyCoordinates = floppyCoordinates;
+      drawGround();
         for (int i = 0; i < tiles.length; i++) {
             for (int i1 = 0; i1 < tiles[i].length; i1++) {
                 this.levelTiles[i][i1] = tiles[i][i1];
@@ -155,7 +173,18 @@ public abstract class Level extends World {
         if(mob instanceof Player) {
             addObject(mob, ((Player) mob).getSavedXPos(), ((Player) mob).getSavedYPos());
         } else {
-            addObject(mob, randomX, randomY);
+            if(mob instanceof Portal && portalCoordinates != null) {
+                addObject(mob, portalCoordinates.getKey(), portalCoordinates.getValue());
+            } else if(mob instanceof Floppy && floppyCoordinates != null) {
+                return;
+            } else {
+                addObject(mob, randomX, randomY);
+            }
+        }
+        if(mob instanceof Portal) {
+          portalCoordinates = new Pair<>(mob.getX(), mob.getY());
+        } else if(mob instanceof Floppy) {
+          floppyCoordinates = new Pair<>(mob.getX(), mob.getY());
         }
         stopWatch.stop("addMob(" + mob.getClass().getName() + ")");
     }
@@ -175,4 +204,20 @@ public abstract class Level extends World {
      * @return level type
      */
     public abstract LevelType getType();
+
+    /**
+     * Getter for portal coordinates.
+     * @return the coordinates of the portal.
+     */
+    public Pair<Integer, Integer> getPortalCoordinates() {
+      return portalCoordinates;
+    }
+
+    /**
+     * Getter for floppy coordinates.
+     * @return the coordinates of the floppy.
+     */
+    public Pair<Integer, Integer> getFloppyCoordinates() {
+      return floppyCoordinates;
+    }
 }

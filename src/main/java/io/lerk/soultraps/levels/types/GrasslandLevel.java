@@ -5,6 +5,7 @@ import io.lerk.soultraps.sys.StopWatch;
 import io.lerk.soultraps.tiles.GrasslandTiles;
 import io.lerk.soultraps.tiles.TileActor;
 import io.lerk.soultraps.tiles.Tiles;
+import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -91,9 +92,9 @@ public class GrasslandLevel extends Level {
     /**
      * {@inheritDoc}.
      */
-    public GrasslandLevel(String[][] tiles)
+    public GrasslandLevel(String[][] tiles, Pair<Integer, Integer> portalCoordinates, Pair<Integer, Integer> floppyCoordinates)
     {
-        super(tiles);
+        super(tiles, portalCoordinates, floppyCoordinates);
     }
 
     /**

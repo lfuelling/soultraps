@@ -1,6 +1,7 @@
 package io.lerk.soultraps.sys;
 
 import com.google.gson.Gson;
+import greenfoot.Greenfoot;
 import io.lerk.soultraps.items.Item;
 import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.levels.menu.Launcher;
@@ -17,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogEvent;
 import javafx.scene.layout.Region;
+import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,6 +65,7 @@ public class Savegame {
     public Savegame(Level level, Player player) {
         this.level = fromLevel(level);
         this.player = fromPlayer(player);
+
         if(errorShown) {
             return;
         }
@@ -102,7 +105,11 @@ public class Savegame {
 
     private LevelDTO fromLevel(Level level)
     {
-        return new LevelDTO(level.getLevelTiles(), level.getType());
+        return new LevelDTO(
+          level.getLevelTiles(),
+          level.getType(),
+          level.getPortalCoordinates(),
+          level.getFloppyCoordinates());
     }
 
     /**
@@ -169,9 +176,9 @@ public class Savegame {
     public Level getLevel() {
         switch(level.getLevelType()) {
             case GRASS:
-                return new RegularGrasslandLevel(level.getLevelTiles());
+                return new RegularGrasslandLevel(level.getLevelTiles(), level.getPortalCoordinates(), level.getFloppyCoordinates());
             case DESERT:
-                return new RegularDesertLevel(level.getLevelTiles());
+                return new RegularDesertLevel(level.getLevelTiles(), level.getPortalCoordinates(), level.getFloppyCoordinates());
             case MENU:
                 return new Launcher();
         }

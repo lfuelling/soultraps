@@ -8,6 +8,7 @@ import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.mobs.stat1c.Floppy;
 import io.lerk.soultraps.mobs.stat1c.Portal;
 import io.lerk.soultraps.sys.dialog.DialogManager;
+import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,9 +35,9 @@ public class RegularGrasslandLevel extends GrasslandLevel {
     /**
      * {@inheritDoc}.
      */
-    public RegularGrasslandLevel(String[][] tiles)
+    public RegularGrasslandLevel(String[][] tiles, Pair<Integer, Integer> portalCoordinates, Pair<Integer, Integer> floppyCoordinates)
     {
-        super(tiles);
+        super(tiles, portalCoordinates, floppyCoordinates);
         addLevelContent();
     }
 
