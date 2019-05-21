@@ -7,6 +7,8 @@ env:
 
 
 jobs:
+  allow_failures:
+    - stage: test
   include:
     - stage: build
       script:
