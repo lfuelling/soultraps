@@ -1,5 +1,7 @@
 # Soultraps: Greenfoot RPG
 
+![Screenshot of first level](screenshot.png)
+
 ## About
 
 Soultraps is a 2D RPG made with Greenfoot. 
