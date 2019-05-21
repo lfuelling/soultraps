@@ -1,5 +1,9 @@
 language: java
 jdk: oraclejdk8
 
+secure: "NT9y8QI+4z08VfLy8F+zjUOejFsELvSWiJBcoimB+saQykIKRvJwZsqoa2TOfYcEOs+Xata8RbL/G5gPb5CXuxBtkMx5ssledHFPyRKgXw53yrgQ+6YG+9IvXfuUALKjPxOM9DD5q1qpCCO904ofV6X2cs36yVwfG9/WnYS6sjD/YWFcIsCNbZ5ga0xLxhnfxAtFMIoG6vm8vrm1dPm5GgOhjK8J5FsQZGpv8GjVX7SWzCJZ5m9req4fwKfVF0S4Y9eLgBmNcf2UPAxeMknqvNB8+ISMBW9txyyMLgFCmaKA9RJjwq6Dej/toyFCfPSX/baSCR+OIcQnb/6n9KnTb6g6cpaMrqP/JOpZIGn7G3PmDShRpWOIiwP8yP7L68mitHIWa3kzBQplc1HSEFYgiotwuGd1mGInqSQaA48VDJSSAAWnax6jQ5z3HPtNj5ZUz4gFjC4ixCK1Ad6xmkGYeltX00gdqMx4DZE8bcX/obW48kL+XQ9IhG1Wl3J/Y7DxHc6oax/84LLXq+o7G0XZg1ZjaYSCZ3v0FX0gIiP4MAhVNwvMxtigcL0oChJ3FPsJuak3WYPjID4KFGBmGX87jl+Iyx3FLtMVY7pN+sso8ATb1BT7g8fc3VzKUlQJtmGiaschEYLWBk36JnVW5dHoMkPgfh63daPKVRG65SATHBQ="
+
 script:
   - mvn clean install -B -V
+  - mvn javadoc:javadoc
+  - .util/pages.sh
