@@ -47,6 +47,11 @@ public class Savegame {
         this.player = player;
         File saveFile = new File(saveFileName);
         if (!saveFile.exists()) {
+            if(!new File(getSavegameDir()).exists()) {
+                if(new File(getSavegameDir()).mkdirs()) {
+                    logger.info("Savegame directory cerated!");
+                }
+            }
             try {
                 logger.info("Savefile doesn't exist. Creating directories and file!");
                 logger.debug("MkDirs" + ((new File(saveFile.getParent()).mkdirs()) ? "" : " not") + " successful. ");

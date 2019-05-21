@@ -1,20 +1,14 @@
 package io.lerk.soultraps.sys;
 
 import bluej.Config;
-import com.apple.eawt.Application;
-import greenfoot.Greenfoot;
 import greenfoot.export.GreenfootScenarioApplication;
-import greenfoot.export.GreenfootScenarioViewer;
 import greenfoot.util.StandalonePropStringManager;
-import io.lerk.soultraps.sys.window.AboutWindow;
-import io.lerk.soultraps.sys.window.PreferenceWindow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.Properties;
 
 /**
