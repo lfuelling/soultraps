@@ -30,6 +30,8 @@ public class Floppy extends DialogMob {
      */
     private int seqIdx = 0;
 
+    private static boolean savingCalled = false;
+
     /**
      * Constructor.
      */
@@ -51,9 +53,16 @@ public class Floppy extends DialogMob {
     @Override
     protected Handler<Void> getDialogDoneAction() {
         return () -> {
-            log.info("Player stepped on a floppy. Saving...");
-            new Savegame(((Level) getWorld()), Player.getSelf()).write();
-            placePlayerNextToPortal();
+            if(savingCalled == false) {
+                savingCalled = true;
+                log.info("Player stepped on a floppy. Saving...");
+                Savegame savegame = new Savegame(((Level) getWorld()), Player.getSelf());
+                if(Savegame.isErrorShown()) {
+                    return null;
+                }
+                savegame.write();
+                placePlayerNextToPortal();
+            }
             return null;
         };
     }

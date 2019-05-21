@@ -3,6 +3,12 @@ package io.lerk.soultraps.sys;
 import com.google.gson.Gson;
 import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.mobs.Player;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogEvent;
+import javafx.scene.layout.Region;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +41,8 @@ public class Savegame {
      */
     private final Player player;
 
+    private static boolean errorShown = false;
+
     /**
      * Constructor.
      *
@@ -42,19 +50,29 @@ public class Savegame {
      * @param player player
      */
     public Savegame(Level level, Player player) {
-        //FIXME replace level and player with daos to prevent gson StackOverflowError
         this.level = level;
         this.player = player;
+        if(errorShown) {
+            return;
+        }
         File saveFile = new File(saveFileName);
         if (!saveFile.exists()) {
             if(!new File(getSavegameDir()).exists()) {
+                if(!new File(getSavegameDir()).canWrite()) {
+                    errorShown = true;
+                    Platform.runLater(() -> {
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "The savegame directory (" + getSavegameDir() + ") is not writable! The application will now exit.", ButtonType.OK);
+                        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+                        alert.setOnCloseRequest((e) -> System.exit(1));
+                        alert.show();
+                    });
+                }
                 if(new File(getSavegameDir()).mkdirs()) {
                     logger.info("Savegame directory cerated!");
                 }
             }
             try {
                 logger.info("Savefile doesn't exist. Creating directories and file!");
-                logger.debug("MkDirs" + ((new File(saveFile.getParent()).mkdirs()) ? "" : " not") + " successful. ");
                 logger.debug("File" + ((saveFile.createNewFile()) ? "" : " not") + " created.");
             } catch (IOException e) {
                 logger.error("Error creating savegame file.", e);
@@ -116,7 +134,7 @@ public class Savegame {
             if (os.contains("mac")) {
                 savegameDir += "/Library/Application Support";
             } else if (os.contains("linux")) {
-                savegameDir += ".config";
+                savegameDir += "/.config";
             }
         }
         savegameDir += "/soultraps";
@@ -129,5 +147,10 @@ public class Savegame {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public static boolean isErrorShown()
+    {
+        return errorShown;
     }
 }
