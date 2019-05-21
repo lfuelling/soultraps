@@ -5,6 +5,6 @@ package io.lerk.soultraps.items;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class Effect {
-    //FIXME implement
+public interface Effect {
+    void handle();
 }

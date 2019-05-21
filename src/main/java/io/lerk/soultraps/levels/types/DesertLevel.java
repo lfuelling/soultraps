@@ -87,4 +87,20 @@ public class DesertLevel extends Level {
     public LevelType getType() {
         return LevelType.DESERT;
     }
+
+    /**
+     * {@inheritDoc}.
+     */
+    public DesertLevel(String[][] tiles)
+    {
+        super(tiles);
+    }
+
+    /**
+     * {@inheritDoc}.
+     */
+    public DesertLevel()
+    {
+        super();
+    }
 }

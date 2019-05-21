@@ -3,6 +3,7 @@ package io.lerk.soultraps.levels;
 import greenfoot.World;
 import io.lerk.soultraps.levels.types.LevelType;
 import io.lerk.soultraps.mobs.BaseMob;
+import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.sys.StopWatch;
 import io.lerk.soultraps.tiles.TileActor;
 import io.lerk.soultraps.tiles.Tiles;
@@ -59,6 +60,21 @@ public abstract class Level extends World {
         super(BASE_WIDTH, BASE_HEIGHT, CELL_SIZE);
         drawGround();
         fillTiles();
+        renderViewportItems();
+    }
+
+    /**
+     * Constructor that allows the level to be constructed using a predefined set of tiles.
+     * @param tiles the tiles to use
+     */
+    public Level(String[][] tiles) {
+        super(BASE_WIDTH, BASE_HEIGHT, CELL_SIZE);
+        drawGround();
+        for (int i = 0; i < tiles.length; i++) {
+            for (int i1 = 0; i1 < tiles[i].length; i1++) {
+                this.levelTiles[i][i1] = tiles[i][i1];
+            }
+        }
         renderViewportItems();
     }
 
@@ -136,7 +152,11 @@ public abstract class Level extends World {
             randomY = new Random().nextInt(Level.LEVEL_HEIGHT);
             getObjectsAt(randomX, randomY, TileActor.class).forEach(t -> goodTile[0] = Tiles.evaluateSpawn(t));
         }
-        addObject(mob, randomX, randomY);
+        if(mob instanceof Player) {
+            addObject(mob, ((Player) mob).getSavedXPos(), ((Player) mob).getSavedYPos());
+        } else {
+            addObject(mob, randomX, randomY);
+        }
         stopWatch.stop("addMob(" + mob.getClass().getName() + ")");
     }
 

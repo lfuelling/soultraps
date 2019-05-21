@@ -6,9 +6,14 @@ import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.dialog.Dialog;
 import io.lerk.soultraps.sys.dialog.DialogManager;
 import io.lerk.soultraps.sys.dialog.Message;
+import io.lerk.soultraps.sys.savegame.PlayerDTO;
+import org.reflections.Reflections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Player class.
@@ -16,6 +21,11 @@ import java.util.List;
  * @author Lukas Fülling (lukas@k40s.net)
  */
 public class Player extends DialogMob {
+
+    /**
+     * Logger.
+     */
+    private static final Logger logger = LoggerFactory.getLogger(Player.class);
 
     /**
      * Player instance.
@@ -31,6 +41,16 @@ public class Player extends DialogMob {
      * Index used for the animation.
      */
     private int seqIdx = 0;
+
+    /**
+     * Last saved X position.
+     */
+    private int savedXPos;
+
+    /**
+     * Last saved Y position.
+     */
+    private int savedYPos;
 
     /**
      * Constructor.
@@ -52,17 +72,31 @@ public class Player extends DialogMob {
     }
 
     /**
-     * Restores state from a {@link Player} loaded from a file.
+     * Restores state from a {@link PlayerDTO} loaded from a file.
      *
      * @param player the player to load state from
      */
-    public static void restore(Player player) {
+    public static void restore(PlayerDTO player) {
         if (self == null) {
-            self = player;
-            return;
+            self = new Player();
         }
         self.items.clear();
-        self.items.addAll(player.items);
+
+        Reflections reflections = new Reflections("io.lerk.soultraps.items");
+        Set<Class<? extends Item>> classes = reflections.getSubTypesOf(Item.class);
+        classes.forEach(c -> player.getItems().forEach(i -> {
+            try {
+                Item item = c.newInstance();
+                if(item.getName().equals(i)) {
+                    self.items.add(item);
+                }
+            } catch (InstantiationException | IllegalAccessException e) {
+                logger.error("Unable to instantiate item with name: '" + i + "'", e);
+            }
+        }));
+
+        self.savedXPos = player.getPosX();
+        self.savedYPos = player.getPosY();
     }
 
     /**
@@ -183,5 +217,23 @@ public class Player extends DialogMob {
      */
     public ArrayList<Item> getItems() {
         return items;
+    }
+
+    /**
+     * Getter for last saved X position.
+     * @return the last saved X position
+     */
+    public int getSavedXPos()
+    {
+      return savedXPos;
+    }
+
+    /**
+     * Getter for last saved Y position.
+     * @return the last saved Y position
+     */
+    public int getSavedYPos()
+    {
+      return savedYPos;
     }
 }

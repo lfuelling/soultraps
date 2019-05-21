@@ -1,8 +1,16 @@
 package io.lerk.soultraps.sys;
 
 import com.google.gson.Gson;
+import io.lerk.soultraps.items.Item;
 import io.lerk.soultraps.levels.Level;
+import io.lerk.soultraps.levels.menu.Launcher;
+import io.lerk.soultraps.levels.playable.RegularDesertLevel;
+import io.lerk.soultraps.levels.playable.RegularGrasslandLevel;
+import io.lerk.soultraps.levels.types.DesertLevel;
+import io.lerk.soultraps.levels.types.GrasslandLevel;
 import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.sys.savegame.LevelDTO;
+import io.lerk.soultraps.sys.savegame.PlayerDTO;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -13,6 +21,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Savegame class.
@@ -34,12 +45,12 @@ public class Savegame {
     /**
      * Level tiles.
      */
-    private final Level level;
+    private final LevelDTO level;
 
     /**
      * Player object.
      */
-    private final Player player;
+    private final PlayerDTO player;
 
     private static boolean errorShown = false;
 
@@ -50,8 +61,8 @@ public class Savegame {
      * @param player player
      */
     public Savegame(Level level, Player player) {
-        this.level = level;
-        this.player = player;
+        this.level = fromLevel(level);
+        this.player = fromPlayer(player);
         if(errorShown) {
             return;
         }
@@ -78,6 +89,20 @@ public class Savegame {
                 logger.error("Error creating savegame file.", e);
             }
         }
+    }
+
+    private PlayerDTO fromPlayer(Player player)
+    {
+        List<String> collect = player.getItems().stream()
+          .map(Item::getName)
+          .collect(Collectors.toList());
+
+        return new PlayerDTO(new ArrayList<>(collect), player.getX(), player.getY());
+    }
+
+    private LevelDTO fromLevel(Level level)
+    {
+        return new LevelDTO(level.getLevelTiles(), level.getType());
     }
 
     /**
@@ -142,11 +167,19 @@ public class Savegame {
     }
 
     public Level getLevel() {
-        return level;
+        switch(level.getLevelType()) {
+            case GRASS:
+                return new RegularGrasslandLevel(level.getLevelTiles());
+            case DESERT:
+                return new RegularDesertLevel(level.getLevelTiles());
+            case MENU:
+                return new Launcher();
+        }
+        throw new IllegalStateException("Cannot load level of type " + level.getLevelType() + "!");
     }
 
-    public Player getPlayer() {
-        return player;
+    public void restorePlayer() {
+        Player.restore(player);
     }
 
     public static boolean isErrorShown()

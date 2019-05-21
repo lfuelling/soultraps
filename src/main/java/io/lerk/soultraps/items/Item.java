@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class Item {
+public abstract class Item {
 
     /**
      * Item name.

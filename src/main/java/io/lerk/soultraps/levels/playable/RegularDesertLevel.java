@@ -22,10 +22,27 @@ public class RegularDesertLevel extends DesertLevel {
     private static final Logger log = LoggerFactory.getLogger(RegularDesertLevel.class);
 
     /**
-     * Constructor.
+     * {@inheritDoc}.
      */
     public RegularDesertLevel() {
         super(); // call super() or level won't be initialized
+        addLevelContent();
+    }
+
+    /**
+     * {@inheritDoc}.
+     */
+    public RegularDesertLevel(String[][] tiles)
+    {
+        super(tiles);
+        addLevelContent();
+    }
+
+    /**
+     * Method to add level mobs.
+     */
+    private void addLevelContent()
+    {
         log.debug("Adding DialogManager...");
         addObject(DialogManager.get(), 0, 0);
         log.debug("Adding portal...");

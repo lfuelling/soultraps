@@ -42,10 +42,10 @@ public class Launcher extends GrasslandLevel {
         Button title = getTitle();
         addObject(title, getWidth() / 2, 3);
 
-        Button startButton = new Button("Start New Game", 32, 200, 32, Color.WHITE);
+        Button startButton = new Button("New Game", 32, 200, 32, Color.WHITE);
         Button optionsButton = new Button("Options", 32, 200, 32, Color.WHITE);
 
-        Button loadButton = new Button("Load", 32, 200, 32, Color.WHITE);
+        Button loadButton = new Button("Load Game", 32, 200, 32, Color.WHITE);
 
         startButton.setHandler(() -> {
             Greenfoot.setWorld(new IntroLevel());
@@ -59,16 +59,19 @@ public class Launcher extends GrasslandLevel {
 
         addObject(startButton, getWidth() / 2, 11);
 
+        int btnY = 14;
         Savegame savegame = Savegame.read();
         if (savegame != null) {
             loadButton.setHandler(() -> {
-                Player.restore(savegame.getPlayer());
+                savegame.restorePlayer();
                 Greenfoot.setWorld(savegame.getLevel());
                 return null;
             });
+            addObject(loadButton, getWidth() / 2, btnY);
+            btnY += 3;
         }
 
-        addObject(optionsButton, getWidth() / 2, 14);
+        addObject(optionsButton, getWidth() / 2, btnY);
     }
 
     /**

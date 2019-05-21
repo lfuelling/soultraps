@@ -87,4 +87,20 @@ public class GrasslandLevel extends Level {
     public LevelType getType() {
         return LevelType.GRASS;
     }
+
+    /**
+     * {@inheritDoc}.
+     */
+    public GrasslandLevel(String[][] tiles)
+    {
+        super(tiles);
+    }
+
+    /**
+     * {@inheritDoc}.
+     */
+    public GrasslandLevel()
+    {
+        super();
+    }
 }

@@ -24,10 +24,27 @@ public class RegularGrasslandLevel extends GrasslandLevel {
     private static final Logger log = LoggerFactory.getLogger(RegularGrasslandLevel.class);
 
     /**
-     * Constructor.
+     * {@inheritDoc}.
      */
     public RegularGrasslandLevel() {
         super(); // call super() or level won't be initialized
+        addLevelContent();
+    }
+
+    /**
+     * {@inheritDoc}.
+     */
+    public RegularGrasslandLevel(String[][] tiles)
+    {
+        super(tiles);
+        addLevelContent();
+    }
+
+    /**
+     * Method to add level mobs.
+     */
+    private void addLevelContent()
+    {
         log.debug("Adding DialogManager...");
         addObject(DialogManager.get(), 0, 0);
         log.debug("Adding portal...");
