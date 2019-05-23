@@ -13,7 +13,6 @@ import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.sound.sampled.Port;
 import java.util.Random;
 
 import static io.lerk.soultraps.levels.menu.Launcher.BASE_HEIGHT;

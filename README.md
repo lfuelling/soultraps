@@ -1,6 +1,6 @@
 # Soultraps: Greenfoot RPG [![Build Status](https://travis-ci.org/lfuelling/soultraps.svg?branch=master)](https://travis-ci.org/lfuelling/soultraps)
 
-![Screenshot of first level](screenshot.png)
+![Screenshot of first level](screenshot.gif)
 
 ## About
 
