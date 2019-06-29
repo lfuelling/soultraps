@@ -52,7 +52,7 @@ public final class ConsoleUtil {
                 console = new Console();
                 level.addObject(console, getX(), getY());
             }
-        } else if(Greenfoot.isKeyDown("c")) {
+        } else if(Greenfoot.isKeyDown("c") && Greenfoot.isKeyDown("shift")) {
             consoleOpen = true;
         } else if(level.getObjects(Console.class).size() > 0) {
             level.removeObjects(level.getObjects(Console.class));
