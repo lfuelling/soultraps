@@ -247,4 +247,14 @@ public class Player extends DialogMob {
     {
       return savedYPos;
     }
+
+    /**
+     * Method used to reset the player once the game is over.
+     */
+    public void reset() {
+        setHealth(maxHealth());
+        items.clear();
+        lastAttack = 0;
+        seqIdx = 0;
+    }
 }

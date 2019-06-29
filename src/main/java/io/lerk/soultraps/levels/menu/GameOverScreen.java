@@ -2,27 +2,16 @@ package io.lerk.soultraps.levels.menu;
 
 import greenfoot.Color;
 import greenfoot.Greenfoot;
-import greenfoot.World;
 import io.lerk.soultraps.components.Button;
 import io.lerk.soultraps.components.MovingHeading;
-import io.lerk.soultraps.levels.playable.IntroLevel;
-import io.lerk.soultraps.levels.types.GrasslandLevel;
+import io.lerk.soultraps.levels.types.DesertLevel;
 import io.lerk.soultraps.levels.types.LevelType;
 import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
-import io.lerk.soultraps.sys.Savegame;
+import io.lerk.soultraps.mobs.Player;
 
-public class GameOverScreen extends GrasslandLevel {
-    /**
-     * Base world width.
-     */
-    public static final int BASE_WIDTH = 64;
-
-    /**
-     * Base world height.
-     */
-    public static final int BASE_HEIGHT = 32;
+public class GameOverScreen extends DesertLevel {
 
     /**
      * Constructor.
@@ -46,6 +35,7 @@ public class GameOverScreen extends GrasslandLevel {
 
         addObject(menuButton, getWidth() / 2, 11);
 
+        Player.getSelf().reset(); // reset player
     }
 
     /**
