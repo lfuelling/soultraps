@@ -101,6 +101,13 @@ public final class Console extends Actor {
         }
     }
 
+    /**
+     * Command used to spawn a mob.
+     *
+     * Example Syntax: "spawnbat", "spawnwolf", etc.
+     *
+     * @return Command output.
+     */
     private String handleSpawnMob() {
         String[] args = text.split("spawn");
         if (args.length > 1) {

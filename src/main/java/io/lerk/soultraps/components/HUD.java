@@ -1,6 +1,7 @@
 package io.lerk.soultraps.components;
 
 import greenfoot.Actor;
+import greenfoot.Color;
 import greenfoot.GreenfootImage;
 import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.sys.Fonts;
@@ -11,8 +12,6 @@ import io.lerk.soultraps.sys.Fonts;
  * @author Lukas Fülling (lukas@k40s.net)
  * @see Player
  */
-
-//TODO use
 public class HUD extends Actor {
 
     /**
@@ -32,7 +31,7 @@ public class HUD extends Actor {
      */
     @Override
     public void act() {
-        if (System.currentTimeMillis() - 100 >= lastUpdateMillis) {
+        if (System.currentTimeMillis() - lastUpdateMillis >= 100) {
             updateImage();
             lastUpdateMillis = System.currentTimeMillis();
         }
@@ -43,9 +42,10 @@ public class HUD extends Actor {
      * This should call {@link #setImage(GreenfootImage)}.
      */
     private void updateImage() {
-        GreenfootImage image = new GreenfootImage(256, 64);
-        image.setFont(Fonts.getFont(Fonts.Types.SKYRIM, 48f));
-        image.drawString(Player.getSelf().getHealth() + "", 2, 2);
+        GreenfootImage image = new GreenfootImage(48*3, 48*2);
+        image.setColor(Color.WHITE);
+        image.setFont(Fonts.getFont(Fonts.Types.SKYRIM, 32f));
+        image.drawString(Player.getSelf().getHealth() + "", 0, 24);
         setImage(image);
     }
 }

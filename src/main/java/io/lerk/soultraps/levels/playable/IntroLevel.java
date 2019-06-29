@@ -1,5 +1,6 @@
 package io.lerk.soultraps.levels.playable;
 
+import io.lerk.soultraps.components.HUD;
 import io.lerk.soultraps.levels.types.GrasslandLevel;
 import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
@@ -43,6 +44,17 @@ public class IntroLevel extends GrasslandLevel {
         addMob(new Zombie());
         log.debug("Adding player...");
         addMob(Player.getSelf());
+        log.info("Adding HUD...");
+        HUD hud = new HUD();
+        addObject(hud, getX(hud), getY(hud));
+    }
+
+    private int getX(HUD hud) {
+        return getWidth() - (hud.getImage().getWidth() - 10 * CELL_SIZE);
+    }
+
+    private int getY(HUD hud) {
+        return getHeight() - (hud.getImage().getHeight() - 10 * CELL_SIZE);
     }
 
 }
