@@ -1,4 +1,8 @@
-package io.lerk.soultraps.mobs;
+package io.lerk.soultraps.mobs.Enemies;
+
+import io.lerk.soultraps.mobs.BaseMob;
+import io.lerk.soultraps.mobs.Direction;
+import io.lerk.soultraps.mobs.Player;
 
 import java.util.Random;
 
@@ -17,16 +21,16 @@ public abstract class EnemyMob extends BaseMob implements Enemy {
         if (new Random().nextBoolean()) {
             if (isPlayerInRangeNorth()) {
                 walking = true;
-                direction = BaseMob.Direction.NORTH;
+                direction = Direction.NORTH;
             } else if (isPlayerInRangeEast()) {
                 walking = true;
-                direction = BaseMob.Direction.EAST;
+                direction = Direction.EAST;
             } else if (isPlayerInRangeSouth()) {
                 walking = true;
-                direction = BaseMob.Direction.SOUTH;
+                direction = Direction.SOUTH;
             } else if (isPlayerInRangeWest()) {
                 walking = true;
-                direction = BaseMob.Direction.WEST;
+                direction = Direction.WEST;
             } else {
                 randomWalkingState();
             }
@@ -48,7 +52,7 @@ public abstract class EnemyMob extends BaseMob implements Enemy {
      */
     private void randomWalkingState() {
         walking = new Random().nextBoolean();
-        direction = (new Random().nextBoolean()) ? BaseMob.Direction.random() : direction;
+        direction = (new Random().nextBoolean()) ? Direction.random() : direction;
     }
 
     /**

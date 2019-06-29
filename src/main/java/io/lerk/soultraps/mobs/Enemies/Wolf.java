@@ -1,7 +1,5 @@
 package io.lerk.soultraps.mobs.Enemies;
 
-import io.lerk.soultraps.mobs.EnemyMob;
-
 import java.util.Random;
 
 /**
@@ -47,7 +45,7 @@ public class Wolf extends EnemyMob {
      * @return max possible health
      */
     @Override
-    protected int maxHealth() {
+    public int maxHealth() {
         return 50;
     }
 

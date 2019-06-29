@@ -1,5 +1,6 @@
-package io.lerk.soultraps.mobs;
+package io.lerk.soultraps.mobs.friendly;
 
+import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.dialog.Dialog;
 import io.lerk.soultraps.sys.dialog.DialogManager;

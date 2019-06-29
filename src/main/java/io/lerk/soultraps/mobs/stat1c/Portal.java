@@ -3,7 +3,7 @@ package io.lerk.soultraps.mobs.stat1c;
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.levels.playable.RegularDesertLevel;
 import io.lerk.soultraps.levels.playable.RegularGrasslandLevel;
-import io.lerk.soultraps.mobs.DialogMob;
+import io.lerk.soultraps.mobs.friendly.DialogMob;
 import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.dialog.Message;
@@ -72,7 +72,7 @@ public class Portal extends DialogMob {
      * @return {@link Integer#MAX_VALUE}
      */
     @Override
-    protected int maxHealth() {
+    public int maxHealth() {
         return Integer.MAX_VALUE;
     }
 

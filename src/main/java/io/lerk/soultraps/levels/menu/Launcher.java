@@ -3,6 +3,7 @@ package io.lerk.soultraps.levels.menu;
 import greenfoot.Color;
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.components.Button;
+import io.lerk.soultraps.components.MovingHeading;
 import io.lerk.soultraps.levels.playable.IntroLevel;
 import io.lerk.soultraps.levels.types.GrasslandLevel;
 import io.lerk.soultraps.levels.types.LevelType;
@@ -39,7 +40,7 @@ public class Launcher extends GrasslandLevel {
         addMob(new Bat());
         addMob(new Zombie());
 
-        Button title = getTitle();
+        Button title = new MovingHeading("Soultraps", 64, 320, 72f, Color.WHITE);
         addObject(title, getWidth() / 2, 3);
 
         Button startButton = new Button("New Game", 32, 200, 32, Color.WHITE);
@@ -74,45 +75,6 @@ public class Launcher extends GrasslandLevel {
         addObject(optionsButton, getWidth() / 2, btnY);
     }
 
-    /**
-     * Generates the title which is a {@link Button} anonymous inner class.
-     *
-     * @return the title.
-     */
-    private Button getTitle() {
-        return new Button("Soultraps", 64, 320, 72f, Color.WHITE) {
-            private boolean up = true;
-            private int count = 1;
-            private int throttleCount = 0;
-
-            private final int throttle = 30;
-            private final int hoverAmount = 1;
-
-            @Override
-            public void act() {
-                if (throttleCount >= throttle) {
-                    if (up) {
-                        setLocation(getX(), getY() - 1);
-                        if (count > hoverAmount) {
-                            count = 0;
-                            up = false;
-                        }
-                        count++;
-                    } else {
-                        setLocation(getX(), getY() + 1);
-                        if (count > hoverAmount) {
-                            count = 0;
-                            up = true;
-                        }
-                        count++;
-                    }
-                    throttleCount = 0;
-                } else {
-                    throttleCount++;
-                }
-            }
-        };
-    }
 
     /**
      * {@inheritDoc}.

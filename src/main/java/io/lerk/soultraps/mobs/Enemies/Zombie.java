@@ -1,7 +1,5 @@
 package io.lerk.soultraps.mobs.Enemies;
 
-import io.lerk.soultraps.mobs.EnemyMob;
-
 import java.util.Random;
 
 /**
@@ -47,7 +45,7 @@ public class Zombie extends EnemyMob {
      * @return max possible health
      */
     @Override
-    protected int maxHealth() {
+    public int maxHealth() {
         return 200;
     }
 
@@ -65,7 +63,7 @@ public class Zombie extends EnemyMob {
      */
     @Override
     public int attack() {
-        return new Random().nextInt(150);
+        return new Random().nextInt(50);
     }
 
     /**

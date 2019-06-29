@@ -2,7 +2,7 @@ package io.lerk.soultraps.mobs.friendly;
 
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.items.Axe;
-import io.lerk.soultraps.mobs.DialogMob;
+import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.dialog.Message;
@@ -188,7 +188,7 @@ public class Lumberjack extends DialogMob {
      * @return max possible health
      */
     @Override
-    protected int maxHealth() {
+    public int maxHealth() {
         return 100;
     }
 
@@ -197,5 +197,6 @@ public class Lumberjack extends DialogMob {
      */
     @Override
     protected void doAct() {
+        //TODO chop some trees or something
     }
 }

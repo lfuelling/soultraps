@@ -1,8 +1,10 @@
 package io.lerk.soultraps.sys;
 
 import bluej.Config;
+import greenfoot.Greenfoot;
 import greenfoot.export.GreenfootScenarioApplication;
 import greenfoot.util.StandalonePropStringManager;
+import io.lerk.soultraps.levels.menu.GameOverScreen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,5 +65,8 @@ public class Soultraps extends GreenfootScenarioApplication
     }
 
 
+    public static void gameOver() {
+        Greenfoot.setWorld(new GameOverScreen());
+    }
 }
 

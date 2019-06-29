@@ -2,7 +2,10 @@ package io.lerk.soultraps.mobs;
 
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.items.Item;
+import io.lerk.soultraps.mobs.Enemies.Enemy;
+import io.lerk.soultraps.mobs.friendly.DialogMob;
 import io.lerk.soultraps.sys.Handler;
+import io.lerk.soultraps.sys.Soultraps;
 import io.lerk.soultraps.sys.dialog.Dialog;
 import io.lerk.soultraps.sys.dialog.DialogManager;
 import io.lerk.soultraps.sys.dialog.Message;
@@ -159,7 +162,7 @@ public class Player extends DialogMob {
      * @return max possible health
      */
     @Override
-    protected int maxHealth() {
+    public int maxHealth() {
         return 200;
     }
 
@@ -209,8 +212,11 @@ public class Player extends DialogMob {
      * @param enemy the enemy to start the fight with
      */
     public void startAttack(Enemy enemy) {
-        if(System.currentTimeMillis() - lastAttack >= 250) {
+        if(System.currentTimeMillis() - lastAttack >= 500) {
             setHealth(getHealth() - enemy.attack());
+            if(getHealth() <= 0) {
+                Soultraps.gameOver();
+            }
             lastAttack = System.currentTimeMillis();
         }
     }

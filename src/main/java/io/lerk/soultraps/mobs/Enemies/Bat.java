@@ -1,9 +1,5 @@
 package io.lerk.soultraps.mobs.Enemies;
 
-import greenfoot.Greenfoot;
-import io.lerk.soultraps.mobs.EnemyMob;
-import io.lerk.soultraps.mobs.Player;
-
 import java.util.Random;
 
 /**
@@ -49,7 +45,7 @@ public class Bat extends EnemyMob {
      * @return max possible health
      */
     @Override
-    protected int maxHealth() {
+    public int maxHealth() {
         return 25;
     }
 

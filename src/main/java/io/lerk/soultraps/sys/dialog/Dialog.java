@@ -1,6 +1,6 @@
 package io.lerk.soultraps.sys.dialog;
 
-import io.lerk.soultraps.mobs.DialogMob;
+import io.lerk.soultraps.mobs.friendly.DialogMob;
 import io.lerk.soultraps.sys.Handler;
 
 import java.util.ArrayList;

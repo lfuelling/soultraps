@@ -10,6 +10,7 @@ import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
+import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.mobs.friendly.Lumberjack;
 import io.lerk.soultraps.sys.Fonts;
 import org.slf4j.Logger;
@@ -96,6 +97,9 @@ public final class Console extends Actor {
                     Greenfoot.setWorld(TestLevel.get((Level) getWorld()));
                 }
                 return "Ok!";
+            case "heal":
+                Player.getSelf().setHealth(Player.getSelf().maxHealth());
+                return "Ok!";
             default:
                 return "Unknown Command!";
         }
@@ -103,7 +107,7 @@ public final class Console extends Actor {
 
     /**
      * Command used to spawn a mob.
-     *
+     * <p>
      * Example Syntax: "spawnbat", "spawnwolf", etc.
      *
      * @return Command output.

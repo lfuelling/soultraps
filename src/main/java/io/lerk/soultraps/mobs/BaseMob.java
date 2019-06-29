@@ -45,7 +45,7 @@ public abstract class BaseMob extends Actor {
      *
      * @return max possible health of mob.
      */
-    protected abstract int maxHealth();
+    public abstract int maxHealth();
 
     /**
      * Throttled method used for stuff other than walking.
@@ -112,24 +112,20 @@ public abstract class BaseMob extends Actor {
      *
      * @return true if the mob can walk in the {@link #direction} it's facing.
      */
-    protected boolean canWalk() {
+    private boolean canWalk() {
         if (walking) {
             if (direction.equals(Direction.NORTH)) {
                 return this.getObjectsAtOffset(0, -1, TileActor.class).stream()
-                        .filter(TileActor::isTileOtherThanGround)
-                        .collect(Collectors.toList()).size() == 0;
+                        .filter(TileActor::isTileOtherThanGround).count() == 0;
             } else if (direction.equals(Direction.EAST)) {
                 return this.getObjectsAtOffset(1, 0, TileActor.class).stream()
-                        .filter(TileActor::isTileOtherThanGround)
-                        .collect(Collectors.toList()).size() == 0;
+                        .filter(TileActor::isTileOtherThanGround).count() == 0;
             } else if (direction.equals(Direction.SOUTH)) {
                 return this.getObjectsAtOffset(0, 1, TileActor.class).stream()
-                        .filter(TileActor::isTileOtherThanGround)
-                        .collect(Collectors.toList()).size() == 0;
+                        .filter(TileActor::isTileOtherThanGround).count() == 0;
             } else if (direction.equals(Direction.WEST)) {
                 return this.getObjectsAtOffset(-1, 0, TileActor.class).stream()
-                        .filter(TileActor::isTileOtherThanGround)
-                        .collect(Collectors.toList()).size() == 0;
+                        .filter(TileActor::isTileOtherThanGround).count() == 0;
             }
         }
         return false;
@@ -153,109 +149,7 @@ public abstract class BaseMob extends Actor {
         this.health = health;
     }
 
-    /**
-     * Direction enum.
-     *
-     * @author Lukas Fülling (lukas@k40s.net)
-     */
-    public enum Direction {
-        /**
-         * North (up)
-         */
-        NORTH(270),
-        /**
-         * East (right)
-         */
-        EAST(0),
-        /**
-         * South (down)
-         */
-        SOUTH(90, true, false),
-        /**
-         * West (left)
-         */
-        WEST(180, true, false);
-
-        /**
-         * Image rotation for this direction.
-         */
-        private final int rotation;
-
-        /**
-         * Should image be mirrored horizontally.
-         */
-        private final boolean mirroredH;
-
-        /**
-         * Should image be mirrored vertically.
-         */
-        private final boolean mirroredV;
-
-        /**
-         * Constructor.
-         *
-         * @param rotation image rotation.
-         */
-        Direction(int rotation) {
-            this(rotation, false, false);
-        }
-
-        /**
-         * Constructor.
-         *
-         * @param rotation  image rotation
-         * @param mirroredV mirror image horizontally
-         * @param mirroredH mirror image vertically
-         */
-        Direction(int rotation, boolean mirroredV, boolean mirroredH) {
-            this.rotation = rotation;
-            this.mirroredH = mirroredH;
-            this.mirroredV = mirroredV;
-        }
-
-        /**
-         * Generates a random {@link Direction}.
-         *
-         * @return random direction
-         */
-        public static Direction random() {
-            switch (new Random().nextInt(3)) {
-                case 0:
-                    return Direction.NORTH;
-                case 1:
-                    return Direction.WEST;
-                case 2:
-                    return Direction.SOUTH;
-                default: // 3 can be omitted
-                    return Direction.EAST;
-            }
-        }
-
-        /**
-         * Getter for mirror image horizontally.
-         *
-         * @return {@link #mirroredH}
-         */
-        public boolean isMirroredH() {
-            return mirroredH;
-        }
-
-        /**
-         * Getter for mirror image vertically.
-         *
-         * @return {@link #mirroredV}
-         */
-        public boolean isMirroredV() {
-            return mirroredV;
-        }
-
-        /**
-         * Getter for image rotation.
-         *
-         * @return image rotation
-         */
-        public int getRotation() {
-            return rotation;
-        }
+    public Direction getDirection() {
+        return direction;
     }
 }
