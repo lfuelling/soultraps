@@ -34,8 +34,7 @@ public class RegularDesertLevel extends DesertLevel {
     /**
      * {@inheritDoc}.
      */
-    public RegularDesertLevel(String[][] tiles, Pair<Integer, Integer> portalCoordinates, Pair<Integer, Integer> floppyCoordinates)
-    {
+    public RegularDesertLevel(String[][] tiles, Pair<Integer, Integer> portalCoordinates, Pair<Integer, Integer> floppyCoordinates) {
         super(tiles, portalCoordinates, floppyCoordinates);
         addLevelContent();
     }
@@ -43,8 +42,7 @@ public class RegularDesertLevel extends DesertLevel {
     /**
      * Method to add level mobs.
      */
-    private void addLevelContent()
-    {
+    private void addLevelContent() {
         log.debug("Adding DialogManager...");
         addObject(DialogManager.get(), 0, 0);
         log.debug("Adding portal...");
@@ -58,15 +56,6 @@ public class RegularDesertLevel extends DesertLevel {
         log.info("Adding player...");
         addMob(Player.getSelf());
         log.info("Adding HUD...");
-        HUD hud = new HUD();
-        addObject(hud, getX(hud), getY(hud));
-    }
-
-    private int getX(HUD hud) {
-        return getWidth() - (hud.getImage().getWidth() - 10 * CELL_SIZE);
-    }
-
-    private int getY(HUD hud) {
-        return getHeight() - (hud.getImage().getHeight() - 10 * CELL_SIZE);
+        addObject(new HUD(), 60, 96);
     }
 }

@@ -52,6 +52,8 @@ public class Player extends DialogMob {
      */
     private int savedYPos;
 
+    private long lastAttack = 0;
+
     /**
      * Constructor.
      */
@@ -158,7 +160,7 @@ public class Player extends DialogMob {
      */
     @Override
     protected int maxHealth() {
-        return 100;
+        return 200;
     }
 
     /**
@@ -207,7 +209,10 @@ public class Player extends DialogMob {
      * @param enemy the enemy to start the fight with
      */
     public void startAttack(Enemy enemy) {
-        //TODO: implement
+        if(System.currentTimeMillis() - lastAttack >= 250) {
+            setHealth(getHealth() - enemy.attack());
+            lastAttack = System.currentTimeMillis();
+        }
     }
 
     /**

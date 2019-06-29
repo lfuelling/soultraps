@@ -35,6 +35,14 @@ public abstract class EnemyMob extends BaseMob implements Enemy {
         }
     }
 
+    @Override
+    public void act() {
+        super.act();
+        if(isTouching(Player.class)) {
+            Player.getSelf().startAttack(this);
+        }
+    }
+
     /**
      * Sets {@link #walking} and {@link #direction} to a random value.
      */

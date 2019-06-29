@@ -19,6 +19,8 @@ public class HUD extends Actor {
      */
     private long lastUpdateMillis;
 
+    private int lastHealth;
+
     /**
      * Constructor.
      */
@@ -42,10 +44,19 @@ public class HUD extends Actor {
      * This should call {@link #setImage(GreenfootImage)}.
      */
     private void updateImage() {
-        GreenfootImage image = new GreenfootImage(48*3, 48*2);
-        image.setColor(Color.WHITE);
+        GreenfootImage image = new GreenfootImage(48 * 3, 48 * 2);
+
+        Integer health = Player.getSelf().getHealth();
+        if (health > lastHealth) {
+            image.setColor(Color.GREEN);
+        } else if (health < lastHealth) {
+            image.setColor(Color.RED);
+        } else {
+            image.setColor(Color.WHITE);
+        }
         image.setFont(Fonts.getFont(Fonts.Types.SKYRIM, 32f));
-        image.drawString(Player.getSelf().getHealth() + "", 0, 24);
+        image.drawString(health + " HP", 0, 24);
         setImage(image);
+        lastHealth = health;
     }
 }

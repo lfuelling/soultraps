@@ -1,6 +1,8 @@
 package io.lerk.soultraps.mobs.Enemies;
 
+import greenfoot.Greenfoot;
 import io.lerk.soultraps.mobs.EnemyMob;
+import io.lerk.soultraps.mobs.Player;
 
 import java.util.Random;
 

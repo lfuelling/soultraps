@@ -45,16 +45,7 @@ public class IntroLevel extends GrasslandLevel {
         log.debug("Adding player...");
         addMob(Player.getSelf());
         log.info("Adding HUD...");
-        HUD hud = new HUD();
-        addObject(hud, getX(hud), getY(hud));
-    }
-
-    private int getX(HUD hud) {
-        return getWidth() - (hud.getImage().getWidth() - 10 * CELL_SIZE);
-    }
-
-    private int getY(HUD hud) {
-        return getHeight() - (hud.getImage().getHeight() - 10 * CELL_SIZE);
+        addObject(new HUD(), 60, 96);
     }
 
 }
