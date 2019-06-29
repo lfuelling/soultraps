@@ -3,6 +3,7 @@ package io.lerk.soultraps.components;
 import greenfoot.Actor;
 import greenfoot.GreenfootImage;
 import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.sys.Fonts;
 
 /**
  * A HUD showing the player's current health and other stuff.
@@ -10,12 +11,9 @@ import io.lerk.soultraps.mobs.Player;
  * @author Lukas Fülling (lukas@k40s.net)
  * @see Player
  */
-public class HUD extends Actor {
 
-    /**
-     * The player.
-     */
-    private final Player player;
+//TODO use
+public class HUD extends Actor {
 
     /**
      * Counter value used for throttling.
@@ -26,7 +24,7 @@ public class HUD extends Actor {
      * Constructor.
      */
     public HUD() {
-        this.player = Player.getSelf();
+        updateImage();
     }
 
     /**
@@ -45,7 +43,9 @@ public class HUD extends Actor {
      * This should call {@link #setImage(GreenfootImage)}.
      */
     private void updateImage() {
-        //FIXME implement
-        setImage(new GreenfootImage(256, 64));
+        GreenfootImage image = new GreenfootImage(256, 64);
+        image.setFont(Fonts.getFont(Fonts.Types.SKYRIM, 48f));
+        image.drawString(Player.getSelf().getHealth() + "", 2, 2);
+        setImage(image);
     }
 }

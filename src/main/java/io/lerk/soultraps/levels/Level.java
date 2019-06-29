@@ -1,6 +1,7 @@
 package io.lerk.soultraps.levels;
 
 import greenfoot.World;
+import io.lerk.soultraps.sys.console.ConsoleUtil;
 import io.lerk.soultraps.levels.types.LevelType;
 import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.mobs.Player;
@@ -76,6 +77,12 @@ public abstract class Level extends World {
         renderViewportItems();
         this.portalCoordinates = null;
         this.floppyCoordinates = null;
+    }
+
+    @Override
+    public final void act() {
+        super.act();
+        ConsoleUtil.handle(this);
     }
 
     /**
@@ -158,7 +165,7 @@ public abstract class Level extends World {
      *
      * @param mob the mob to add.
      */
-    protected void addMob(BaseMob mob) {
+    public void addMob(BaseMob mob) {
         StopWatch stopWatch = new StopWatch(StopWatch.LogLevel.DEBUG);
         stopWatch.start();
         int randomX = 0;

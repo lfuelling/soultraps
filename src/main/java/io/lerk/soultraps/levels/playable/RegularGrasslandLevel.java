@@ -44,7 +44,7 @@ public class RegularGrasslandLevel extends GrasslandLevel {
     /**
      * Method to add level mobs.
      */
-    private void addLevelContent()
+    protected void addLevelContent()
     {
         log.debug("Adding DialogManager...");
         addObject(DialogManager.get(), 0, 0);
