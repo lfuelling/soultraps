@@ -91,7 +91,7 @@ public class DialogManager extends Actor {
                 Message m = current.getMessages().get(0);
                 getWorld().addObject(m, 0, 0);
                 current.getMessages().remove(m);
-                quickSleep();
+                quickSleep(); // wait for debouncing
             } else if (current != null && current.getMessages().size() == 0) {
                 if (current.getMob() != null) {
                     current.getMob().setTalking(false);
@@ -99,7 +99,6 @@ public class DialogManager extends Actor {
                 Player.getSelf().setTalking(false);
                 current.getDoneAction().handle();
                 current = null;
-                quickSleep();
             } else {
                 if (dialogQueue.size() > 0) {
                     current = dialogQueue.get(0);

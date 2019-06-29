@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static io.lerk.soultraps.tiles.DesertTiles.Ground01;
 import static io.lerk.soultraps.tiles.GrasslandTiles.Grass01;
 import static io.lerk.soultraps.tiles.GrasslandTiles.Tree01;
+import static io.lerk.soultraps.tiles.HellTiles.HellGround01;
 import static io.lerk.soultraps.tiles.MiscTiles.Empty;
 
 class TileActorTest {
@@ -17,9 +18,14 @@ class TileActorTest {
     private TileActor grassTile = new TileActor(Grass01, new GreenfootImage(Grass01.getName() + Tiles.FILE_SUFFIX));
 
     /**
-     * A desert grass tile.
+     * A desert ground tile.
      */
     private TileActor desertTile = new TileActor(Ground01, new GreenfootImage(Ground01.getName() + Tiles.FILE_SUFFIX));
+
+    /**
+     * A hell ground tile.
+     */
+    private TileActor hellTile = new TileActor(HellGround01, new GreenfootImage(HellGround01.getName() + Tiles.FILE_SUFFIX));
 
     /**
      * An empty tile.
@@ -41,6 +47,7 @@ class TileActorTest {
     void getTileType() {
         Assertions.assertEquals(grassTile.getTileType(), Grass01);
         Assertions.assertEquals(desertTile.getTileType(), Ground01);
+        Assertions.assertEquals(hellTile.getTileType(), HellGround01);
         Assertions.assertEquals(emptyTile.getTileType(), Empty);
         Assertions.assertEquals(treeTile.getTileType(), Tree01);
         Assertions.assertEquals(desertTreeTile.getTileType(), DesertTiles.Tree01);

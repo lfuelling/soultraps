@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import static io.lerk.soultraps.tiles.Tiles.FILE_SUFFIX;
+
 /**
  * The lumberjack walks around randomly when no trees are in range, otherwise it moves towards them with some chance.
  * If the player is overlapping the lumberjack, a dialog is started that gives the {@link Axe} to the player.
@@ -175,7 +177,7 @@ public class Lumberjack extends DialogMob {
             seqIdx = 0;
         }
         if (walking) {
-            this.setImage("images/lumberjack/lumberjack" + (seqIdx + 1) + ".png");
+            this.setImage("images/lumberjack/lumberjack" + (seqIdx + 1) + FILE_SUFFIX);
         } else {
             this.setImage("images/lumberjack/lumberjack1.png");
         }

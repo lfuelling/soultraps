@@ -1,10 +1,9 @@
 package io.lerk.soultraps.mobs.stat1c;
 
 import greenfoot.Greenfoot;
-import io.lerk.soultraps.levels.playable.RegularDesertLevel;
-import io.lerk.soultraps.levels.playable.RegularGrasslandLevel;
-import io.lerk.soultraps.mobs.friendly.DialogMob;
+import io.lerk.soultraps.levels.playable.RegularHellLevel;
 import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.friendly.DialogMob;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.dialog.Message;
 import org.slf4j.Logger;
@@ -12,21 +11,20 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import static io.lerk.soultraps.tiles.Tiles.FILE_SUFFIX;
 
 /**
- * The portal that takes the player to the next level.
+ * The portal that takes the player to the hell level.
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class Portal extends DialogMob {
+public class HellPortal extends DialogMob {
 
     /**
      * Logger.
      */
-    private static final Logger log = LoggerFactory.getLogger(Portal.class);
+    private static final Logger log = LoggerFactory.getLogger(HellPortal.class);
 
     /**
      * Index used for the animation.
@@ -36,8 +34,8 @@ public class Portal extends DialogMob {
     /**
      * Constructor.
      */
-    public Portal() {
-        this.setImage("images/portal/portal1.png");
+    public HellPortal() {
+        this.setImage("images/hell/portal/portal1.png");
     }
 
     /**
@@ -45,7 +43,7 @@ public class Portal extends DialogMob {
      */
     @Override
     protected List<Message> getDialogMessages() {
-        return Collections.singletonList(new Message("You stepped onto a portal. You will now be teleported.", dialog));
+        return Collections.singletonList(new Message("This portal feels somewhat strange...", dialog));
     }
 
     /**
@@ -54,8 +52,8 @@ public class Portal extends DialogMob {
     @Override
     protected Handler<Void> getDialogDoneAction() {
         return () -> {
-            log.info("Player stepped on a portal. Teleporting...");
-            Greenfoot.setWorld((new Random().nextBoolean()) ? new RegularDesertLevel() : new RegularGrasslandLevel());
+            log.info("Player stepped on hell portal. Teleporting...");
+            Greenfoot.setWorld(new RegularHellLevel());
             return null;
         };
     }
@@ -109,10 +107,11 @@ public class Portal extends DialogMob {
             seqIdx = 0;
         }
         if (walking) {
-            this.setImage("images/portal/portal" + (seqIdx + 1) + FILE_SUFFIX);
+            this.setImage("images/hell/portal/portal" + (seqIdx + 1) + FILE_SUFFIX);
         } else {
-            this.setImage("images/portal/portal1.png");
+            this.setImage("images/hell/portal/portal1.png");
         }
         seqIdx++;
     }
 }
+

@@ -2,6 +2,8 @@ package io.lerk.soultraps.mobs.Enemies;
 
 import java.util.Random;
 
+import static io.lerk.soultraps.tiles.Tiles.FILE_SUFFIX;
+
 /**
  * This is one of the easier mobs to deal with.
  * It walks around randomly ond follows the player up to a range of three blocks.
@@ -32,7 +34,7 @@ public class Wolf extends EnemyMob {
             seqIdx = 0;
         }
         if (walking) {
-            this.setImage("images/wolf/wolf" + (seqIdx + 1) + ".png");
+            this.setImage("images/wolf/wolf" + (seqIdx + 1) + FILE_SUFFIX);
         } else {
             this.setImage("images/wolf/wolf1.png");
         }

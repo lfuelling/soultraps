@@ -7,6 +7,8 @@ import static io.lerk.soultraps.tiles.DesertTiles.Ground01;
 import static io.lerk.soultraps.tiles.DesertTiles.Ground02;
 import static io.lerk.soultraps.tiles.GrasslandTiles.Grass01;
 import static io.lerk.soultraps.tiles.GrasslandTiles.Grass02;
+import static io.lerk.soultraps.tiles.HellTiles.HellGround01;
+import static io.lerk.soultraps.tiles.HellTiles.HellGround02;
 import static io.lerk.soultraps.tiles.MiscTiles.Empty;
 
 
@@ -69,6 +71,8 @@ public class TileActor extends Actor {
                 !tileType.equals(Grass02) &&
                 !tileType.equals(Empty) &&
                 !tileType.equals(Ground01) &&
-                !tileType.equals(Ground02);
+                !tileType.equals(Ground02) &&
+                !tileType.equals(HellGround01) &&
+                !tileType.equals(HellGround02);
     }
 }

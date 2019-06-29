@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import java.util.Collections;
 import java.util.List;
 
+import static io.lerk.soultraps.tiles.Tiles.FILE_SUFFIX;
+
 /**
  * The icon that lets a player save the game.
  *
@@ -140,7 +142,7 @@ public class Floppy extends DialogMob {
             seqIdx = 0;
         }
         if (walking) {
-            this.setImage("images/floppy/floppy" + (seqIdx + 1) + ".png");
+            this.setImage("images/floppy/floppy" + (seqIdx + 1) + FILE_SUFFIX);
         } else {
             this.setImage("images/floppy/floppy1.png");
         }

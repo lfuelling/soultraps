@@ -1,6 +1,7 @@
 package io.lerk.soultraps.levels;
 
 import greenfoot.World;
+import io.lerk.soultraps.mobs.stat1c.HellCastle;
 import io.lerk.soultraps.sys.console.ConsoleUtil;
 import io.lerk.soultraps.levels.types.LevelType;
 import io.lerk.soultraps.mobs.BaseMob;
@@ -90,13 +91,14 @@ public abstract class Level extends World {
 
     /**
      * Constructor that allows the level to be constructed using a predefined set of tiles.
+     *
      * @param tiles the tiles to use
      */
     public Level(String[][] tiles, Pair<Integer, Integer> portalCoordinates, Pair<Integer, Integer> floppyCoordinates) {
         super(BASE_WIDTH, BASE_HEIGHT, CELL_SIZE);
-      this.portalCoordinates = portalCoordinates;
-      this.floppyCoordinates = floppyCoordinates;
-      drawGround();
+        this.portalCoordinates = portalCoordinates;
+        this.floppyCoordinates = floppyCoordinates;
+        drawGround();
         for (int i = 0; i < tiles.length; i++) {
             for (int i1 = 0; i1 < tiles[i].length; i1++) {
                 this.levelTiles[i][i1] = tiles[i][i1];
@@ -179,23 +181,46 @@ public abstract class Level extends World {
             randomY = new Random().nextInt(Level.LEVEL_HEIGHT);
             getObjectsAt(randomX, randomY, TileActor.class).forEach(t -> goodTile[0] = Tiles.evaluateSpawn(t));
         }
-        if(mob instanceof Player) {
-            addObject(mob, ((Player) mob).getSavedXPos(), ((Player) mob).getSavedYPos());
+        if (mob instanceof Player) {
+            addObject(mob, randomX, randomY);
+            return;
         } else {
-            if(mob instanceof Portal && portalCoordinates != null) {
+            if (mob instanceof Portal && portalCoordinates != null) {
                 addObject(mob, portalCoordinates.getKey(), portalCoordinates.getValue());
-            } else if(mob instanceof Floppy && floppyCoordinates != null) {
+                return;
+            } else if (mob instanceof Floppy && floppyCoordinates != null) {
+                return;
+            } else if (mob instanceof HellCastle) {
+                addHellCastle(mob, randomX, randomY);
                 return;
             } else {
                 addObject(mob, randomX, randomY);
             }
         }
-        if(mob instanceof Portal) {
-          portalCoordinates = new Pair<>(mob.getX(), mob.getY());
-        } else if(mob instanceof Floppy) {
-          floppyCoordinates = new Pair<>(mob.getX(), mob.getY());
+        if (mob instanceof Portal) {
+            portalCoordinates = new Pair<>(mob.getX(), mob.getY());
+        } else if (mob instanceof Floppy) {
+            floppyCoordinates = new Pair<>(mob.getX(), mob.getY());
         }
-        stopWatch.stop("addMob(" + mob.getClass().getName() + ")");
+        stopWatch.stop("addMob(" + mob.getClass().
+
+                getName() + ")");
+    }
+
+    private void addHellCastle(BaseMob mob, int randomX, int randomY) {
+        int width = mob.getImage().getWidth() / Level.CELL_SIZE;
+        int height = mob.getImage().getHeight() / Level.CELL_SIZE;
+        if (randomX < width) {
+            randomX += width;
+        } else if(randomX + width > Level.LEVEL_WIDTH) {
+            randomX = randomX - width;
+        }
+        if (randomY < height) {
+            randomY += height;
+        } else if(randomY + height > Level.LEVEL_HEIGHT) {
+            randomY = randomY - height;
+        }
+        addObject(mob, randomX, randomY);
     }
 
     /**
@@ -216,18 +241,20 @@ public abstract class Level extends World {
 
     /**
      * Getter for portal coordinates.
+     *
      * @return the coordinates of the portal.
      */
     public Pair<Integer, Integer> getPortalCoordinates() {
-      return portalCoordinates;
+        return portalCoordinates;
     }
 
     /**
      * Getter for floppy coordinates.
+     *
      * @return the coordinates of the floppy.
      */
     public Pair<Integer, Integer> getFloppyCoordinates() {
-      return floppyCoordinates;
+        return floppyCoordinates;
     }
 
     public String getUniqueId() {

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static io.lerk.soultraps.tiles.DesertTiles.Ground01;
 import static io.lerk.soultraps.tiles.GrasslandTiles.Grass01;
 import static io.lerk.soultraps.tiles.GrasslandTiles.Tree01;
+import static io.lerk.soultraps.tiles.HellTiles.HellGround01;
 import static io.lerk.soultraps.tiles.MiscTiles.Empty;
 
 /**
@@ -20,9 +21,14 @@ class TilesTest {
     private TileActor grassTile = new TileActor(Grass01, new GreenfootImage(Grass01.getName() + Tiles.FILE_SUFFIX));
 
     /**
-     * A desert grass tile. A valid spawn.
+     * A desert ground tile. A valid spawn.
      */
     private TileActor desertTile = new TileActor(Ground01, new GreenfootImage(Ground01.getName() + Tiles.FILE_SUFFIX));
+
+    /**
+     * A hell ground tile. A valid spawn.
+     */
+    private TileActor hellTile = new TileActor(HellGround01, new GreenfootImage(HellGround01.getName() + Tiles.FILE_SUFFIX));
 
     /**
      * An empty tile. A valid spawn.
@@ -46,9 +52,10 @@ class TilesTest {
     void evaluateSpawn() {
         Assertions.assertTrue(Tiles.evaluateSpawn(grassTile));
         Assertions.assertTrue(Tiles.evaluateSpawn(desertTile));
+        Assertions.assertTrue(Tiles.evaluateSpawn(hellTile));
         Assertions.assertTrue(Tiles.evaluateSpawn(emptyTile));
-        Assertions.assertTrue(!Tiles.evaluateSpawn(treeTile));
-        Assertions.assertTrue(!Tiles.evaluateSpawn(desertTreeTile));
+        Assertions.assertFalse(Tiles.evaluateSpawn(treeTile));
+        Assertions.assertFalse(Tiles.evaluateSpawn(desertTreeTile));
     }
 
     /**
@@ -58,6 +65,7 @@ class TilesTest {
     void byName() {
         Assertions.assertEquals(grassTile.getTileType(), Tiles.byName(Grass01.getName()).getTileType());
         Assertions.assertEquals(desertTile.getTileType(), Tiles.byName(Ground01.getName()).getTileType());
+        Assertions.assertEquals(hellTile.getTileType(), Tiles.byName(HellGround01.getName()).getTileType());
         Assertions.assertEquals(emptyTile.getTileType(), Tiles.byName(Empty.getName()).getTileType());
         Assertions.assertEquals(treeTile.getTileType(), Tiles.byName(Tree01.getName()).getTileType());
         Assertions.assertEquals(desertTreeTile.getTileType(), Tiles.byName(DesertTiles.Tree01.getName()).getTileType());

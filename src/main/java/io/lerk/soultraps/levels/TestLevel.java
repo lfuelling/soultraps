@@ -8,6 +8,8 @@ import io.lerk.soultraps.levels.menu.Options;
 import io.lerk.soultraps.levels.playable.IntroLevel;
 import io.lerk.soultraps.levels.playable.RegularGrasslandLevel;
 import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.stat1c.HellPortal;
+import io.lerk.soultraps.mobs.stat1c.Portal;
 import io.lerk.soultraps.sys.dialog.DialogManager;
 import javafx.util.Pair;
 import org.slf4j.Logger;
@@ -72,6 +74,10 @@ public class TestLevel extends RegularGrasslandLevel {
     protected void addLevelContent() {
         log.debug("Adding DialogManager...");
         addObject(DialogManager.get(), 0, 0);
+        log.info("Adding Portal...");
+        addMob(new Portal());
+        log.info("Adding Hell Portal...");
+        addMob(new HellPortal());
         log.info("Adding player...");
         addMob(Player.getSelf());
         log.info("Adding HUD...");

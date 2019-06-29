@@ -116,16 +116,16 @@ public abstract class BaseMob extends Actor {
         if (walking) {
             if (direction.equals(Direction.NORTH)) {
                 return this.getObjectsAtOffset(0, -1, TileActor.class).stream()
-                        .filter(TileActor::isTileOtherThanGround).count() == 0;
+                        .noneMatch(TileActor::isTileOtherThanGround);
             } else if (direction.equals(Direction.EAST)) {
                 return this.getObjectsAtOffset(1, 0, TileActor.class).stream()
-                        .filter(TileActor::isTileOtherThanGround).count() == 0;
+                        .noneMatch(TileActor::isTileOtherThanGround);
             } else if (direction.equals(Direction.SOUTH)) {
                 return this.getObjectsAtOffset(0, 1, TileActor.class).stream()
-                        .filter(TileActor::isTileOtherThanGround).count() == 0;
+                        .noneMatch(TileActor::isTileOtherThanGround);
             } else if (direction.equals(Direction.WEST)) {
                 return this.getObjectsAtOffset(-1, 0, TileActor.class).stream()
-                        .filter(TileActor::isTileOtherThanGround).count() == 0;
+                        .noneMatch(TileActor::isTileOtherThanGround);
             }
         }
         return false;

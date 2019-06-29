@@ -7,6 +7,7 @@ import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.levels.menu.Launcher;
 import io.lerk.soultraps.levels.playable.RegularDesertLevel;
 import io.lerk.soultraps.levels.playable.RegularGrasslandLevel;
+import io.lerk.soultraps.levels.playable.RegularHellLevel;
 import io.lerk.soultraps.levels.types.DesertLevel;
 import io.lerk.soultraps.levels.types.GrasslandLevel;
 import io.lerk.soultraps.mobs.Player;
@@ -179,6 +180,8 @@ public class Savegame {
                 return new RegularGrasslandLevel(level.getLevelTiles(), level.getPortalCoordinates(), level.getFloppyCoordinates());
             case DESERT:
                 return new RegularDesertLevel(level.getLevelTiles(), level.getPortalCoordinates(), level.getFloppyCoordinates());
+            case HELL:
+                return new RegularHellLevel(level.getLevelTiles(), level.getPortalCoordinates(), level.getFloppyCoordinates());
             case MENU:
                 return new Launcher();
         }

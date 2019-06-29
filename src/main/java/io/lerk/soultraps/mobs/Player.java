@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static io.lerk.soultraps.tiles.Tiles.FILE_SUFFIX;
+
 /**
  * Player class.
  *
@@ -171,6 +173,10 @@ public class Player extends DialogMob {
      */
     @Override
     protected void doAct() {
+        List<Enemy> enemies = getIntersectingObjects(Enemy.class);
+        if(enemies.size() > 0) {
+            enemies.forEach(this::startAttack);
+        }
     }
 
     /**
@@ -182,7 +188,7 @@ public class Player extends DialogMob {
             seqIdx = 0;
         }
         if (walking) {
-            this.setImage("images/player/player_walking" + (seqIdx + 1) + ".png");
+            this.setImage("images/player/player_walking" + (seqIdx + 1) + FILE_SUFFIX);
         } else {
             this.setImage("images/player/player_walking1.png");
         }
@@ -211,7 +217,7 @@ public class Player extends DialogMob {
      *
      * @param enemy the enemy to start the fight with
      */
-    public void startAttack(Enemy enemy) {
+    private void startAttack(Enemy enemy) {
         if(System.currentTimeMillis() - lastAttack >= 500) {
             setHealth(getHealth() - enemy.attack());
             if(getHealth() <= 0) {

@@ -18,6 +18,11 @@ public enum LevelType {
     DESERT,
 
     /**
+     * {@link HellLevel}.
+     */
+    HELL,
+
+    /**
      * Menu level.
      */
     MENU,

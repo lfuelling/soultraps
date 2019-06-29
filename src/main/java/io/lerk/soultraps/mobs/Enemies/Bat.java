@@ -2,6 +2,8 @@ package io.lerk.soultraps.mobs.Enemies;
 
 import java.util.Random;
 
+import static io.lerk.soultraps.tiles.Tiles.FILE_SUFFIX;
+
 /**
  * This is probably the asiest enemy mobs in the game.
  *
@@ -32,7 +34,7 @@ public class Bat extends EnemyMob {
             seqIdx = 0;
         }
         if (walking) {
-            this.setImage("images/bat/bat_" + seqIdx + ".png");
+            this.setImage("images/bat/bat_" + seqIdx + FILE_SUFFIX);
         } else {
             this.setImage("images/bat/bat_0.png");
         }

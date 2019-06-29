@@ -4,14 +4,12 @@ import greenfoot.Color;
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.components.Button;
 import io.lerk.soultraps.components.MovingHeading;
-import io.lerk.soultraps.levels.types.DesertLevel;
+import io.lerk.soultraps.levels.types.HellLevel;
 import io.lerk.soultraps.levels.types.LevelType;
-import io.lerk.soultraps.mobs.Enemies.Bat;
-import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
 import io.lerk.soultraps.mobs.Player;
 
-public class GameOverScreen extends DesertLevel {
+public class GameOverScreen extends HellLevel {
 
     /**
      * Constructor.
@@ -19,8 +17,7 @@ public class GameOverScreen extends DesertLevel {
     public GameOverScreen() {
         super();
 
-        addMob(new Wolf());
-        addMob(new Bat());
+        addMob(new Zombie());
         addMob(new Zombie());
 
         Button title = new MovingHeading("GameOver", 64, 320, 72f, Color.RED);

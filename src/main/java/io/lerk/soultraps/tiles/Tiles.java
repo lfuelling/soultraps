@@ -4,6 +4,8 @@ import greenfoot.GreenfootImage;
 
 import static io.lerk.soultraps.tiles.DesertTiles.*;
 import static io.lerk.soultraps.tiles.GrasslandTiles.*;
+import static io.lerk.soultraps.tiles.HellTiles.HellGround01;
+import static io.lerk.soultraps.tiles.HellTiles.HellGround02;
 import static io.lerk.soultraps.tiles.MiscTiles.Empty;
 
 /**
@@ -25,12 +27,7 @@ public class Tiles {
      * @return true if the tile is okay to use as spawn
      */
     public static boolean evaluateSpawn(TileActor t) {
-        boolean grassOrEmpty = t.getTileType().equals(GrasslandTiles.Grass01) ||
-                t.getTileType().equals(GrasslandTiles.Grass02) ||
-                t.getTileType().equals(Empty) ||
-                t.getTileType().equals(Ground01) ||
-                t.getTileType().equals(DesertTiles.Ground02);
-        return grassOrEmpty && !t.isOverlappingTileOtherThanEmptyOrGround();
+        return !t.isTileOtherThanGround() && !t.isOverlappingTileOtherThanEmptyOrGround();
     }
 
     /**
@@ -90,6 +87,14 @@ public class Tiles {
                 return new TileActor(DesertTiles.Tree01, new GreenfootImage(name + FILE_SUFFIX));
             } else if (name.equals(DesertTiles.Tree02.getName())) {
                 return new TileActor(DesertTiles.Tree02, new GreenfootImage(name + FILE_SUFFIX));
+            } else if (name.equals(HellGround01.getName())) {
+                return new TileActor(HellGround01, new GreenfootImage(name + FILE_SUFFIX));
+            } else if (name.equals(HellGround02.getName())) {
+                return new TileActor(HellGround02, new GreenfootImage(name + FILE_SUFFIX));
+            } else if (name.equals(HellTiles.HellTree01.getName())) {
+                return new TileActor(HellTiles.HellTree01, new GreenfootImage(name + FILE_SUFFIX));
+            } else if (name.equals(HellTiles.Lava.getName())) {
+                return new LavaActor();
             }
         }
         return null;

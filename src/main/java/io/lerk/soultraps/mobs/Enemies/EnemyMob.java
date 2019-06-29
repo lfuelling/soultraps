@@ -13,9 +13,8 @@ public abstract class EnemyMob extends BaseMob implements Enemy {
      */
     @Override
     protected void updateWalkingState() {
-        if (getIntersectingObjects(Player.class).size() > 0) {
+        if (isTouching(Player.class)) {
             walking = false;
-            Player.getSelf().startAttack(this);
             return;
         }
         if (new Random().nextBoolean()) {
@@ -42,9 +41,6 @@ public abstract class EnemyMob extends BaseMob implements Enemy {
     @Override
     public void act() {
         super.act();
-        if(isTouching(Player.class)) {
-            Player.getSelf().startAttack(this);
-        }
     }
 
     /**

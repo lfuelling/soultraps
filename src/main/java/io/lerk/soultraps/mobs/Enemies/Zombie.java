@@ -2,6 +2,8 @@ package io.lerk.soultraps.mobs.Enemies;
 
 import java.util.Random;
 
+import static io.lerk.soultraps.tiles.Tiles.FILE_SUFFIX;
+
 /**
  * This mob is a bit more challenging, suitable for more advanced players.
  *
@@ -32,7 +34,7 @@ public class Zombie extends EnemyMob {
             seqIdx = 0;
         }
         if (walking) {
-            this.setImage("images/zombie/zombie_" + seqIdx + ".png");
+            this.setImage("images/zombie/zombie_" + seqIdx + FILE_SUFFIX);
         } else {
             this.setImage("images/zombie/zombie_0.png");
         }
