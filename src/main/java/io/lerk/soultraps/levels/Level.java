@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Random;
+import java.util.UUID;
 
 import static io.lerk.soultraps.levels.menu.Launcher.BASE_HEIGHT;
 import static io.lerk.soultraps.levels.menu.Launcher.BASE_WIDTH;
@@ -66,6 +67,8 @@ public abstract class Level extends World {
      * Coordinates of the {@link Floppy} in this level.
      */
     protected Pair<Integer, Integer> floppyCoordinates;
+
+    private String uniqueId = UUID.randomUUID().toString();
 
     /**
      * Constructor.
@@ -225,5 +228,9 @@ public abstract class Level extends World {
      */
     public Pair<Integer, Integer> getFloppyCoordinates() {
       return floppyCoordinates;
+    }
+
+    public String getUniqueId() {
+        return uniqueId;
     }
 }

@@ -25,6 +25,8 @@ public final class Console extends Actor {
     private static final String[] chars = {"a", "b", "c", "d", "e", "f", "g", "h",
             "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
             "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+    public static final String OK = "Ok!";
+    public static final String UNKNOWN_COMMAND = "Unknown Command!";
 
     private String text = "";
     private String prevText = "";
@@ -86,22 +88,28 @@ public final class Console extends Actor {
     }
 
     private String runCommand() {
+        if(text.startsWith(OK) || text.startsWith(UNKNOWN_COMMAND)) {
+            log.warn("Ignoring output!");
+            return text;
+        }
         if (text.startsWith("spawn")) {
             return handleSpawnMob();
         }
         switch (text) {
             case "testroom":
                 if (getWorld() instanceof TestLevel) {
+                    ConsoleUtil.closeConsole();
                     TestLevel.exit();
+                    return OK;
                 } else {
-                    Greenfoot.setWorld(TestLevel.get((Level) getWorld()));
+                    Greenfoot.setWorld(new TestLevel((Level) getWorld()));
+                    return OK;
                 }
-                return "Ok!";
             case "heal":
                 Player.getSelf().setHealth(Player.getSelf().maxHealth());
-                return "Ok!";
+                return OK;
             default:
-                return "Unknown Command!";
+                return UNKNOWN_COMMAND;
         }
     }
 
@@ -130,26 +138,17 @@ public final class Console extends Actor {
                     mob = new Lumberjack();
                     break;
                 default:
-                    return "Unknown mob!";
+                    return UNKNOWN_COMMAND;
             }
             ((Level) getWorld()).addMob(mob);
         } else {
-            return "Unknown mob!";
+            return UNKNOWN_COMMAND;
         }
-        return "Ok!";
+        return OK;
     }
 
     private void handleKeyboardInput() {
         String key = null;
-
-        if (Greenfoot.isKeyDown("shift")) {
-            if (Greenfoot.isKeyDown("8")) {
-                text += "(";
-            } else if (Greenfoot.isKeyDown("9")) {
-                text += ")";
-            }
-            return;
-        }
 
         for (String c : chars) {
             if (Greenfoot.isKeyDown(c)) {

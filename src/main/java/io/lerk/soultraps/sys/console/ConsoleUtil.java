@@ -15,6 +15,10 @@ public final class ConsoleUtil {
         this.level = level;
     }
 
+    public static void closeConsole() {
+        moi.consoleOpen = false;
+    }
+
     private int getY() {
         return calculateCenter(level.getHeight(), console.getImage().getHeight());
     }
@@ -37,7 +41,7 @@ public final class ConsoleUtil {
     }
 
     private static boolean levelChanged(Level level) {
-        return !level.getClass().equals(moi.level.getClass());
+        return !level.getUniqueId().equals(moi.level.getUniqueId());
     }
 
     private void handleInternal() {
@@ -50,8 +54,9 @@ public final class ConsoleUtil {
             }
         } else if(Greenfoot.isKeyDown("c")) {
             consoleOpen = true;
+        } else if(level.getObjects(Console.class).size() > 0) {
+            level.removeObjects(level.getObjects(Console.class));
         } else if(console != null) {
-            level.removeObject(console);
             console = null;
         }
     }
