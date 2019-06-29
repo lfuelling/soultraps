@@ -94,7 +94,7 @@ public class Player extends DialogMob {
         classes.forEach(c -> player.getItems().forEach(i -> {
             try {
                 Item item = c.newInstance();
-                if(item.getName().equals(i)) {
+                if (item.getName().equals(i)) {
                     self.items.add(item);
                 }
             } catch (InstantiationException | IllegalAccessException e) {
@@ -104,6 +104,10 @@ public class Player extends DialogMob {
 
         self.savedXPos = player.getPosX();
         self.savedYPos = player.getPosY();
+    }
+
+    public static void increaseHealth(int amount) {
+        getSelf().setHealth(getSelf().getHealth() + amount);
     }
 
     /**
@@ -174,7 +178,7 @@ public class Player extends DialogMob {
     @Override
     protected void doAct() {
         List<Enemy> enemies = getIntersectingObjects(Enemy.class);
-        if(enemies.size() > 0) {
+        if (enemies.size() > 0) {
             enemies.forEach(this::startAttack);
         }
     }
@@ -218,9 +222,11 @@ public class Player extends DialogMob {
      * @param enemy the enemy to start the fight with
      */
     private void startAttack(Enemy enemy) {
-        if(System.currentTimeMillis() - lastAttack >= 500) {
-            setHealth(getHealth() - enemy.attack());
-            if(getHealth() <= 0) {
+        if (System.currentTimeMillis() - lastAttack >= 500) {
+            int attack = enemy.attack();
+            setHealth(getHealth() - attack);
+            logger.info("Player lost " + attack + " hp to '" + enemy.getClass().getSimpleName() + "'");
+            if (getHealth() <= 0) {
                 Soultraps.gameOver();
             }
             lastAttack = System.currentTimeMillis();
@@ -238,20 +244,20 @@ public class Player extends DialogMob {
 
     /**
      * Getter for last saved X position.
+     *
      * @return the last saved X position
      */
-    public int getSavedXPos()
-    {
-      return savedXPos;
+    public int getSavedXPos() {
+        return savedXPos;
     }
 
     /**
      * Getter for last saved Y position.
+     *
      * @return the last saved Y position
      */
-    public int getSavedYPos()
-    {
-      return savedYPos;
+    public int getSavedYPos() {
+        return savedYPos;
     }
 
     /**

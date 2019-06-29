@@ -5,6 +5,7 @@ import io.lerk.soultraps.levels.types.DesertLevel;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
 import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.mobs.stat1c.Floppy;
+import io.lerk.soultraps.mobs.stat1c.HPPotion;
 import io.lerk.soultraps.mobs.stat1c.HellPortal;
 import io.lerk.soultraps.mobs.stat1c.Portal;
 import io.lerk.soultraps.sys.dialog.DialogManager;
@@ -57,6 +58,8 @@ public class RegularDesertLevel extends DesertLevel {
         }
         log.debug("Adding floppy...");
         addMob(new Floppy());
+        log.info("Adding Potions...");
+        addMob(new HPPotion());
         log.info("Adding Mobs...");
         for (int i = 0; i < 3; i++) {
             addMob(new Zombie()); // only zombies in the desert
