@@ -1,6 +1,7 @@
 package io.lerk.soultraps.tiles;
 
 import greenfoot.GreenfootImage;
+import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.mobs.Enemies.Enemy;
 
 import static io.lerk.soultraps.tiles.Tiles.FILE_SUFFIX;
@@ -11,6 +12,8 @@ public class LavaActor extends TileActor implements Enemy {
      * Index used for the animation.
      */
     private int seqIdx = 0;
+
+    private long lastUpdateTime = 0L;
 
     /**
      * Constructor.
@@ -23,11 +26,14 @@ public class LavaActor extends TileActor implements Enemy {
     public void act() {
         super.act();
 
-        if (seqIdx > 3) {
-            seqIdx = 0;
+        if(System.currentTimeMillis() - lastUpdateTime > BaseMob.UPDATE_INTERVAL) {
+            if (seqIdx > 3) {
+                seqIdx = 0;
+            }
+            this.setImage("images/hell/lava/lava0" + (seqIdx + 1) + FILE_SUFFIX);
+            seqIdx++;
+            lastUpdateTime = System.currentTimeMillis();
         }
-        this.setImage("images/hell/lava/lava0" + (seqIdx + 1) + FILE_SUFFIX);
-        seqIdx++;
     }
 
     @Override

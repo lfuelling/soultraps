@@ -16,7 +16,7 @@ public abstract class BaseMob extends Actor {
     /**
      * Update interval in milliseconds.
      */
-    private final long UPDATE_INTERVAL = 100L;
+    public static final long UPDATE_INTERVAL = 100L;
 
     /**
      * If mob is walking.
