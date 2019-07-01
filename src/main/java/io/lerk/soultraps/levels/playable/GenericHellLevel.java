@@ -17,17 +17,17 @@ import org.slf4j.LoggerFactory;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class RegularHellLevel extends HellLevel {
+public class GenericHellLevel extends HellLevel {
 
     /**
      * Logger.
      */
-    private static final Logger log = LoggerFactory.getLogger(RegularHellLevel.class);
+    private static final Logger log = LoggerFactory.getLogger(GenericHellLevel.class);
 
     /**
      * {@inheritDoc}.
      */
-    public RegularHellLevel() {
+    public GenericHellLevel() {
         super(); // call super() or level won't be initialized
         addLevelContent();
     }
@@ -35,7 +35,7 @@ public class RegularHellLevel extends HellLevel {
     /**
      * {@inheritDoc}.
      */
-    public RegularHellLevel(String[][] tiles, Pair<Integer, Integer> portalCoordinates, Pair<Integer, Integer> floppyCoordinates) {
+    public GenericHellLevel(String[][] tiles, Pair<Integer, Integer> portalCoordinates, Pair<Integer, Integer> floppyCoordinates) {
         super(tiles, portalCoordinates, floppyCoordinates);
         addLevelContent();
     }

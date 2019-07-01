@@ -1,6 +1,7 @@
 package io.lerk.soultraps.mobs.stat1c;
 
 import io.lerk.soultraps.mobs.BaseMob;
+import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +13,13 @@ public class HPPotion extends BaseMob {
      */
     private static final Logger log = LoggerFactory.getLogger(HPPotion.class);
 
+    public static final int AMOUNT = 25;
+
     /**
      * Constructor.
      */
     public HPPotion() {
+        direction = Direction.EAST;
         this.setImage("images/hp-potion.png");
     }
 
@@ -34,12 +38,9 @@ public class HPPotion extends BaseMob {
      */
     @Override
     protected void doAct() {
-        if (getRotation() != 0) {
-            setRotation(0);
-        }
         if (isTouching(Player.class)) {
             log.info("Player picked up a hp potion!");
-            Player.increaseHealth(25);
+            Player.increaseHealth(AMOUNT);
             getWorld().removeObject(this);
         }
     }

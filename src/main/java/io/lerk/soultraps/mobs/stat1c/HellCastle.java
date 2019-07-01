@@ -1,5 +1,6 @@
 package io.lerk.soultraps.mobs.stat1c;
 
+import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.mobs.friendly.DialogMob;
 import io.lerk.soultraps.sys.Handler;
@@ -28,6 +29,7 @@ public class HellCastle extends DialogMob {
      * Constructor.
      */
     public HellCastle() {
+        direction = Direction.EAST;
         this.setImage("images/hell/castle/castle01.png");
     }
 
@@ -36,7 +38,7 @@ public class HellCastle extends DialogMob {
      */
     @Override
     protected List<Message> getDialogMessages() {
-        return Collections.singletonList(new Message("The flames are too high to step through...", dialog));
+        return Collections.singletonList(new Message("The flames are too high to step through..."));
         //TODO: add item to go through the flames
     }
 
@@ -44,8 +46,8 @@ public class HellCastle extends DialogMob {
      * {@inheritDoc}.
      */
     @Override
-    protected Handler<Void> getDialogDoneAction() {
-        return () -> null;
+    protected List<Handler<Void>> getDialogDoneActions() {
+        return Collections.emptyList();
     }
 
     /**
@@ -68,9 +70,6 @@ public class HellCastle extends DialogMob {
 
     @Override
     protected void doAct() {
-        if (getRotation() != 0) {
-            setRotation(0);
-        }
         if (getObjectsInRange(9, Player.class).size() > 0) {
             if (getObjectsInRange(5, Player.class).size() > 0) {
                 if (seqIdx > 3) {

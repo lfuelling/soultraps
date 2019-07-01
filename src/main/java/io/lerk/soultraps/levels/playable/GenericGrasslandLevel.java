@@ -19,17 +19,17 @@ import org.slf4j.LoggerFactory;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class RegularGrasslandLevel extends GrasslandLevel {
+public class GenericGrasslandLevel extends GrasslandLevel {
 
     /**
      * Logger.
      */
-    private static final Logger log = LoggerFactory.getLogger(RegularGrasslandLevel.class);
+    private static final Logger log = LoggerFactory.getLogger(GenericGrasslandLevel.class);
 
     /**
      * {@inheritDoc}.
      */
-    public RegularGrasslandLevel() {
+    public GenericGrasslandLevel() {
         super(); // call super() or level won't be initialized
         addLevelContent();
     }
@@ -37,7 +37,7 @@ public class RegularGrasslandLevel extends GrasslandLevel {
     /**
      * {@inheritDoc}.
      */
-    public RegularGrasslandLevel(String[][] tiles, Pair<Integer, Integer> portalCoordinates, Pair<Integer, Integer> floppyCoordinates) {
+    public GenericGrasslandLevel(String[][] tiles, Pair<Integer, Integer> portalCoordinates, Pair<Integer, Integer> floppyCoordinates) {
         super(tiles, portalCoordinates, floppyCoordinates);
         addLevelContent();
     }

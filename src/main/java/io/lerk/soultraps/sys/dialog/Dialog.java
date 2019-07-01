@@ -4,6 +4,8 @@ import io.lerk.soultraps.mobs.friendly.DialogMob;
 import io.lerk.soultraps.sys.Handler;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A dialog that a mob starts with a player.
@@ -25,7 +27,7 @@ public class Dialog {
     /**
      * The action that should be run when the dialog is done.
      */
-    private Handler doneAction;
+    private ArrayList<Handler<Void>> doneActions = new ArrayList<>();
 
     /**
      * Constructor.
@@ -74,16 +76,16 @@ public class Dialog {
      *
      * @return the done action
      */
-    public Handler<Void> getDoneAction() {
-        return doneAction;
+    public List<Handler<Void>> getDoneActions() {
+        return Collections.unmodifiableList(doneActions);
     }
 
     /**
-     * Setter for the dialog's done action.
+     * Adds a done action to the queue.
      *
      * @param doneAction the done action
      */
-    public void setDoneAction(Handler<Void> doneAction) {
-        this.doneAction = doneAction;
+    public void addDoneAction(Handler<Void> doneAction) {
+        doneActions.add(doneAction);
     }
 }

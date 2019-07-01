@@ -17,11 +17,6 @@ import java.util.List;
 public abstract class DialogMob extends BaseMob {
 
     /**
-     * The mob's dialog.
-     */
-    protected Dialog dialog = new Dialog();
-
-    /**
      * Mob currently talking.
      */
     private boolean talking = false;
@@ -64,19 +59,11 @@ public abstract class DialogMob extends BaseMob {
      * @return the dialog
      */
     protected Dialog getDialog() {
-        if (dialog.getMob() == null) {
-            buildDialog();
-        }
-        return dialog;
-    }
-
-    /**
-     * Method that fills the dialog with it's content using the abstract methods.
-     */
-    private void buildDialog() {
+        Dialog dialog = new Dialog();
         dialog.setMob(this);
         dialog.setMessages(new ArrayList<>(getDialogMessages()));
-        dialog.setDoneAction(getDialogDoneAction());
+        getDialogDoneActions().forEach(dialog::addDoneAction);
+        return dialog;
     }
 
     /**
@@ -84,7 +71,7 @@ public abstract class DialogMob extends BaseMob {
      *
      * @return the Handler to be run
      */
-    protected abstract Handler<Void> getDialogDoneAction();
+    protected abstract List<Handler<Void>> getDialogDoneActions();
 
     /**
      * Method to determine if the mob should start a conversation.

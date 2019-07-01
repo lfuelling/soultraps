@@ -21,7 +21,7 @@ import static io.lerk.soultraps.tiles.MiscTiles.Empty;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class DesertLevel extends Level {
+public abstract class DesertLevel extends Level {
 
     /**
      * Logger.

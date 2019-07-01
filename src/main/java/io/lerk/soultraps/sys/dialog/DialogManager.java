@@ -3,6 +3,7 @@ package io.lerk.soultraps.sys.dialog;
 import greenfoot.Actor;
 import greenfoot.GreenfootImage;
 import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.sys.Handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,7 +98,7 @@ public class DialogManager extends Actor {
                     current.getMob().setTalking(false);
                 }
                 Player.getSelf().setTalking(false);
-                current.getDoneAction().handle();
+                current.getDoneActions().forEach(Handler::handle);
                 current = null;
             } else {
                 if (dialogQueue.size() > 0) {

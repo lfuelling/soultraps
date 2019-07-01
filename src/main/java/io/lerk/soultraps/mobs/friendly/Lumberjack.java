@@ -11,6 +11,7 @@ import io.lerk.soultraps.tiles.GrasslandTiles;
 import io.lerk.soultraps.tiles.TileActor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -73,9 +74,9 @@ public class Lumberjack extends DialogMob {
     @Override
     protected List<Message> getDialogMessages() {
         ArrayList<Message> messages = new ArrayList<>();
-        messages.add(new Message("Hi, I'm Jack, a lumberjack.", dialog));
-        messages.add(new Message("Do you see the trees around you?", dialog));
-        messages.add(new Message("You can use this axe to chop them down.", dialog));
+        messages.add(new Message("Hi, I'm Jack, a lumberjack."));
+        messages.add(new Message("Do you see the trees around you?"));
+        messages.add(new Message("You can use this axe to chop them down."));
         return messages;
     }
 
@@ -85,11 +86,11 @@ public class Lumberjack extends DialogMob {
      * @return the handler
      */
     @Override
-    protected Handler<Void> getDialogDoneAction() {
-        return () -> {
+    protected List<Handler<Void>> getDialogDoneActions() {
+        return Collections.singletonList(() -> {
             Player.getSelf().addItem(new Axe());
             return null;
-        };
+        });
     }
 
     /**
@@ -97,7 +98,9 @@ public class Lumberjack extends DialogMob {
      */
     @Override
     protected boolean shouldStartConversation() {
-        return getIntersectingObjects(Player.class).size() > 0 && !playerHasAxe() && Greenfoot.isKeyDown("e");
+        return isTouching(Player.class) &&
+                !playerHasAxe() &&
+                Greenfoot.isKeyDown("e");
     }
 
     /**

@@ -1,8 +1,8 @@
 package io.lerk.soultraps.mobs.stat1c;
 
 import greenfoot.Greenfoot;
-import io.lerk.soultraps.levels.playable.RegularDesertLevel;
-import io.lerk.soultraps.levels.playable.RegularGrasslandLevel;
+import io.lerk.soultraps.levels.playable.GenericDesertLevel;
+import io.lerk.soultraps.levels.playable.GenericGrasslandLevel;
 import io.lerk.soultraps.mobs.friendly.DialogMob;
 import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.sys.Handler;
@@ -45,19 +45,19 @@ public class Portal extends DialogMob {
      */
     @Override
     protected List<Message> getDialogMessages() {
-        return Collections.singletonList(new Message("You stepped onto a portal. You will now be teleported.", dialog));
+        return Collections.singletonList(new Message("You stepped onto a portal. You will now be teleported."));
     }
 
     /**
      * {@inheritDoc}.
      */
     @Override
-    protected Handler<Void> getDialogDoneAction() {
-        return () -> {
+    protected List<Handler<Void>> getDialogDoneActions() {
+        return Collections.singletonList(() -> {
             log.info("Player stepped on a portal. Teleporting...");
-            Greenfoot.setWorld((new Random().nextBoolean()) ? new RegularDesertLevel() : new RegularGrasslandLevel());
+            Greenfoot.setWorld((new Random().nextBoolean()) ? new GenericDesertLevel() : new GenericGrasslandLevel());
             return null;
-        };
+        });
     }
 
     /**

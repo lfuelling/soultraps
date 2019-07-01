@@ -1,25 +1,19 @@
 package io.lerk.soultraps.sys;
 
 import com.google.gson.Gson;
-import greenfoot.Greenfoot;
 import io.lerk.soultraps.items.Item;
 import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.levels.menu.Launcher;
-import io.lerk.soultraps.levels.playable.RegularDesertLevel;
-import io.lerk.soultraps.levels.playable.RegularGrasslandLevel;
-import io.lerk.soultraps.levels.playable.RegularHellLevel;
-import io.lerk.soultraps.levels.types.DesertLevel;
-import io.lerk.soultraps.levels.types.GrasslandLevel;
+import io.lerk.soultraps.levels.playable.GenericDesertLevel;
+import io.lerk.soultraps.levels.playable.GenericGrasslandLevel;
+import io.lerk.soultraps.levels.playable.GenericHellLevel;
 import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.sys.savegame.LevelDTO;
 import io.lerk.soultraps.sys.savegame.PlayerDTO;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogEvent;
 import javafx.scene.layout.Region;
-import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -177,11 +171,11 @@ public class Savegame {
     public Level getLevel() {
         switch(level.getLevelType()) {
             case GRASS:
-                return new RegularGrasslandLevel(level.getLevelTiles(), level.getPortalCoordinates(), level.getFloppyCoordinates());
+                return new GenericGrasslandLevel(level.getLevelTiles(), level.getPortalCoordinates(), level.getFloppyCoordinates());
             case DESERT:
-                return new RegularDesertLevel(level.getLevelTiles(), level.getPortalCoordinates(), level.getFloppyCoordinates());
+                return new GenericDesertLevel(level.getLevelTiles(), level.getPortalCoordinates(), level.getFloppyCoordinates());
             case HELL:
-                return new RegularHellLevel(level.getLevelTiles(), level.getPortalCoordinates(), level.getFloppyCoordinates());
+                return new GenericHellLevel(level.getLevelTiles(), level.getPortalCoordinates(), level.getFloppyCoordinates());
             case MENU:
                 return new Launcher();
         }

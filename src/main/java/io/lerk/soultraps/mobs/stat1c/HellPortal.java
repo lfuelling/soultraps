@@ -1,7 +1,7 @@
 package io.lerk.soultraps.mobs.stat1c;
 
 import greenfoot.Greenfoot;
-import io.lerk.soultraps.levels.playable.RegularHellLevel;
+import io.lerk.soultraps.levels.playable.GenericHellLevel;
 import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.mobs.friendly.DialogMob;
 import io.lerk.soultraps.sys.Handler;
@@ -43,19 +43,19 @@ public class HellPortal extends DialogMob {
      */
     @Override
     protected List<Message> getDialogMessages() {
-        return Collections.singletonList(new Message("This portal feels somewhat strange...", dialog));
+        return Collections.singletonList(new Message("This portal feels somewhat strange..."));
     }
 
     /**
      * {@inheritDoc}.
      */
     @Override
-    protected Handler<Void> getDialogDoneAction() {
-        return () -> {
+    protected List<Handler<Void>> getDialogDoneActions() {
+        return Collections.singletonList(() -> {
             log.info("Player stepped on hell portal. Teleporting...");
-            Greenfoot.setWorld(new RegularHellLevel());
+            Greenfoot.setWorld(new GenericHellLevel());
             return null;
-        };
+        });
     }
 
     /**

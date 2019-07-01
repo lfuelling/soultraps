@@ -21,7 +21,7 @@ import static io.lerk.soultraps.tiles.MiscTiles.Empty;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class HellLevel extends Level {
+public abstract class HellLevel extends Level {
 
     /**
      * Logger.

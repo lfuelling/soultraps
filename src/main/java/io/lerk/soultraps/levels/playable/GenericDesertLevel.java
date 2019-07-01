@@ -20,17 +20,17 @@ import java.util.Random;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class RegularDesertLevel extends DesertLevel {
+public class GenericDesertLevel extends DesertLevel {
 
     /**
      * Logger.
      */
-    private static final Logger log = LoggerFactory.getLogger(RegularDesertLevel.class);
+    private static final Logger log = LoggerFactory.getLogger(GenericDesertLevel.class);
 
     /**
      * {@inheritDoc}.
      */
-    public RegularDesertLevel() {
+    public GenericDesertLevel() {
         super(); // call super() or level won't be initialized
         addLevelContent();
     }
@@ -38,7 +38,7 @@ public class RegularDesertLevel extends DesertLevel {
     /**
      * {@inheritDoc}.
      */
-    public RegularDesertLevel(String[][] tiles, Pair<Integer, Integer> portalCoordinates, Pair<Integer, Integer> floppyCoordinates) {
+    public GenericDesertLevel(String[][] tiles, Pair<Integer, Integer> portalCoordinates, Pair<Integer, Integer> floppyCoordinates) {
         super(tiles, portalCoordinates, floppyCoordinates);
         addLevelContent();
     }

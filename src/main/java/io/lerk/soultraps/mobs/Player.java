@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -148,8 +149,8 @@ public class Player extends DialogMob {
      * @return a {@link Handler} that returns null
      */
     @Override
-    protected Handler<Void> getDialogDoneAction() {
-        return () -> null;
+    protected List<Handler<Void>> getDialogDoneActions() {
+        return Collections.emptyList();
     }
 
     /**
@@ -207,9 +208,9 @@ public class Player extends DialogMob {
     public void addItem(Item item) {
         Dialog dialog = new Dialog();
         ArrayList<Message> messageList = new ArrayList<>();
-        messageList.add(new Message("You received: " + item.getName(), dialog));
+        messageList.add(new Message("You received: " + item.getName()));
         dialog.setMessages(messageList);
-        dialog.setDoneAction(() -> {
+        dialog.addDoneAction(() -> {
             items.add(item);
             return null;
         });

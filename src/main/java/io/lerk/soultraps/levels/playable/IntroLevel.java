@@ -6,6 +6,7 @@ import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
 import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.friendly.Alchemist;
 import io.lerk.soultraps.mobs.friendly.Lumberjack;
 import io.lerk.soultraps.mobs.stat1c.HPPotion;
 import io.lerk.soultraps.mobs.stat1c.Portal;
@@ -39,6 +40,7 @@ public class IntroLevel extends GrasslandLevel {
         addMob(new HPPotion());
         log.debug("Adding mobs...");
         addMob(new Lumberjack());
+        addMob(new Alchemist());
         addMob(new Wolf());
         addMob(new Zombie());
         addMob(new Bat());

@@ -47,16 +47,16 @@ public class Floppy extends DialogMob {
      */
     @Override
     protected List<Message> getDialogMessages() {
-        return Collections.singletonList(new Message("You stepped onto a floppy disk. Your progress will be saved.", dialog));
+        return Collections.singletonList(new Message("You stepped onto a floppy disk. Your progress will be saved."));
     }
 
     /**
      * {@inheritDoc}.
      */
     @Override
-    protected Handler<Void> getDialogDoneAction() {
-        return () -> {
-            if(savingCalled == false) {
+    protected List<Handler<Void>> getDialogDoneActions() {
+        return Collections.singletonList(() -> {
+            if(!savingCalled) {
                 savingCalled = true;
                 log.info("Player stepped on a floppy. Saving...");
                 Savegame savegame = new Savegame(((Level) getWorld()), Player.getSelf());
@@ -67,7 +67,7 @@ public class Floppy extends DialogMob {
                 placePlayerNextToFloppy();
             }
             return null;
-        };
+        });
     }
 
     /**
