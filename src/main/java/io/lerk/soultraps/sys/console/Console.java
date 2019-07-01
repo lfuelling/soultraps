@@ -5,14 +5,14 @@ import greenfoot.Color;
 import greenfoot.Greenfoot;
 import greenfoot.GreenfootImage;
 import io.lerk.soultraps.levels.Level;
-import io.lerk.soultraps.levels.TestLevel;
+import io.lerk.soultraps.sys.Fonts;
+import io.lerk.soultraps.sys.test.TestLevel;
 import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
 import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.mobs.friendly.Lumberjack;
-import io.lerk.soultraps.sys.Fonts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

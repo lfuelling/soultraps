@@ -57,17 +57,17 @@ public abstract class Level extends World {
     /**
      * Level type.
      */
-    protected final LevelType type = LevelType.UNDEFINED;
+    protected final LevelType type = LevelType.UNDEFINED; //FIXME actually use this
 
     /**
      * Coordinates of the {@link Portal} in this level.
      */
-    protected Pair<Integer, Integer> portalCoordinates;
+    protected Pair<Integer, Integer> portalCoordinates; //FIXME actually use this
 
     /**
      * Coordinates of the {@link Floppy} in this level.
      */
-    protected Pair<Integer, Integer> floppyCoordinates;
+    protected Pair<Integer, Integer> floppyCoordinates; //FIXME actually use this
 
     private String uniqueId = UUID.randomUUID().toString();
 
@@ -212,12 +212,12 @@ public abstract class Level extends World {
         int height = mob.getImage().getHeight() / Level.CELL_SIZE;
         if (randomX < width) {
             randomX += width;
-        } else if(randomX + width > Level.LEVEL_WIDTH) {
+        } else if (randomX + width > Level.LEVEL_WIDTH) {
             randomX = randomX - width;
         }
         if (randomY < height) {
             randomY += height;
-        } else if(randomY + height > Level.LEVEL_HEIGHT) {
+        } else if (randomY + height > Level.LEVEL_HEIGHT) {
             randomY = randomY - height;
         }
         addObject(mob, randomX, randomY);

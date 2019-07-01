@@ -1,7 +1,8 @@
-package io.lerk.soultraps.levels;
+package io.lerk.soultraps.sys.test;
 
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.components.HUD;
+import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.levels.menu.GameOverScreen;
 import io.lerk.soultraps.levels.menu.Launcher;
 import io.lerk.soultraps.levels.menu.Options;

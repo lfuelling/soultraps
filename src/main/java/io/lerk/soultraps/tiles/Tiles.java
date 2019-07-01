@@ -1,6 +1,7 @@
 package io.lerk.soultraps.tiles;
 
 import greenfoot.GreenfootImage;
+import org.jetbrains.annotations.NotNull;
 
 import static io.lerk.soultraps.tiles.DesertTiles.*;
 import static io.lerk.soultraps.tiles.GrasslandTiles.*;
@@ -36,9 +37,9 @@ public class Tiles {
      * @param name the name of the tile to find
      * @return the file or null
      */
+    @NotNull
     public static TileActor byName(String name) {
         if (name != null) {
-            //noinspection IfCanBeSwitch switch won't work with "variables" 👀
             if (name.equals(Grass01.getName())) {
                 return new TileActor(Grass01, new GreenfootImage(name + FILE_SUFFIX));
             } else if (name.equals(Grass02.getName())) {
@@ -97,6 +98,6 @@ public class Tiles {
                 return new LavaActor();
             }
         }
-        return null;
+        return new TileActor(Empty, new GreenfootImage(name + FILE_SUFFIX));
     }
 }
