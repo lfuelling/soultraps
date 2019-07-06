@@ -22,6 +22,11 @@ Soultraps is a 2D RPG made with Greenfoot.
     - Left `a`
     - Down `s`
     - Right `d`
+- Attack
+    - Up `↑`
+    - Left `←`
+    - Down `↓`
+    - Right `→` 
 - Interact
     - Start conversation `e` (only for friendly mobs)
     - Next Message `space`
