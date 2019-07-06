@@ -5,7 +5,7 @@ import io.lerk.soultraps.levels.types.GrasslandLevel;
 import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.mobs.stat1c.Floppy;
 import io.lerk.soultraps.mobs.stat1c.HPPotion;
 import io.lerk.soultraps.mobs.stat1c.Portal;

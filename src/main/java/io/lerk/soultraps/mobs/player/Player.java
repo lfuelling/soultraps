@@ -1,7 +1,8 @@
-package io.lerk.soultraps.mobs;
+package io.lerk.soultraps.mobs.player;
 
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.items.Item;
+import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.Enemies.Enemy;
 import io.lerk.soultraps.mobs.friendly.DialogMob;
 import io.lerk.soultraps.sys.Handler;
@@ -59,6 +60,8 @@ public class Player extends DialogMob {
     private int savedYPos;
 
     private long lastAttack = 0;
+
+    private Attack attack = new WaveAttack();
 
     /**
      * Constructor.
@@ -183,9 +186,28 @@ public class Player extends DialogMob {
      */
     @Override
     protected void doAct() {
+        receiveDamage();
+        handleAttack();
+    }
+
+    private void receiveDamage() {
         List<Enemy> enemies = getIntersectingObjects(Enemy.class);
         if (enemies.size() > 0) {
             enemies.forEach(this::startAttack);
+        }
+    }
+
+    private void handleAttack() {
+        if (Greenfoot.isKeyDown("up")) {
+            attack.toggleAttack(true, Direction.NORTH);
+        } else if (Greenfoot.isKeyDown("down")) {
+            attack.toggleAttack(true, Direction.SOUTH);
+        } else if (Greenfoot.isKeyDown("left")) {
+            attack.toggleAttack(true, Direction.WEST);
+        } else if (Greenfoot.isKeyDown("right")) {
+            attack.toggleAttack(true, Direction.EAST);
+        } else {
+            attack.toggleAttack(false, Direction.EAST);
         }
     }
 
@@ -264,6 +286,10 @@ public class Player extends DialogMob {
      */
     public int getSavedYPos() {
         return savedYPos;
+    }
+
+    public void setAttack(Attack attack) {
+        this.attack = attack;
     }
 
     /**

@@ -7,7 +7,7 @@ import io.lerk.soultraps.levels.menu.Launcher;
 import io.lerk.soultraps.levels.playable.GenericDesertLevel;
 import io.lerk.soultraps.levels.playable.GenericGrasslandLevel;
 import io.lerk.soultraps.levels.playable.GenericHellLevel;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.sys.savegame.LevelDTO;
 import io.lerk.soultraps.sys.savegame.PlayerDTO;
 import javafx.application.Platform;

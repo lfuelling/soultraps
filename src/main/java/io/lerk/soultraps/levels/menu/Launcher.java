@@ -10,7 +10,6 @@ import io.lerk.soultraps.levels.types.LevelType;
 import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
-import io.lerk.soultraps.mobs.Player;
 import io.lerk.soultraps.sys.Savegame;
 
 /**

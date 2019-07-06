@@ -58,6 +58,11 @@ public class Wolf extends EnemyMob {
     protected void doAct() {
     }
 
+    @Override
+    public Type getType() {
+        return Type.ANIMAL;
+    }
+
     /**
      * Determines the damage dealt to the player.
      *

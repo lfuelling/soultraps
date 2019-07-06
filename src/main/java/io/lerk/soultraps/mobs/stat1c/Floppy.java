@@ -3,7 +3,7 @@ package io.lerk.soultraps.mobs.stat1c;
 import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.friendly.DialogMob;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.Savegame;
 import io.lerk.soultraps.sys.dialog.Message;

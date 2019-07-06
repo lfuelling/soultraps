@@ -8,7 +8,7 @@ import io.lerk.soultraps.levels.menu.Launcher;
 import io.lerk.soultraps.levels.menu.Options;
 import io.lerk.soultraps.levels.playable.IntroLevel;
 import io.lerk.soultraps.levels.playable.GenericGrasslandLevel;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.mobs.stat1c.HPPotion;
 import io.lerk.soultraps.mobs.stat1c.HellPortal;
 import io.lerk.soultraps.mobs.stat1c.Portal;

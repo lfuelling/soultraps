@@ -37,6 +37,11 @@ public class LavaActor extends TileActor implements Enemy {
     }
 
     @Override
+    public Type getType() {
+        return Type.STATIC;
+    }
+
+    @Override
     public int attack() {
         return 100; // ow
     }
@@ -49,5 +54,10 @@ public class LavaActor extends TileActor implements Enemy {
     @Override
     public boolean run() {
         return false; // lava doesn't run
+    }
+
+    @Override
+    public void dealDamage(int damage) {
+        // nope
     }
 }

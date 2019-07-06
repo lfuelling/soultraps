@@ -7,6 +7,8 @@ package io.lerk.soultraps.mobs.Enemies;
  */
 public interface Enemy {
 
+    Type getType();
+
     /**
      * This method is called in combat and determines the damage the player gets.
      *
@@ -27,4 +29,15 @@ public interface Enemy {
      * @return true if the enemy should try to run
      */
     boolean run();
+
+    /**
+     * This method deals damage to the enemy.
+     *
+     * @param damage the amount of damage.
+     */
+    void dealDamage(int damage);
+
+    enum Type {
+        ANIMAL, HUMANOID, UNDEAD, STATIC;
+    }
 }

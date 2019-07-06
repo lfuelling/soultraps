@@ -2,11 +2,13 @@ package io.lerk.soultraps.mobs.Enemies;
 
 import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.mobs.Direction;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 
 import java.util.Random;
 
 public abstract class EnemyMob extends BaseMob implements Enemy {
+
+    private int health = maxHealth();
 
     /**
      * Updates the walking state according to trees in range or if the player is currently overlapping.
@@ -95,4 +97,11 @@ public abstract class EnemyMob extends BaseMob implements Enemy {
                 getObjectsAtOffset(-3, 0, Player.class).size() >= 1;
     }
 
+    @Override
+    public void dealDamage(int damage) {
+        health = health - damage;
+        if(health < 0) {
+            getWorld().removeObject(this);
+        }
+    }
 }

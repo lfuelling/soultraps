@@ -7,7 +7,7 @@ import io.lerk.soultraps.components.MovingHeading;
 import io.lerk.soultraps.levels.types.HellLevel;
 import io.lerk.soultraps.levels.types.LevelType;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 
 public class GameOverScreen extends HellLevel {
 

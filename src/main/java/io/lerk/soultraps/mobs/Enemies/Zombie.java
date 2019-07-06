@@ -58,6 +58,11 @@ public class Zombie extends EnemyMob {
     protected void doAct() {
     }
 
+    @Override
+    public Type getType() {
+        return Type.UNDEAD;
+    }
+
     /**
      * Determines the damage dealt to the player.
      *
@@ -87,4 +92,5 @@ public class Zombie extends EnemyMob {
     public boolean run() {
         return false;
     }
+
 }

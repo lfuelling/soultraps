@@ -3,9 +3,6 @@ package io.lerk.soultraps.mobs;
 import greenfoot.Actor;
 import io.lerk.soultraps.tiles.TileActor;
 
-import java.util.Random;
-import java.util.stream.Collectors;
-
 /**
  * Basic mob class that contains stuff shared by all mobs.
  *

@@ -1,7 +1,5 @@
-# Java is not yet supported on Windows, so the build would block.
-# You do not need any setup from Travis, use a plain bash build
 language: bash
-# Enable them all, if you need them.
+
 os:
   - linux
 env:

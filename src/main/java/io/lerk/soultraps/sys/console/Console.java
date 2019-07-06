@@ -11,7 +11,7 @@ import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.mobs.friendly.Lumberjack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

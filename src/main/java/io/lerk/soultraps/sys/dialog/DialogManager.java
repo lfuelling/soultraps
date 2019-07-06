@@ -2,7 +2,7 @@ package io.lerk.soultraps.sys.dialog;
 
 import greenfoot.Actor;
 import greenfoot.GreenfootImage;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.sys.Handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

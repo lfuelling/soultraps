@@ -2,7 +2,7 @@ package io.lerk.soultraps.mobs.stat1c;
 
 import io.lerk.soultraps.mobs.BaseMob;
 import io.lerk.soultraps.mobs.Direction;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

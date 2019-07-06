@@ -2,7 +2,7 @@ package io.lerk.soultraps.mobs.friendly;
 
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.mobs.Direction;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.mobs.stat1c.HPPotion;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.dialog.Message;

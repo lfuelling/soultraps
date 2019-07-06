@@ -4,7 +4,7 @@ import greenfoot.Greenfoot;
 import io.lerk.soultraps.levels.playable.GenericDesertLevel;
 import io.lerk.soultraps.levels.playable.GenericGrasslandLevel;
 import io.lerk.soultraps.mobs.friendly.DialogMob;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.dialog.Message;
 import org.slf4j.Logger;

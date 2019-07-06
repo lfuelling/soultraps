@@ -3,7 +3,7 @@ package io.lerk.soultraps.components;
 import greenfoot.Actor;
 import greenfoot.Color;
 import greenfoot.GreenfootImage;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.sys.Fonts;
 
 /**

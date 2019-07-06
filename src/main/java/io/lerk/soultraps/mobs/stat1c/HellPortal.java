@@ -2,7 +2,7 @@ package io.lerk.soultraps.mobs.stat1c;
 
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.levels.playable.GenericHellLevel;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.mobs.friendly.DialogMob;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.dialog.Message;

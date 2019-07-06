@@ -5,7 +5,7 @@ import io.lerk.soultraps.mobs.stat1c.HellCastle;
 import io.lerk.soultraps.sys.console.ConsoleUtil;
 import io.lerk.soultraps.levels.types.LevelType;
 import io.lerk.soultraps.mobs.BaseMob;
-import io.lerk.soultraps.mobs.Player;
+import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.mobs.stat1c.Floppy;
 import io.lerk.soultraps.mobs.stat1c.Portal;
 import io.lerk.soultraps.sys.StopWatch;
