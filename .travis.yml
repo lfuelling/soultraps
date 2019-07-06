@@ -1,10 +1,23 @@
-language: java
-jdk: oraclejdk8
-
+# Java is not yet supported on Windows, so the build would block.
+# You do not need any setup from Travis, use a plain bash build
+language: bash
+# Enable them all, if you need them.
+os:
+  - linux
 env:
+  - GRAVIS="https://raw.githubusercontent.com/DanySK/Gravis-CI/master/"
   global:
     - secure: "PG125/iV1DzWSCTTySLnX+XgunkN4qM0PE1m/vukVYkkUyeVgT/ySvpAIn+eHBmvG0R617a7weRck1aPcu5Qd27aaWcv/uuXfZwHaUH4HJ352IdLDPA+qqVq11RDlw4MdByQy+OUdwKK9CKNAZJgaRb7Hu/79EMmjcX9kzS+Xl45rJupT5m7B2XqPlsZc+6kZVf7RjXpTn5Az6L/CRvYRrfp6B2OuLWTcMb2sDrkRIYmt2dqGuXpP7j+ZahSgkAZV42bFPrSopCVXCOq7O+ou5A/ZNLKOIVpWWmB43srL/HjF7i4ZDTOJX5p3T3nhOSt+VkFLThh/fLDKloejwd6oJGJ3vMFdUitW38rxVOS3FVlWMJSua4B/R6GF6Z7AKqtyXvdmX7U4qAbW3nFvul0bRDe3UYwcv94YAtrcyFnIL13ONGMsYk2YxYOGpLwUy78u+PWgMPbAgsbZewsl6qHeQErX+V3K3vseHqPVtiIY54B6DHSIikwoUAVQPTPn5uuBPJ06hXV2JDksW/noVPgZG9I/+o+BVygP1qGB6WGaaLz6M+uOs7Mlzq0vH1wfGQbQ9yBJZqrOmREgQmUWMA3/Zn28LhX/kZhAyGf+of/DhqIuq7Jy0KKRxnp+Fyc2pmSso0Z2sGOAqgwGmFwYJewHK9jjYwcshOQ2lbnqrmF+B8="
+  matrix:
+    - JDK="amazon-corretto@1.8.212-04.2"
 
+before_install:
+  # Download the script
+  - curl "${GRAVIS}.install-jdk-travis.sh" --output .install-jdk-travis.sh
+  # Download, install, configue the JDK, and export the configuration to the current shell
+  - source ~/.install-jdk-travis.sh
+  - sudo apt-get -qq update
+  - sudo apt-get install maven
 
 jobs:
   allow_failures:
