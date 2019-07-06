@@ -2,6 +2,7 @@ package io.lerk.soultraps.sys;
 
 import bluej.Config;
 import greenfoot.Greenfoot;
+import greenfoot.core.Simulation;
 import greenfoot.export.GreenfootScenarioApplication;
 import greenfoot.util.StandalonePropStringManager;
 import io.lerk.soultraps.levels.menu.GameOverScreen;

@@ -50,7 +50,7 @@ public abstract class EnemyMob extends BaseMob implements Enemy {
      */
     private void randomWalkingState() {
         walking = new Random().nextBoolean();
-        direction = (new Random().nextBoolean()) ? Direction.random() : direction;
+        direction = Direction.random();
     }
 
     /**

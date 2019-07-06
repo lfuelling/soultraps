@@ -14,7 +14,7 @@ Soultraps is a 2D RPG made with Greenfoot.
 - The items collected in each level are saved throughout the game
 - Every level contains a savepoint (this also persists the level)
 - When restarting the game after saving, a "Load Game" button will appear
-    
+
 ### Controls
 
 - Walk

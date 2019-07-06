@@ -202,14 +202,12 @@ public abstract class Level extends World {
         } else if (mob instanceof Floppy) {
             floppyCoordinates = new Pair<>(mob.getX(), mob.getY());
         }
-        stopWatch.stop("addMob(" + mob.getClass().
-
-                getName() + ")");
+        stopWatch.stop("addMob(" + mob.getClass().getName() + ")");
     }
 
     private void addHellCastle(BaseMob mob, int randomX, int randomY) {
-        int width = mob.getImage().getWidth() / Level.CELL_SIZE;
-        int height = mob.getImage().getHeight() / Level.CELL_SIZE;
+        int width = (mob.getImage().getWidth() + CELL_SIZE) / CELL_SIZE;
+        int height = (mob.getImage().getHeight() + CELL_SIZE) / CELL_SIZE;
         if (randomX < width) {
             randomX += width;
         } else if (randomX + width > Level.LEVEL_WIDTH) {

@@ -68,7 +68,7 @@ public enum Direction {
      * @return random direction
      */
     public static Direction random() {
-        switch (new Random().nextInt(3)) {
+        switch (new Random().nextInt(4)) {
             case 0:
                 return Direction.NORTH;
             case 1:
