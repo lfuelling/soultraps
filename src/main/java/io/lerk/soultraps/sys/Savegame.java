@@ -67,18 +67,26 @@ public class Savegame {
         File saveFile = new File(saveFileName);
         if (!saveFile.exists()) {
             if(!new File(getSavegameDir()).exists()) {
-                if(!new File(getSavegameDir()).canWrite()) {
-                    errorShown = true;
+                if(new File(getSavegameDir()).mkdirs()) {
+                    logger.info("Savegame directory cerated!");
+                    if(!new File(getSavegameDir()).canWrite()) {
+                        errorShown = true;
+                        Platform.runLater(() -> {
+                            Alert alert = new Alert(Alert.AlertType.ERROR, "The savegame directory (" + getSavegameDir() + ") is not writable! The application will now exit.", ButtonType.OK);
+                            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+                            alert.setOnCloseRequest((e) -> System.exit(1));
+                            alert.show();
+                        });
+                    }
+                } else {
                     Platform.runLater(() -> {
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "The savegame directory (" + getSavegameDir() + ") is not writable! The application will now exit.", ButtonType.OK);
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "The savegame directory (" + getSavegameDir() + ") could not be created! The application will now exit.", ButtonType.OK);
                         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
                         alert.setOnCloseRequest((e) -> System.exit(1));
                         alert.show();
                     });
                 }
-                if(new File(getSavegameDir()).mkdirs()) {
-                    logger.info("Savegame directory cerated!");
-                }
+
             }
             try {
                 logger.info("Savefile doesn't exist. Creating directories and file!");
