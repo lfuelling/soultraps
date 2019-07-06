@@ -50,6 +50,11 @@ public class Floppy extends DialogMob {
         return Collections.singletonList(new Message("You stepped onto a floppy disk. Your progress will be saved."));
     }
 
+    @Override
+    protected boolean isRecurring() {
+        return false;
+    }
+
     /**
      * {@inheritDoc}.
      */

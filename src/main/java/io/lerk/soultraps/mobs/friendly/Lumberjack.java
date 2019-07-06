@@ -80,6 +80,11 @@ public class Lumberjack extends DialogMob {
         return messages;
     }
 
+    @Override
+    protected boolean isRecurring() {
+        return true;
+    }
+
     /**
      * Method to get the dialog done action handler.
      *

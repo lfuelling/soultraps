@@ -48,6 +48,11 @@ public class Portal extends DialogMob {
         return Collections.singletonList(new Message("You stepped onto a portal. You will now be teleported."));
     }
 
+    @Override
+    protected boolean isRecurring() {
+        return true;
+    }
+
     /**
      * {@inheritDoc}.
      */

@@ -21,6 +21,14 @@ public abstract class DialogMob extends BaseMob {
      */
     private boolean talking = false;
 
+    private final Dialog dialog;
+
+    protected DialogMob() {
+        dialog = new Dialog();
+        dialog.setMob(this);
+        dialog.setRecurring(isRecurring());
+    }
+
     /**
      * Only calls {@link #updateWalkingStateNotTalking()} when not talking.
      * Otherwise walking will be set to false.
@@ -59,12 +67,23 @@ public abstract class DialogMob extends BaseMob {
      * @return the dialog
      */
     protected Dialog getDialog() {
-        Dialog dialog = new Dialog();
-        dialog.setMob(this);
-        dialog.setMessages(new ArrayList<>(getDialogMessages()));
-        getDialogDoneActions().forEach(dialog::addDoneAction);
+        prepareDialog();
         return dialog;
     }
+
+    /**
+     * Prepares the dialog ((re-)adds the messages and done listeners).
+     */
+    private void prepareDialog() {
+        dialog.setMessages(new ArrayList<>(getDialogMessages()));
+        getDialogDoneActions().forEach(dialog::addDoneAction);
+    }
+
+    /**
+     * If false, the dialog can only be triggered once per level.
+     * @return true if the dialog should reoccur every time {@link #shouldStartConversation()} is true
+     */
+    protected abstract boolean isRecurring();
 
     /**
      * Method to get the {@link Handler} that is run after the dialog is done.

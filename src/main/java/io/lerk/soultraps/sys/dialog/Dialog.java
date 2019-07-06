@@ -25,6 +25,17 @@ public class Dialog {
     private DialogMob mob;
 
     /**
+     * If false, the dialog can only be triggered once per level.
+     */
+    private boolean recurring;
+
+    /**
+     * If this dialog was shown already.
+     * @see #recurring
+     */
+    private boolean shown = false;
+
+    /**
      * The action that should be run when the dialog is done.
      */
     private ArrayList<Handler<Void>> doneActions = new ArrayList<>();
@@ -87,5 +98,21 @@ public class Dialog {
      */
     public void addDoneAction(Handler<Void> doneAction) {
         doneActions.add(doneAction);
+    }
+
+    public boolean isRecurring() {
+        return recurring;
+    }
+
+    public void setRecurring(boolean recurring) {
+        this.recurring = recurring;
+    }
+
+    public boolean wasShown() {
+        return shown;
+    }
+
+    public void setShown(boolean shown) {
+        this.shown = shown;
     }
 }

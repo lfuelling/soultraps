@@ -58,6 +58,11 @@ public class Alchemist extends DialogMob {
     }
 
     @Override
+    protected boolean isRecurring() {
+        return true;
+    }
+
+    @Override
     protected List<Handler<Void>> getDialogDoneActions() {
         return Collections.singletonList(() -> {
             if (!talked) {

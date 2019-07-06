@@ -89,28 +89,55 @@ public class DialogManager extends Actor {
     public void act() {
         if (getWorld().getObjects(Message.class).size() <= 0) {
             if (current != null && current.getMessages().size() > 0) {
-                Message m = current.getMessages().get(0);
-                getWorld().addObject(m, 0, 0);
-                current.getMessages().remove(m);
-                quickSleep(); // wait for debouncing
+                displayMessage();
             } else if (current != null && current.getMessages().size() == 0) {
-                if (current.getMob() != null) {
-                    current.getMob().setTalking(false);
-                }
-                Player.getSelf().setTalking(false);
-                current.getDoneActions().forEach(Handler::handle);
-                current = null;
+                endDialog();
             } else {
                 if (dialogQueue.size() > 0) {
-                    current = dialogQueue.get(0);
-                    dialogQueue.remove(current);
-                    if (current.getMob() != null) {
-                        current.getMob().setTalking(true);
+                    Dialog dialog = dialogQueue.get(0);
+                    if(dialog.wasShown() && !dialog.isRecurring()) {
+                        dialogQueue.remove(dialog);
+                    } else { // wait for next #act() call to reinit dialog var.
+                        nextDialog(dialog);
                     }
-                    Player.getSelf().setTalking(true);
                 }
             }
         }
+    }
+
+    /**
+     * Starts the next dialog in a non-blocking way.
+     */
+    private void nextDialog(Dialog dialog) {
+        current = dialog;
+        dialogQueue.remove(current);
+        if (current.getMob() != null) {
+            current.getMob().setTalking(true);
+        }
+        Player.getSelf().setTalking(true);
+    }
+
+    /**
+     * Ends the dialog in a non-blocking way.
+     */
+    private void endDialog() {
+        if (current.getMob() != null) {
+            current.getMob().setTalking(false);
+        }
+        Player.getSelf().setTalking(false);
+        current.getDoneActions().forEach(Handler::handle);
+        current.setShown(true);
+        current = null;
+    }
+
+    /**
+     * Displays a dialog message.
+     */
+    private void displayMessage() {
+        Message m = current.getMessages().get(0);
+        getWorld().addObject(m, 0, 0);
+        current.getMessages().remove(m);
+        quickSleep(); // wait for debouncing
     }
 
     /**

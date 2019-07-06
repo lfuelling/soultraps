@@ -46,6 +46,11 @@ public class HellPortal extends DialogMob {
         return Collections.singletonList(new Message("This portal feels somewhat strange..."));
     }
 
+    @Override
+    protected boolean isRecurring() {
+        return true;
+    }
+
     /**
      * {@inheritDoc}.
      */

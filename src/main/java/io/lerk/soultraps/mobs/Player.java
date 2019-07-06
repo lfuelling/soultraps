@@ -143,6 +143,11 @@ public class Player extends DialogMob {
         return new ArrayList<>();
     }
 
+    @Override
+    protected boolean isRecurring() {
+        return true;
+    }
+
     /**
      * Dummy method, the player has no dialog.
      *

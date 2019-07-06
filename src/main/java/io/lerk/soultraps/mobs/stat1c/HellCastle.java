@@ -21,9 +21,19 @@ public class HellCastle extends DialogMob {
     private static final Logger log = LoggerFactory.getLogger(HellCastle.class);
 
     /**
+     * Cooldown duration in ms.
+     */
+    private static final long COOLDOWN = 2000;
+
+    /**
      * Index used for the animation.
      */
     private int seqIdx = 0;
+
+    /**
+     * Dialog cooldown.
+     */
+    private long lastDialog = 0;
 
     /**
      * Constructor.
@@ -42,12 +52,20 @@ public class HellCastle extends DialogMob {
         //TODO: add item to go through the flames
     }
 
+    @Override
+    protected boolean isRecurring() {
+        return true;
+    }
+
     /**
      * {@inheritDoc}.
      */
     @Override
     protected List<Handler<Void>> getDialogDoneActions() {
-        return Collections.emptyList();
+        return Collections.singletonList(() -> {
+            lastDialog = System.currentTimeMillis();
+            return null;
+        });
     }
 
     /**
@@ -55,7 +73,8 @@ public class HellCastle extends DialogMob {
      */
     @Override
     protected boolean shouldStartConversation() {
-        return getIntersectingObjects(Player.class).size() > 0;
+        boolean cooldownReached = System.currentTimeMillis() - lastDialog > COOLDOWN;
+        return getIntersectingObjects(Player.class).size() > 0 && cooldownReached;
     }
 
     /**
