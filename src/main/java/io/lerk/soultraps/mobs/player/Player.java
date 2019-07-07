@@ -102,6 +102,7 @@ public class Player extends DialogMob {
             self = new Player();
         }
         self.items.clear();
+        self.drankGoldenDistillate = player.drankGoldenDistillate();
 
         Reflections reflections = new Reflections("io.lerk.soultraps.items");
         Set<Class<? extends Item>> classes = reflections.getSubTypesOf(Item.class);

@@ -1,6 +1,7 @@
 package io.lerk.soultraps.items;
 
-import io.lerk.soultraps.sys.ActorUtils;
+import io.lerk.soultraps.mobs.Direction;
+import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.tiles.Tile;
 import io.lerk.soultraps.tiles.TileActor;
 
@@ -41,7 +42,23 @@ public class Axe extends Item {
 
     @Override
     public void act() {
-        ActorUtils.handleRotation(this, true);
+        Direction direction = Player.getSelf().getDirection();
+        switch (direction) {
+            case NORTH:
+                setLocation(Player.getSelf().getX(), Player.getSelf().getY() - 1);
+                break;
+            case EAST:
+                setLocation(Player.getSelf().getX() + 1, Player.getSelf().getY());
+                break;
+            case SOUTH:
+                setLocation(Player.getSelf().getX(), Player.getSelf().getY() + 1);
+                break;
+            case WEST:
+            default:
+                setLocation(Player.getSelf().getX() - 1, Player.getSelf().getY());
+                break;
+        }
+        setRotation(direction.getRotation());
         if (System.currentTimeMillis() - lastAdded >= 200) {
             getWorld().removeObject(this);
         }

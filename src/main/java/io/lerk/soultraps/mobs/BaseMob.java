@@ -93,7 +93,7 @@ public abstract class BaseMob extends Actor {
      * Orients (rotates) the mob.
      * This is called in {@link #act()}.
      */
-    protected void orientMob() {
+    private void orientMob() {
         this.setRotation(direction.getRotation());
         if (direction.isMirroredV()) {
             this.getImage().mirrorVertically();

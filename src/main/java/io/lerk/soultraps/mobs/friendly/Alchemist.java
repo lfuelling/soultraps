@@ -37,10 +37,11 @@ public class Alchemist extends DialogMob {
 
     @Override
     protected void updateWalkingStateNotTalking() {
-        List<GoldenPotion> goldenPotionsInRange = getObjectsInRange(10, GoldenPotion.class);
+        List<GoldenPotion> goldenPotionsInRange = getWorld().getObjects(GoldenPotion.class);
         if (goldenPotionsInRange.size() > 0 && !isTouching(GoldenPotion.class)) {
             goldenPotionsInRange.forEach(p -> {
-                Alchemist.this.turnTowards(p.getX(), p.getY());
+                double a = Math.atan2((double)(p.getY() - this.getY()), (double)(p.getX() - this.getX()));
+                direction = Direction.fromDegrees((int)Math.toDegrees(a));
                 walking = true;
             });
         } else {
@@ -105,6 +106,7 @@ public class Alchemist extends DialogMob {
                 Player.getSelf().addItem(new HPPotion());
             } else if (!distillateGiven && potionCollected) {
                 Player.getSelf().addItem(new GoldenDistillate());
+                distillateGiven = true;
             }
             talked = true;
             return null;

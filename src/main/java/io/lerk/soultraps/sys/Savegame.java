@@ -103,7 +103,7 @@ public class Savegame {
           .map(Item::getName)
           .collect(Collectors.toList());
 
-        return new PlayerDTO(new ArrayList<>(collect), player.getX(), player.getY());
+        return new PlayerDTO(new ArrayList<>(collect), player.getX(), player.getY(), player.drankGoldenDistillate());
     }
 
     private LevelDTO fromLevel(Level level)

@@ -10,6 +10,7 @@ import io.lerk.soultraps.levels.menu.Launcher;
 import io.lerk.soultraps.levels.menu.Options;
 import io.lerk.soultraps.levels.playable.IntroLevel;
 import io.lerk.soultraps.levels.playable.GenericGrasslandLevel;
+import io.lerk.soultraps.mobs.friendly.Alchemist;
 import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.items.HPPotion;
 import io.lerk.soultraps.mobs.stat1c.HellPortal;
@@ -88,6 +89,8 @@ public class TestLevel extends GenericGrasslandLevel {
         addMob(new Portal());
         log.info("Adding Hell Portal...");
         addMob(new HellPortal());
+        log.info("Adding alchemist...");
+        addMob(new Alchemist());
         log.info("Adding player...");
         addMob(Player.getSelf());
         log.info("Adding HUD...");

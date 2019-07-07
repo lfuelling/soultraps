@@ -1,8 +1,8 @@
 package io.lerk.soultraps.mobs.player;
 
 import greenfoot.GreenfootImage;
+import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.Enemies.Enemy;
-import io.lerk.soultraps.sys.ActorUtils;
 
 import static io.lerk.soultraps.tiles.Tiles.FILE_SUFFIX;
 
@@ -28,7 +28,16 @@ public class WaveAttack extends Attack {
     protected void animateWalking() {
         if (visible) {
             cycleAnimation();
-            ActorUtils.handleRotation(this, false);
+            if (direction == Direction.NORTH) {
+                setLocation(Player.getSelf().getX(), Player.getSelf().getY() - 1);
+            } else if (direction == Direction.EAST) {
+                setLocation(Player.getSelf().getX() + 1, Player.getSelf().getY());
+            } else if (direction == Direction.SOUTH) {
+                setLocation(Player.getSelf().getX(), Player.getSelf().getY() + 1);
+            } else {
+                setLocation(Player.getSelf().getX() - 1, Player.getSelf().getY());
+            }
+            setRotation(direction.getRotation());
         } else {
             if (seqIdx != 0) seqIdx = 0; // reset index
 

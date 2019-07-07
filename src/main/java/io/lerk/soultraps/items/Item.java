@@ -1,6 +1,7 @@
 package io.lerk.soultraps.items;
 
 import greenfoot.Actor;
+import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.player.Player;
 
 import java.util.ArrayList;

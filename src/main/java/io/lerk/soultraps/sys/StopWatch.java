@@ -3,6 +3,8 @@ package io.lerk.soultraps.sys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static io.lerk.soultraps.sys.Soultraps.DEBUG;
+
 /**
  * Stop watch utility class.
  * <p>
@@ -56,19 +58,21 @@ public class StopWatch {
     public void stop(String name) {
         stopTime = System.nanoTime(); //stop time first!
 
-        if (startTime == 0) {
-            throw new IllegalStateException("StopWatch#start() must be called before stop() can be used!");
-        }
+        if (DEBUG) {
+            if (startTime == 0) {
+                throw new IllegalStateException("StopWatch#start() must be called before stop() can be used!");
+            }
 
-        String message = "'" + name + "' took " +
-                getElapsedTime() + " nanoseconds (" +
-                getElapsedTimeMillis() + " milliseconds, " +
-                getElapsedTimeSecs() + " seconds)";
+            String message = "'" + name + "' took " +
+                    getElapsedTime() + " nanoseconds (" +
+                    getElapsedTimeMillis() + " milliseconds, " +
+                    getElapsedTimeSecs() + " seconds)";
 
-        if (logLevel.equals(LogLevel.INFO)) {
-            log.info(message);
-        } else {
-            log.debug(message);
+            if (logLevel.equals(LogLevel.INFO)) {
+                log.info(message);
+            } else {
+                log.debug(message);
+            }
         }
     }
 
