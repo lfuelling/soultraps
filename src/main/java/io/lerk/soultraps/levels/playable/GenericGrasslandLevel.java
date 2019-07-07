@@ -5,6 +5,7 @@ import io.lerk.soultraps.levels.types.GrasslandLevel;
 import io.lerk.soultraps.mobs.Enemies.Bat;
 import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
+import io.lerk.soultraps.mobs.friendly.Alchemist;
 import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.mobs.stat1c.Floppy;
 import io.lerk.soultraps.items.HPPotion;
@@ -13,6 +14,8 @@ import io.lerk.soultraps.sys.dialog.DialogManager;
 import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Random;
 
 /**
  * This is a regular (ie. easy) Level.
@@ -62,6 +65,9 @@ public class GenericGrasslandLevel extends GrasslandLevel {
         addMob(new Bat());
         addMob(new Zombie());
         addMob(new Zombie());
+        if(new Random().nextInt(3) == 1) {
+            addMob(new Alchemist());
+        }
         log.info("Adding player...");
         addMob(Player.getSelf());
         log.info("Adding HUD...");
