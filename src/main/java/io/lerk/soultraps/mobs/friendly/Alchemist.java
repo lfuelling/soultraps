@@ -79,6 +79,7 @@ public class Alchemist extends DialogMob {
                     new Message("Like in the old legends..."),
                     new Message("*looks far off in the distance*"),
                     new Message("..."),
+                    new Message(". . ."),
                     new Message("Oh, Hello there. I am the alchemist."),
                     new Message("I am on a secret quest."),
                     new Message("I can't tell you anything. Sorry."),

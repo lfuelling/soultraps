@@ -1,6 +1,7 @@
 package io.lerk.soultraps.mobs.player;
 
 import greenfoot.Greenfoot;
+import greenfoot.GreenfootImage;
 import io.lerk.soultraps.items.Item;
 import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.mobs.Direction;
@@ -241,11 +242,16 @@ public class Player extends DialogMob {
         if (seqIdx > 4) {
             seqIdx = 0;
         }
+        GreenfootImage playerImage;
         if (walking) {
-            this.setImage("images/player/player_walking" + (seqIdx + 1) + FILE_SUFFIX);
+            playerImage = new GreenfootImage("images/player/player_walking" + (seqIdx + 1) + FILE_SUFFIX);
         } else {
-            this.setImage("images/player/player_walking1.png");
+            playerImage = new GreenfootImage("images/player/player_walking1.png");
         }
+        if (drankGoldenDistillate) {
+            playerImage.drawImage(new GreenfootImage("images/player/distillate/player_distillate" + (seqIdx + 1) + FILE_SUFFIX), 0, 0);
+        }
+        setImage(playerImage);
         seqIdx++;
     }
 

@@ -71,16 +71,20 @@ public class WaveAttack extends Attack {
 
     @Override
     public int getDamage(Enemy enemy) {
-        switch (enemy.getType()) {
-            case HUMANOID:
-                return 20;
-            case UNDEAD:
-                return 40;
-            case STATIC:
-                return 0;
-            case ANIMAL:
-            default:
-                return 10;
+        if(Player.getSelf().drankGoldenDistillate()) {
+            return 100;
+        } else {
+            switch (enemy.getType()) {
+                case HUMANOID:
+                    return 20;
+                case UNDEAD:
+                    return 40;
+                case STATIC:
+                    return 0;
+                case ANIMAL:
+                default:
+                    return 10;
+            }
         }
     }
 
