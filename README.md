@@ -6,11 +6,13 @@
 
 Soultraps is a 2D RPG made with Greenfoot. 
 
+It's more like a technical POC/playground than an actual game but still fun to play.
+
 ### Story
 
-You are a magician exploring a strange world where planes of existence are connected by portals. You meet an alchemist (among other people) who is in search of the legendary golden potion. 
+You are a magician (![player image](src/main/resources/images/player/player_walking1.png)) exploring a strange world where planes of existence are connected by portals (![player image](src/main/resources/images/portal/portal1.png)). You meet an alchemist (![player image](src/main/resources/images/alchemist/alchemist.png)) (among other people) who is in search of the legendary golden potion (![player image](src/main/resources/images/golden-potion.png)). 
 
-You also discover that some portals are sending you to strange, hellish places with castles in them. Unfortunately you are not able to step through the flames that appear whenever you get too close to them.
+You also discover that some portals (![player image](src/main/resources/images/hell/portal/portal1.png)) are sending you to strange, hellish places with castles in them. Unfortunately you are not able to step through the flames that appear whenever you get too close to them.
 
 Maybe the inhabitants of the world you are exploring can be of some help?  
 
