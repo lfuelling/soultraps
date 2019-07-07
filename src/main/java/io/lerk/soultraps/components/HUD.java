@@ -25,7 +25,7 @@ import static io.lerk.soultraps.sys.Soultraps.Controls.*;
  */
 public class HUD extends Actor {
 
-    private static final int WIDTH = 11 * CELL_SIZE;
+    private static final int WIDTH = 13 * CELL_SIZE;
 
     private static final int HEIGHT = 7 * CELL_SIZE;
 

@@ -1,5 +1,8 @@
 package io.lerk.soultraps.mobs.stat1c;
 
+import greenfoot.Greenfoot;
+import io.lerk.soultraps.items.GoldenDistillate;
+import io.lerk.soultraps.levels.playable.GenericEndbossLevel;
 import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.mobs.friendly.DialogMob;
@@ -48,8 +51,11 @@ public class HellCastle extends DialogMob {
      */
     @Override
     protected List<Message> getDialogMessages() {
-        return Collections.singletonList(new Message("The flames are too high to step through..."));
-        //TODO: add item to go through the flames
+        if (Player.getSelf().drankGoldenDistillate()) {
+            return Collections.singletonList(new Message("The distillate let's you walk through the flames!"));
+        } else {
+            return Collections.singletonList(new Message("The flames are too high to step through..."));
+        }
     }
 
     @Override
@@ -63,6 +69,10 @@ public class HellCastle extends DialogMob {
     @Override
     protected List<Handler<Void>> getDialogDoneActions() {
         return Collections.singletonList(() -> {
+            if(Player.getSelf().drankGoldenDistillate()) {
+                log.info("Player drank distillate. Teleporting...");
+                Greenfoot.setWorld(new GenericEndbossLevel());
+            }
             lastDialog = System.currentTimeMillis();
             return null;
         });

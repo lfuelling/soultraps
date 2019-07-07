@@ -101,9 +101,9 @@ public class Alchemist extends DialogMob {
     protected List<Handler<Void>> getDialogDoneActions() {
         return Collections.singletonList(() -> {
             if (!talked) {
-                Player.pickupItem(new HPPotion());
+                Player.getSelf().addItem(new HPPotion());
             } else if (!distillateGiven && potionCollected) {
-                Player.pickupItem(new GoldenDistillate());
+                Player.getSelf().addItem(new GoldenDistillate());
             }
             talked = true;
             return null;

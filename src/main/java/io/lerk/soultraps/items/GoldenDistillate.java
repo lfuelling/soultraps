@@ -15,7 +15,7 @@ public class GoldenDistillate extends Item {
                 "The legendary golden potion enhanced by the alchemist.",
                 500000, 1);
         effects = Collections.singletonList(() -> {
-            //TODO: add more effects
+            Player.getSelf().setDrankGoldenDistillate(true);
             Player.increaseHealth(AMOUNT);
             Player.getSelf().getItems().remove(this);
         });

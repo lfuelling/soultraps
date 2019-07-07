@@ -30,7 +30,7 @@ import static io.lerk.soultraps.tiles.Tiles.byName;
  */
 public abstract class Level extends World {
 
-    public static final int HUD_X = 57;
+    public static final int HUD_X = 55;
 
     public static final int HUD_Y = 92;
 

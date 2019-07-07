@@ -2,6 +2,7 @@ package io.lerk.soultraps.sys.test;
 
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.components.HUD;
+import io.lerk.soultraps.items.GoldenDistillate;
 import io.lerk.soultraps.items.GoldenPotion;
 import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.levels.menu.GameOverScreen;
@@ -82,6 +83,7 @@ public class TestLevel extends GenericGrasslandLevel {
             addMob(new HPPotion());
         }
         addMob(new GoldenPotion());
+        addMob(new GoldenDistillate());
         log.info("Adding Portal...");
         addMob(new Portal());
         log.info("Adding Hell Portal...");

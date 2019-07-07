@@ -17,7 +17,7 @@ import static io.lerk.soultraps.tiles.HellTiles.HellGround02;
 import static io.lerk.soultraps.tiles.MiscTiles.Empty;
 
 /**
- * Desert level.
+ * Hell level.
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */

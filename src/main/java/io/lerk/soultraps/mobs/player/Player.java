@@ -66,6 +66,8 @@ public class Player extends DialogMob {
 
     private Attack attack = new WaveAttack();
 
+    private boolean drankGoldenDistillate = false;
+
     /**
      * Constructor.
      */
@@ -83,6 +85,10 @@ public class Player extends DialogMob {
             self = new Player();
         }
         return self;
+    }
+
+    public boolean drankGoldenDistillate() {
+        return drankGoldenDistillate;
     }
 
     /**
@@ -115,11 +121,6 @@ public class Player extends DialogMob {
 
     public static void increaseHealth(int amount) {
         getSelf().setHealth(getSelf().getHealth() + amount);
-    }
-
-    public static void pickupItem(Item item) {
-        getSelf().items.add(item);
-        getSelf().getWorld().removeObject(item);
     }
 
     public static void dropItem(int item) {
@@ -321,5 +322,9 @@ public class Player extends DialogMob {
         items.clear();
         lastAttack = 0;
         seqIdx = 0;
+    }
+
+    public void setDrankGoldenDistillate(boolean drankGoldenDistillate) {
+        this.drankGoldenDistillate = drankGoldenDistillate;
     }
 }

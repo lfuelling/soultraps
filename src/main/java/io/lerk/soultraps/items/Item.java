@@ -63,7 +63,8 @@ public abstract class Item extends Actor {
     public void act() {
         super.act();
         if(isTouching(Player.class)) {
-            Player.pickupItem(this);
+            getWorld().removeObject(this);
+            Player.getSelf().addItem(this);
         }
     }
 
