@@ -2,11 +2,13 @@ package io.lerk.soultraps.mobs.player;
 
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.items.Item;
+import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.Enemies.Enemy;
 import io.lerk.soultraps.mobs.friendly.DialogMob;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.Soultraps;
+import io.lerk.soultraps.sys.console.ConsoleUtil;
 import io.lerk.soultraps.sys.dialog.Dialog;
 import io.lerk.soultraps.sys.dialog.DialogManager;
 import io.lerk.soultraps.sys.dialog.Message;
@@ -125,20 +127,22 @@ public class Player extends DialogMob {
      */
     @Override
     protected void updateWalkingStateNotTalking() {
-        if (Greenfoot.isKeyDown(WALK_UP)) {
-            walking = true;
-            direction = Direction.NORTH;
-        } else if (Greenfoot.isKeyDown(WALK_LT)) {
-            walking = true;
-            direction = Direction.WEST;
-        } else if (Greenfoot.isKeyDown(WALK_DN)) {
-            walking = true;
-            direction = Direction.SOUTH;
-        } else if (Greenfoot.isKeyDown(WALK_RT)) {
-            walking = true;
-            direction = Direction.EAST;
-        } else {
-            walking = false;
+        if(!ConsoleUtil.isConsoleOpen((Level) getWorld())) {
+            if (Greenfoot.isKeyDown(WALK_UP)) {
+                walking = true;
+                direction = Direction.NORTH;
+            } else if (Greenfoot.isKeyDown(WALK_LT)) {
+                walking = true;
+                direction = Direction.WEST;
+            } else if (Greenfoot.isKeyDown(WALK_DN)) {
+                walking = true;
+                direction = Direction.SOUTH;
+            } else if (Greenfoot.isKeyDown(WALK_RT)) {
+                walking = true;
+                direction = Direction.EAST;
+            } else {
+                walking = false;
+            }
         }
     }
 
@@ -204,16 +208,18 @@ public class Player extends DialogMob {
     }
 
     private void handleAttack() {
-        if (Greenfoot.isKeyDown(ATK_UP)) {
-            attack.toggleAttack(true, Direction.NORTH);
-        } else if (Greenfoot.isKeyDown(ATK_DN)) {
-            attack.toggleAttack(true, Direction.SOUTH);
-        } else if (Greenfoot.isKeyDown(ATK_LT)) {
-            attack.toggleAttack(true, Direction.WEST);
-        } else if (Greenfoot.isKeyDown(ATK_RT)) {
-            attack.toggleAttack(true, Direction.EAST);
-        } else {
-            attack.toggleAttack(false, Direction.EAST);
+        if(!ConsoleUtil.isConsoleOpen((Level) getWorld())) {
+            if (Greenfoot.isKeyDown(ATK_UP)) {
+                attack.toggleAttack(true, Direction.NORTH);
+            } else if (Greenfoot.isKeyDown(ATK_DN)) {
+                attack.toggleAttack(true, Direction.SOUTH);
+            } else if (Greenfoot.isKeyDown(ATK_LT)) {
+                attack.toggleAttack(true, Direction.WEST);
+            } else if (Greenfoot.isKeyDown(ATK_RT)) {
+                attack.toggleAttack(true, Direction.EAST);
+            } else {
+                attack.toggleAttack(false, Direction.EAST);
+            }
         }
     }
 

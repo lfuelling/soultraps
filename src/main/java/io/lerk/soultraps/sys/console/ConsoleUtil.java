@@ -32,12 +32,16 @@ public final class ConsoleUtil {
     }
 
     public static void handle(Level level) {
+        initIfNecessary(level);
+        moi.handleInternal();
+    }
+
+    private static void initIfNecessary(Level level) {
         if(moi == null) {
             moi = new ConsoleUtil(level);
         } else if (levelChanged(level)) {
             moi = new ConsoleUtil(level);
         }
-        moi.handleInternal();
     }
 
     private static boolean levelChanged(Level level) {
@@ -59,5 +63,10 @@ public final class ConsoleUtil {
         } else if(console != null) {
             console = null;
         }
+    }
+
+    public static boolean isConsoleOpen(Level level) {
+        initIfNecessary(level);
+        return moi.consoleOpen;
     }
 }

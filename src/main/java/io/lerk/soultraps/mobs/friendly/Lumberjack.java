@@ -2,9 +2,11 @@ package io.lerk.soultraps.mobs.friendly;
 
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.items.Axe;
+import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.sys.Handler;
+import io.lerk.soultraps.sys.console.ConsoleUtil;
 import io.lerk.soultraps.sys.dialog.Message;
 import io.lerk.soultraps.tiles.DesertTiles;
 import io.lerk.soultraps.tiles.GrasslandTiles;
@@ -106,7 +108,7 @@ public class Lumberjack extends DialogMob {
     protected boolean shouldStartConversation() {
         return isTouching(Player.class) &&
                 !playerHasAxe() &&
-                Greenfoot.isKeyDown(CONV_START);
+                (!ConsoleUtil.isConsoleOpen((Level) getWorld())&&Greenfoot.isKeyDown(CONV_START));
     }
 
     /**

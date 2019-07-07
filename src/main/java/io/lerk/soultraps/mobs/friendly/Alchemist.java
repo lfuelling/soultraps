@@ -1,10 +1,12 @@
 package io.lerk.soultraps.mobs.friendly;
 
 import greenfoot.Greenfoot;
+import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.items.HPPotion;
 import io.lerk.soultraps.sys.Handler;
+import io.lerk.soultraps.sys.console.ConsoleUtil;
 import io.lerk.soultraps.sys.dialog.Message;
 
 import java.util.Arrays;
@@ -78,7 +80,7 @@ public class Alchemist extends DialogMob {
     @Override
     protected boolean shouldStartConversation() {
         return isTouching(Player.class) &&
-                Greenfoot.isKeyDown(CONV_START);
+                (!ConsoleUtil.isConsoleOpen((Level) getWorld()) && Greenfoot.isKeyDown(CONV_START));
     }
 
     @Override

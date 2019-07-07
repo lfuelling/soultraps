@@ -6,9 +6,11 @@ import greenfoot.Greenfoot;
 import greenfoot.GreenfootImage;
 import io.lerk.soultraps.items.Effect;
 import io.lerk.soultraps.items.Item;
+import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.levels.types.HellLevel;
 import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.sys.Fonts;
+import io.lerk.soultraps.sys.console.ConsoleUtil;
 
 import java.util.ArrayList;
 
@@ -23,8 +25,10 @@ import static io.lerk.soultraps.sys.Soultraps.Controls.*;
  */
 public class HUD extends Actor {
 
-    public static final int WIDTH = 9 * CELL_SIZE;
-    public static final int HEIGHT = 7 * CELL_SIZE;
+    private static final int WIDTH = 9 * CELL_SIZE;
+
+    private static final int HEIGHT = 7 * CELL_SIZE;
+
     /**
      * Counter value used for throttling.
      */
@@ -54,27 +58,29 @@ public class HUD extends Actor {
     }
 
     private void handleItemSelection() {
-        ArrayList<Item> items = Player.getSelf().getItems();
-        if (Greenfoot.isKeyDown(USE_ITEM)) {
-            if (items.size() > selectedItem) {
-                items.get(selectedItem).getEffects().forEach(Effect::handle);
-            }
-        } else if (Greenfoot.isKeyDown(SEL_ITEM_DN) && items.size() > 0) {
-            if (selectedItem > 0) {
-                selectedItem--;
-            } else if (selectedItem < 0) {
+        if (!ConsoleUtil.isConsoleOpen((Level) getWorld())) {
+            ArrayList<Item> items = Player.getSelf().getItems();
+            if (Greenfoot.isKeyDown(USE_ITEM)) {
+                if (items.size() > selectedItem) {
+                    items.get(selectedItem).getEffects().forEach(Effect::handle);
+                }
+            } else if (Greenfoot.isKeyDown(SEL_ITEM_DN) && items.size() > 0) {
+                if (selectedItem > 0) {
+                    selectedItem--;
+                } else if (selectedItem < 0) {
+                    selectedItem = 0;
+                }
+            } else if (Greenfoot.isKeyDown(SEL_ITEM_UP) && items.size() > 0) {
+                if (selectedItem >= items.size()) {
+                    selectedItem = items.size() - 1;
+                } else {
+                    selectedItem++;
+                }
+            } else if (items.size() <= 1) {
                 selectedItem = 0;
-            }
-        } else if (Greenfoot.isKeyDown(SEL_ITEM_UP) && items.size() > 0) {
-            if (selectedItem >= items.size()) {
+            } else if (items.size() <= selectedItem) {
                 selectedItem = items.size() - 1;
-            } else {
-                selectedItem++;
             }
-        } else if (items.size() <= 1) {
-            selectedItem = 0;
-        } else if (items.size() <= selectedItem) {
-            selectedItem = items.size() - 1;
         }
     }
 
