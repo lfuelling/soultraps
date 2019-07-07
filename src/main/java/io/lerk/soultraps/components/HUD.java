@@ -64,6 +64,10 @@ public class HUD extends Actor {
                 if (items.size() > selectedItem) {
                     items.get(selectedItem).getEffects().forEach(Effect::handle);
                 }
+            } else if(Greenfoot.isKeyDown(DROP_ITEM)) {
+                if (items.size() > selectedItem) {
+                    Player.dropItem(selectedItem);
+                }
             } else if (Greenfoot.isKeyDown(SEL_ITEM_DN) && items.size() > 0) {
                 if (selectedItem > 0) {
                     selectedItem--;

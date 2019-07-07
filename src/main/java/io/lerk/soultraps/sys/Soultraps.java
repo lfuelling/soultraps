@@ -73,7 +73,8 @@ public class Soultraps extends GreenfootScenarioApplication
     public class Controls {
         public static final String CONV_START = "f";
         public static final String CONV_NEXT = "space";
-        public static final String USE_ITEM = "x";
+        public static final String USE_ITEM = "r";
+        public static final String DROP_ITEM = "t";
         public static final String SEL_ITEM_DN = "q";
         public static final String SEL_ITEM_UP = "e";
         public static final String WALK_UP = "w";

@@ -1,6 +1,7 @@
 package io.lerk.soultraps.levels.playable;
 
 import io.lerk.soultraps.components.HUD;
+import io.lerk.soultraps.items.GoldenPotion;
 import io.lerk.soultraps.levels.types.HellLevel;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
 import io.lerk.soultraps.mobs.player.Player;
@@ -11,6 +12,8 @@ import io.lerk.soultraps.sys.dialog.DialogManager;
 import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Random;
 
 /**
  * This is a regular (ie. easy) Level.
@@ -51,11 +54,15 @@ public class GenericHellLevel extends HellLevel {
         log.debug("Adding floppy...");
         addMob(new Floppy());
         log.info("Adding Mobs...");
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 6; i++) {
             addMob(new Zombie()); // only zombies in the hell
         }
         log.info("Adding castle...");
         addMob(new HellCastle());
+        if(new Random().nextInt(Integer.MAX_VALUE) == 50) {
+            log.info("Adding golden potion...");
+            addMob(new GoldenPotion());
+        }
         log.info("Adding player...");
         addMob(Player.getSelf());
         log.info("Adding HUD...");

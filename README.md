@@ -30,7 +30,8 @@ Soultraps is a 2D RPG made with Greenfoot.
 - Interact
     - Start conversation `f` (only for friendly mobs)
     - Next message `space`
-    - Use item selected in HUD `x`
+    - Use item selected in HUD `r`
+    - Drop item selected in HUD `t`
     - Change item selected in HUD `q`/`e`
 
 ## Third Party Stuff

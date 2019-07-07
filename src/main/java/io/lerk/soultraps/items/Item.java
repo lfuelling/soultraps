@@ -147,4 +147,32 @@ public abstract class Item extends Actor {
     public List<Effect> getEffects() {
         return effects;
     }
+
+    public static boolean addNextToPlayer(Item item) {
+        return addNextToPlayer(item, 1);
+    }
+
+    public static boolean addNextToPlayer(Item item, int distance) {
+        switch (Player.getSelf().getDirection()) {
+            case NORTH:
+                Player.getSelf().getWorld().addObject(item,
+                        Player.getSelf().getX(), Player.getSelf().getY() - distance);
+                break;
+            case SOUTH:
+                Player.getSelf().getWorld().addObject(item,
+                        Player.getSelf().getX(), Player.getSelf().getY() + distance);
+                break;
+            case WEST:
+                Player.getSelf().getWorld().addObject(item,
+                        Player.getSelf().getX() - distance, Player.getSelf().getY());
+                break;
+            case EAST:
+                Player.getSelf().getWorld().addObject(item,
+                        Player.getSelf().getX() + distance, Player.getSelf().getY());
+                break;
+            default:
+                return false;
+        }
+        return true;
+    }
 }

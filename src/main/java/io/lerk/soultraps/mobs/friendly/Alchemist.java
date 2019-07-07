@@ -1,6 +1,8 @@
 package io.lerk.soultraps.mobs.friendly;
 
 import greenfoot.Greenfoot;
+import io.lerk.soultraps.items.GoldenDistillate;
+import io.lerk.soultraps.items.GoldenPotion;
 import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.player.Player;
@@ -24,7 +26,9 @@ import static io.lerk.soultraps.sys.Soultraps.Controls.CONV_START;
  */
 public class Alchemist extends DialogMob {
 
-    private boolean talked = false;
+    private static boolean talked = false;
+    private static boolean potionCollected = false;
+    private static boolean distillateGiven = false;
 
     public Alchemist() {
         direction = Direction.EAST;
@@ -33,12 +37,34 @@ public class Alchemist extends DialogMob {
 
     @Override
     protected void updateWalkingStateNotTalking() {
-        // it doesn't walk.
+        List<GoldenPotion> goldenPotionsInRange = getObjectsInRange(10, GoldenPotion.class);
+        if (goldenPotionsInRange.size() > 0 && !isTouching(GoldenPotion.class)) {
+            goldenPotionsInRange.forEach(p -> {
+                Alchemist.this.turnTowards(p.getX(), p.getY());
+                walking = true;
+            });
+        } else {
+            walking = false;
+            direction = Direction.EAST;
+        }
     }
 
     @Override
     protected List<Message> getDialogMessages() {
-        if (talked) {
+        if (playerHasGoldenPotion()) {
+            return Arrays.asList(new Message("Oh, Hello there. I am the alchemist."),
+                    new Message("By the gods, is this the legendary GOLDEN POTION?"),
+                    new Message("It's said to give " + GoldenPotion.AMOUNT + " HP!"),
+                    new Message("Good thing you didn't use it."),
+                    new Message("I know how to distill it so it has magic powers!"),
+                    new Message("I have searched for it all my life!"),
+                    new Message("Would you mind helping an old man fulfill his dream?"),
+                    new Message("You can have the distillate. I just want to do it!"));
+        } else if (potionCollected) {
+            return Arrays.asList(new Message("I can't believe it! I finally did it!"),
+                    new Message("The process worked flawlessly!"),
+                    new Message("I bet the potion is a lot stronger now. Be careful!"));
+        } else if (talked) {
             return Arrays.asList(new Message("Oh, Hello there. I am the alchemist."),
                     new Message("I am on a secret quest."),
                     new Message("I can't tell you anything. Sorry."));
@@ -47,7 +73,7 @@ public class Alchemist extends DialogMob {
                     new Message("Hello there. I am the alchemist."),
                     new Message("I am on a quest to find the legendary"),
                     new Message("Golden Potion!"),
-                    new Message("It's said to give an exaggerating 2000 HP ! ! !"),
+                    new Message("It's said to give an exaggerating " + GoldenPotion.AMOUNT + " HP ! ! !"),
                     new Message("When being handled by a professional like me,"),
                     new Message("it is even said to give magic powers!"),
                     new Message("Like in the old legends..."),
@@ -61,6 +87,11 @@ public class Alchemist extends DialogMob {
         }
     }
 
+    private boolean playerHasGoldenPotion() {
+        return Player.getSelf().getItems().stream()
+                .anyMatch(i -> i.getClass().equals(GoldenPotion.class));
+    }
+
     @Override
     protected boolean isRecurring() {
         return true;
@@ -70,7 +101,9 @@ public class Alchemist extends DialogMob {
     protected List<Handler<Void>> getDialogDoneActions() {
         return Collections.singletonList(() -> {
             if (!talked) {
-                Player.increaseHealth(HPPotion.AMOUNT);
+                Player.pickupItem(new HPPotion());
+            } else if (!distillateGiven && potionCollected) {
+                Player.pickupItem(new GoldenDistillate());
             }
             talked = true;
             return null;
@@ -79,6 +112,21 @@ public class Alchemist extends DialogMob {
 
     @Override
     protected boolean shouldStartConversation() {
+        return playerWantsToTalk() || collectedGoldenPotion();
+    }
+
+    private boolean collectedGoldenPotion() {
+        List<GoldenPotion> potionsInRange = getIntersectingObjects(GoldenPotion.class);
+        if (potionsInRange.size() > 0) {
+            potionsInRange.forEach(p -> {
+                getWorld().removeObject(p);
+                potionCollected = true;
+            });
+        }
+        return false;
+    }
+
+    private boolean playerWantsToTalk() {
         return isTouching(Player.class) &&
                 (!ConsoleUtil.isConsoleOpen((Level) getWorld()) && Greenfoot.isKeyDown(CONV_START));
     }

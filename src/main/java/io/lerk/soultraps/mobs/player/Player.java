@@ -122,12 +122,21 @@ public class Player extends DialogMob {
         getSelf().getWorld().removeObject(item);
     }
 
+    public static void dropItem(int item) {
+        Item selectedItem = self.items.get(item);
+        if (selectedItem != null) {
+            if (Item.addNextToPlayer(selectedItem, 2)) {
+                self.items.remove(selectedItem);
+            }
+        }
+    }
+
     /**
      * Updates {@link #walking} and {@link #direction} according to currently pressed buttons.
      */
     @Override
     protected void updateWalkingStateNotTalking() {
-        if(!ConsoleUtil.isConsoleOpen((Level) getWorld())) {
+        if (!ConsoleUtil.isConsoleOpen((Level) getWorld())) {
             if (Greenfoot.isKeyDown(WALK_UP)) {
                 walking = true;
                 direction = Direction.NORTH;
@@ -208,7 +217,7 @@ public class Player extends DialogMob {
     }
 
     private void handleAttack() {
-        if(!ConsoleUtil.isConsoleOpen((Level) getWorld())) {
+        if (!ConsoleUtil.isConsoleOpen((Level) getWorld())) {
             if (Greenfoot.isKeyDown(ATK_UP)) {
                 attack.toggleAttack(true, Direction.NORTH);
             } else if (Greenfoot.isKeyDown(ATK_DN)) {

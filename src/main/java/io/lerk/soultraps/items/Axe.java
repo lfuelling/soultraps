@@ -27,7 +27,9 @@ public class Axe extends Item {
                 "Chucks wood.",
                 100, 5);
         effects = Collections.singletonList(() -> {
-            addNextToPlayer();
+            if (addNextToPlayer(this)) {
+                lastAdded = System.currentTimeMillis();
+            }
             List<TileActor> tilesInRange = Axe.this.getIntersectingObjects(TileActor.class);
             if (tilesInRange.size() > 0) {
                 tilesInRange.forEach(t -> {
@@ -43,7 +45,7 @@ public class Axe extends Item {
     @Override
     public void act() {
         handleRotation();
-        if(System.currentTimeMillis() - lastAdded >= 200) {
+        if (System.currentTimeMillis() - lastAdded >= 200) {
             getWorld().removeObject(this);
         }
     }
@@ -65,29 +67,5 @@ public class Axe extends Item {
                 break;
         }
         setRotation(Player.getSelf().getDirection().getRotation());
-    }
-
-    private void addNextToPlayer() {
-        switch (Player.getSelf().getDirection()) {
-            case NORTH:
-                Player.getSelf().getWorld().addObject(this,
-                        Player.getSelf().getX(), Player.getSelf().getY() - 1);
-                break;
-            case SOUTH:
-                Player.getSelf().getWorld().addObject(this,
-                        Player.getSelf().getX(), Player.getSelf().getY() + 1);
-                break;
-            case WEST:
-                Player.getSelf().getWorld().addObject(this,
-                        Player.getSelf().getX() - 1, Player.getSelf().getY());
-                break;
-            case EAST:
-                Player.getSelf().getWorld().addObject(this,
-                        Player.getSelf().getX() + 1, Player.getSelf().getY());
-                break;
-            default:
-                return;
-        }
-        lastAdded = System.currentTimeMillis();
     }
 }
