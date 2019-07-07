@@ -1,5 +1,6 @@
 package io.lerk.soultraps.levels;
 
+import greenfoot.Actor;
 import greenfoot.World;
 import io.lerk.soultraps.mobs.stat1c.HellCastle;
 import io.lerk.soultraps.sys.console.ConsoleUtil;
@@ -28,6 +29,10 @@ import static io.lerk.soultraps.tiles.Tiles.byName;
  * @author Lukas Fülling (lukas@k40s.net)
  */
 public abstract class Level extends World {
+
+    public static final int HUD_X = 57;
+
+    public static final int HUD_Y = 92;
 
     /**
      * Base world width.
@@ -170,7 +175,7 @@ public abstract class Level extends World {
      *
      * @param mob the mob to add.
      */
-    public void addMob(BaseMob mob) {
+    public void addMob(Actor mob) {
         StopWatch stopWatch = new StopWatch(StopWatch.LogLevel.DEBUG);
         stopWatch.start();
         int randomX = 0;
@@ -191,7 +196,7 @@ public abstract class Level extends World {
             } else if (mob instanceof Floppy && floppyCoordinates != null) {
                 return;
             } else if (mob instanceof HellCastle) {
-                addHellCastle(mob, randomX, randomY);
+                addHellCastle(((HellCastle) mob), randomX, randomY);
                 return;
             } else {
                 addObject(mob, randomX, randomY);

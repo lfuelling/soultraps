@@ -63,11 +63,11 @@ class TilesTest {
      */
     @Test
     void byName() {
-        Assertions.assertEquals(grassTile.getTileType(), Tiles.byName(Grass01.getName()).getTileType());
-        Assertions.assertEquals(desertTile.getTileType(), Tiles.byName(Ground01.getName()).getTileType());
-        Assertions.assertEquals(hellTile.getTileType(), Tiles.byName(HellGround01.getName()).getTileType());
-        Assertions.assertEquals(emptyTile.getTileType(), Tiles.byName(Empty.getName()).getTileType());
-        Assertions.assertEquals(treeTile.getTileType(), Tiles.byName(Tree01.getName()).getTileType());
-        Assertions.assertEquals(desertTreeTile.getTileType(), Tiles.byName(DesertTiles.Tree01.getName()).getTileType());
+        Assertions.assertEquals(grassTile.getTile(), Tiles.byName(Grass01.getName()).getTile());
+        Assertions.assertEquals(desertTile.getTile(), Tiles.byName(Ground01.getName()).getTile());
+        Assertions.assertEquals(hellTile.getTile(), Tiles.byName(HellGround01.getName()).getTile());
+        Assertions.assertEquals(emptyTile.getTile(), Tiles.byName(Empty.getName()).getTile());
+        Assertions.assertEquals(treeTile.getTile(), Tiles.byName(Tree01.getName()).getTile());
+        Assertions.assertEquals(desertTreeTile.getTile(), Tiles.byName(DesertTiles.Tree01.getName()).getTile());
     }
 }

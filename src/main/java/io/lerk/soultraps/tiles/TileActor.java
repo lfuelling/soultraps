@@ -40,7 +40,7 @@ public class TileActor extends Actor {
      *
      * @return tile type
      */
-    public Tile getTileType() {
+    public Tile getTile() {
         return tileType;
     }
 

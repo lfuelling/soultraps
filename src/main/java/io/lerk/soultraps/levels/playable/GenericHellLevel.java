@@ -59,6 +59,6 @@ public class GenericHellLevel extends HellLevel {
         log.info("Adding player...");
         addMob(Player.getSelf());
         log.info("Adding HUD...");
-        addObject(new HUD(), 60, 96);
+        addObject(new HUD(), HUD_X, HUD_Y);
     }
 }

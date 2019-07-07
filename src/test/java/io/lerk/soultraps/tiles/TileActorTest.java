@@ -45,12 +45,12 @@ class TileActorTest {
 
     @Test
     void getTileType() {
-        Assertions.assertEquals(grassTile.getTileType(), Grass01);
-        Assertions.assertEquals(desertTile.getTileType(), Ground01);
-        Assertions.assertEquals(hellTile.getTileType(), HellGround01);
-        Assertions.assertEquals(emptyTile.getTileType(), Empty);
-        Assertions.assertEquals(treeTile.getTileType(), Tree01);
-        Assertions.assertEquals(desertTreeTile.getTileType(), DesertTiles.Tree01);
+        Assertions.assertEquals(grassTile.getTile(), Grass01);
+        Assertions.assertEquals(desertTile.getTile(), Ground01);
+        Assertions.assertEquals(hellTile.getTile(), HellGround01);
+        Assertions.assertEquals(emptyTile.getTile(), Empty);
+        Assertions.assertEquals(treeTile.getTile(), Tree01);
+        Assertions.assertEquals(desertTreeTile.getTile(), DesertTiles.Tree01);
     }
 
     @Test

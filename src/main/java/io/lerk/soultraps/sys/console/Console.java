@@ -56,8 +56,6 @@ public final class Console extends Actor {
                 } else {
                     text = "";
                 }
-            } else if (arrowKeyPressed()) {
-                log.warn("TODO: implement command history/cursors!");
             } else {
                 handleKeyboardInput();
             }
@@ -78,13 +76,6 @@ public final class Console extends Actor {
         textImage.setFont(Fonts.getFont(Fonts.Types.SKYRIM, 24));
         textImage.drawString(text, 4, (textImage.getHeight() / 2));
         return textImage;
-    }
-
-    private boolean arrowKeyPressed() {
-        return Greenfoot.isKeyDown("down") ||
-                Greenfoot.isKeyDown("up") ||
-                Greenfoot.isKeyDown("left") ||
-                Greenfoot.isKeyDown("right");
     }
 
     private String runCommand() {

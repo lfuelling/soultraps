@@ -7,7 +7,7 @@ import io.lerk.soultraps.mobs.Enemies.Wolf;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
 import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.mobs.stat1c.Floppy;
-import io.lerk.soultraps.mobs.stat1c.HPPotion;
+import io.lerk.soultraps.items.HPPotion;
 import io.lerk.soultraps.mobs.stat1c.Portal;
 import io.lerk.soultraps.sys.dialog.DialogManager;
 import javafx.util.Pair;
@@ -65,6 +65,6 @@ public class GenericGrasslandLevel extends GrasslandLevel {
         log.info("Adding player...");
         addMob(Player.getSelf());
         log.info("Adding HUD...");
-        addObject(new HUD(), 60, 96);
+        addObject(new HUD(), HUD_X, HUD_Y);
     }
 }

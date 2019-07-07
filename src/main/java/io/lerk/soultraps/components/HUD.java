@@ -2,9 +2,18 @@ package io.lerk.soultraps.components;
 
 import greenfoot.Actor;
 import greenfoot.Color;
+import greenfoot.Greenfoot;
 import greenfoot.GreenfootImage;
+import io.lerk.soultraps.items.Effect;
+import io.lerk.soultraps.items.Item;
+import io.lerk.soultraps.levels.types.HellLevel;
 import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.sys.Fonts;
+
+import java.util.ArrayList;
+
+import static io.lerk.soultraps.levels.Level.CELL_SIZE;
+import static io.lerk.soultraps.sys.Soultraps.Controls.*;
 
 /**
  * A HUD showing the player's current health and other stuff.
@@ -14,12 +23,16 @@ import io.lerk.soultraps.sys.Fonts;
  */
 public class HUD extends Actor {
 
+    public static final int WIDTH = 9 * CELL_SIZE;
+    public static final int HEIGHT = 7 * CELL_SIZE;
     /**
      * Counter value used for throttling.
      */
     private long lastUpdateMillis;
 
     private int lastHealth;
+
+    private int selectedItem = 0;
 
     /**
      * Constructor.
@@ -35,7 +48,33 @@ public class HUD extends Actor {
     public void act() {
         if (System.currentTimeMillis() - lastUpdateMillis >= 100) {
             updateImage();
+            handleItemSelection();
             lastUpdateMillis = System.currentTimeMillis();
+        }
+    }
+
+    private void handleItemSelection() {
+        ArrayList<Item> items = Player.getSelf().getItems();
+        if (Greenfoot.isKeyDown(USE_ITEM)) {
+            if (items.size() > selectedItem) {
+                items.get(selectedItem).getEffects().forEach(Effect::handle);
+            }
+        } else if (Greenfoot.isKeyDown(SEL_ITEM_DN) && items.size() > 0) {
+            if (selectedItem > 0) {
+                selectedItem--;
+            } else if (selectedItem < 0) {
+                selectedItem = 0;
+            }
+        } else if (Greenfoot.isKeyDown(SEL_ITEM_UP) && items.size() > 0) {
+            if (selectedItem >= items.size()) {
+                selectedItem = items.size() - 1;
+            } else {
+                selectedItem++;
+            }
+        } else if (items.size() <= 1) {
+            selectedItem = 0;
+        } else if (items.size() <= selectedItem) {
+            selectedItem = items.size() - 1;
         }
     }
 
@@ -44,19 +83,37 @@ public class HUD extends Actor {
      * This should call {@link #setImage(GreenfootImage)}.
      */
     private void updateImage() {
-        GreenfootImage image = new GreenfootImage(48 * 3, 48 * 2);
-
+        GreenfootImage textImage = new GreenfootImage(WIDTH, HEIGHT);
         Integer health = Player.getSelf().getHealth();
         if (health > lastHealth) {
-            image.setColor(Color.GREEN);
+            textImage.setColor(Color.GREEN);
         } else if (health < lastHealth) {
-            image.setColor(Color.RED);
+            textImage.setColor(Color.RED);
         } else {
-            image.setColor(Color.WHITE);
+            textImage.setColor(Color.WHITE);
         }
-        image.setFont(Fonts.getFont(Fonts.Types.SKYRIM, 32f));
-        image.drawString(health + " HP", 0, 24);
-        setImage(image);
+        textImage.setFont(Fonts.getFont(Fonts.Types.SKYRIM, 32f));
+        textImage.drawString(health + " HP", 0, 24);
         lastHealth = health;
+        textImage.setFont(Fonts.getFont(Fonts.Types.SKYRIM, 20f));
+        textImage.drawString(getSelectedItemString(), 0, 52);
+        setImage(textImage);
+    }
+
+    private String getSelectedItemString() {
+        if (Player.getSelf().getItems().size() == 0) {
+            return "Inventory Empty";
+        }
+        String res = "";
+        if (Player.getSelf().getItems().size() >= (selectedItem + 1)) {
+            if (selectedItem > 0) {
+                res += "< ";
+            }
+            res += Player.getSelf().getItems().get(selectedItem).getName();
+            if (selectedItem + 1 < Player.getSelf().getItems().size()) {
+                res += " >";
+            }
+        }
+        return res;
     }
 }

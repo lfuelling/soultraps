@@ -10,87 +10,87 @@ public enum GrasslandTiles implements Tile {
     /**
      * Grass tile 1.
      */
-    Grass01("grassland/grass01", false),
+    Grass01("grassland/grass01", false, Type.GROUND),
 
     /**
      * Grass tile 2.
      */
-    Grass02("grassland/grass02", false),
+    Grass02("grassland/grass02", false, Type.GROUND),
 
     /**
      * Tree tile 1.
      */
-    Tree01("grassland/tree01", false),
+    Tree01("grassland/tree01", false, Type.TREE),
 
     /**
      * Tree tile 2.
      */
-    Tree02("grassland/tree02", false),
+    Tree02("grassland/tree02", false, Type.TREE),
 
     /**
      * Tree tile 3.
      */
-    Tree03("grassland/tree03", false),
+    Tree03("grassland/tree03", false, Type.TREE),
 
     /**
      * Stones tile 1.
      */
-    Stones01("grassland/stones01", false),
+    Stones01("grassland/stones01", false, Type.OTHER),
 
     /**
      * Stones tile 2.
      */
-    Stones02("grassland/stones02", false),
+    Stones02("grassland/stones02", false, Type.OTHER),
 
     /**
      * Stones tile 3.
      */
-    Stones03("grassland/stones03", false),
+    Stones03("grassland/stones03", false, Type.OTHER),
 
     /**
      * Bush tile 1.
      */
-    Bush01("grassland/bush01", false),
+    Bush01("grassland/bush01", false, Type.PLANT),
 
     /**
      * Bush tile 2.
      */
-    Bush02("grassland/bush02", false),
+    Bush02("grassland/bush02", false, Type.PLANT),
 
     /**
      * Fern tile 1.
      */
-    Fern01("grassland/fern01", false),
+    Fern01("grassland/fern01", false, Type.PLANT),
 
     /**
      * Fern tile 2.
      */
-    Fern02("grassland/fern02", false),
+    Fern02("grassland/fern02", false, Type.PLANT),
 
     /**
      * Fern tile 3.
      */
-    Fern03("grassland/fern03", false),
+    Fern03("grassland/fern03", false, Type.PLANT),
 
     /**
      * Fern tile 4.
      */
-    Fern04("grassland/fern04", false),
+    Fern04("grassland/fern04", false, Type.PLANT),
 
     /**
      * Tree stump tile 1.
      */
-    TreeStump01("grassland/treestump01", false),
+    TreeStump01("grassland/treestump01", false, Type.TREE),
 
     /**
      * Tree stump tile 2.
      */
-    TreeStump02("grassland/treestump02", false),
+    TreeStump02("grassland/treestump02", false, Type.TREE),
 
     /**
      * Tree stump tile 3.
      */
-    TreeStump03("grassland/treestump03", false);
+    TreeStump03("grassland/treestump03", false, Type.TREE);
 
     /**
      * Tile name.
@@ -102,15 +102,18 @@ public enum GrasslandTiles implements Tile {
      */
     private final Boolean blocking;
 
+    private final Type type;
+
     /**
      * Constructor.
-     *
-     * @param name     tile name
+     *  @param name     tile name
      * @param blocking decides if the player can walk over the tile
+     * @param type the tile type
      */
-    GrasslandTiles(String name, Boolean blocking) {
+    GrasslandTiles(String name, Boolean blocking, Type type) {
         this.name = name;
         this.blocking = blocking;
+        this.type = type;
     }
 
     /**
@@ -131,6 +134,11 @@ public enum GrasslandTiles implements Tile {
     @Override
     public Boolean isBlocking() {
         return blocking;
+    }
+
+    @Override
+    public Type getType() {
+        return type;
     }
 
 }

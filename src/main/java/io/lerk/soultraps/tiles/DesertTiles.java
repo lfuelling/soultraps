@@ -10,32 +10,32 @@ public enum DesertTiles implements Tile {
     /**
      * Ground tile.
      */
-    Ground01("desert/ground01", false),
+    Ground01("desert/ground01", false, Type.GROUND),
 
     /**
      * Ground tile.
      */
-    Ground02("desert/ground02", false),
+    Ground02("desert/ground02", false, Type.GROUND),
 
     /**
      * Cactus tile.
      */
-    Cactus01("desert/cactus01", true),
+    Cactus01("desert/cactus01", true, Type.PLANT),
 
     /**
      * Cactus tile.
      */
-    Cactus02("desert/cactus02", true),
+    Cactus02("desert/cactus02", true, Type.PLANT),
 
     /**
      * Tree tile.
      */
-    Tree01("desert/tree01", true),
+    Tree01("desert/tree01", true, Type.TREE),
 
     /**
      * Tree tile.
      */
-    Tree02("desert/tree02", true);
+    Tree02("desert/tree02", true, Type.TREE);
 
     /**
      * Tile name.
@@ -46,17 +46,19 @@ public enum DesertTiles implements Tile {
      * Decides if the player can walk over the tile.
      */
     private final Boolean blocking;
+    private final Type type;
 
 
     /**
      * Constructor.
-     *
-     * @param name     tile name
+     *  @param name     tile name
      * @param blocking decides if the player can walk over the tile
+     * @param type the tile type
      */
-    DesertTiles(String name, Boolean blocking) {
+    DesertTiles(String name, Boolean blocking, Type type) {
         this.name = name;
         this.blocking = blocking;
+        this.type = type;
     }
 
     /**
@@ -77,5 +79,10 @@ public enum DesertTiles implements Tile {
     @Override
     public Boolean isBlocking() {
         return blocking;
+    }
+
+    @Override
+    public Type getType() {
+        return type;
     }
 }

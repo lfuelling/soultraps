@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import static io.lerk.soultraps.sys.Soultraps.Controls.CONV_START;
 import static io.lerk.soultraps.tiles.Tiles.FILE_SUFFIX;
 
 /**
@@ -105,7 +106,7 @@ public class Lumberjack extends DialogMob {
     protected boolean shouldStartConversation() {
         return isTouching(Player.class) &&
                 !playerHasAxe() &&
-                Greenfoot.isKeyDown("e");
+                Greenfoot.isKeyDown(CONV_START);
     }
 
     /**
@@ -168,11 +169,11 @@ public class Lumberjack extends DialogMob {
      */
     private boolean isTreeInRange(List<TileActor> tiles) {
         return tiles.stream()
-                .filter(t -> t.getTileType().equals(GrasslandTiles.Tree01) ||
-                        t.getTileType().equals(GrasslandTiles.Tree02) ||
-                        t.getTileType().equals(GrasslandTiles.Tree03) ||
-                        t.getTileType().equals(DesertTiles.Tree01) ||
-                        t.getTileType().equals(DesertTiles.Tree02))
+                .filter(t -> t.getTile().equals(GrasslandTiles.Tree01) ||
+                        t.getTile().equals(GrasslandTiles.Tree02) ||
+                        t.getTile().equals(GrasslandTiles.Tree03) ||
+                        t.getTile().equals(DesertTiles.Tree01) ||
+                        t.getTile().equals(DesertTiles.Tree02))
                 .collect(Collectors.toList()).size() >= 1;
     }
 

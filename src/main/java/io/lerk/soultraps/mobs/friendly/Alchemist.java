@@ -3,13 +3,15 @@ package io.lerk.soultraps.mobs.friendly;
 import greenfoot.Greenfoot;
 import io.lerk.soultraps.mobs.Direction;
 import io.lerk.soultraps.mobs.player.Player;
-import io.lerk.soultraps.mobs.stat1c.HPPotion;
+import io.lerk.soultraps.items.HPPotion;
 import io.lerk.soultraps.sys.Handler;
 import io.lerk.soultraps.sys.dialog.Message;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import static io.lerk.soultraps.sys.Soultraps.Controls.CONV_START;
 
 /**
  * Old man talking gibberish and then adding some health.
@@ -42,7 +44,7 @@ public class Alchemist extends DialogMob {
             return Arrays.asList(
                     new Message("Hello there. I am the alchemist."),
                     new Message("I am on a quest to find the legendary"),
-                    new Message("RINNROOT!"),
+                    new Message("Golden Potion!"),
                     new Message("It's said to give an exaggerating 2000 HP ! ! !"),
                     new Message("When being handled by a professional like me,"),
                     new Message("it is even said to give magic powers!"),
@@ -76,7 +78,7 @@ public class Alchemist extends DialogMob {
     @Override
     protected boolean shouldStartConversation() {
         return isTouching(Player.class) &&
-                Greenfoot.isKeyDown("e");
+                Greenfoot.isKeyDown(CONV_START);
     }
 
     @Override

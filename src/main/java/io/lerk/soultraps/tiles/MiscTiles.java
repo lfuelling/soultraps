@@ -10,7 +10,7 @@ public enum MiscTiles implements Tile {
     /**
      * Empty tile.
      */
-    Empty("empty", false);
+    Empty("empty", false, Type.OTHER);
 
     /**
      * Tile name.
@@ -22,15 +22,19 @@ public enum MiscTiles implements Tile {
      */
     private final Boolean blocking;
 
+    private final Type type;
+
     /**
      * Constructor.
      *
-     * @param name     tile name
+     *  @param name     tile name
      * @param blocking decides if the player can walk over the tile
+     * @param type the tile type
      */
-    MiscTiles(String name, Boolean blocking) {
+    MiscTiles(String name, Boolean blocking, Type type) {
         this.name = name;
         this.blocking = blocking;
+        this.type = type;
     }
 
     /**
@@ -51,5 +55,10 @@ public enum MiscTiles implements Tile {
     @Override
     public Boolean isBlocking() {
         return blocking;
+    }
+
+    @Override
+    public Type getType() {
+        return type;
     }
 }

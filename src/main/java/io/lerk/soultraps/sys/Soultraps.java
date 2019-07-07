@@ -69,5 +69,21 @@ public class Soultraps extends GreenfootScenarioApplication
     public static void gameOver() {
         Greenfoot.setWorld(new GameOverScreen());
     }
+
+    public class Controls {
+        public static final String CONV_START = "f";
+        public static final String CONV_NEXT = "space";
+        public static final String USE_ITEM = "x";
+        public static final String SEL_ITEM_DN = "q";
+        public static final String SEL_ITEM_UP = "e";
+        public static final String WALK_UP = "w";
+        public static final String WALK_DN = "s";
+        public static final String WALK_LT = "a";
+        public static final String WALK_RT = "d";
+        public static final String ATK_UP = "up";
+        public static final String ATK_DN = "down";
+        public static final String ATK_LT = "left";
+        public static final String ATK_RT = "right";
+    }
 }
 

@@ -7,6 +7,8 @@ import greenfoot.GreenfootImage;
 import io.lerk.soultraps.levels.Level;
 import io.lerk.soultraps.sys.Fonts;
 
+import static io.lerk.soultraps.sys.Soultraps.Controls.CONV_NEXT;
+
 /**
  * An {@link Actor} implementation that represents a message.
  * This class draws the message box, frame and text and holds a reference to it's dialog.
@@ -58,7 +60,7 @@ public class Message extends Actor {
         }
         if (!firstAct &&
                 System.currentTimeMillis() - firstActMillis > 500 &&
-                Greenfoot.isKeyDown("space")) {
+                Greenfoot.isKeyDown(CONV_NEXT)) {
             DialogManager.dismiss(this);
         }
     }

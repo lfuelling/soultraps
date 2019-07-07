@@ -1,5 +1,9 @@
 package io.lerk.soultraps.items;
 
+import greenfoot.Actor;
+import io.lerk.soultraps.mobs.player.Player;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,7 +11,7 @@ import java.util.List;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public abstract class Item {
+public abstract class Item extends Actor {
 
     /**
      * Item name.
@@ -30,14 +34,9 @@ public abstract class Item {
     private int weight;
 
     /**
-     * Item damage.
-     */
-    private int damage;
-
-    /**
      * Item effects.
      */
-    private List<Effect> effects;
+    protected List<Effect> effects;
 
     /**
      * Constructor.
@@ -46,16 +45,26 @@ public abstract class Item {
      * @param description the description
      * @param value       the value
      * @param weight      the weight
-     * @param damage      the damage
      * @param effects     the item effects
      */
-    public Item(String name, String description, int value, int weight, int damage, List<Effect> effects) {
+    public Item(String name, String description, int value, int weight, List<Effect> effects) {
         this.name = name;
         this.description = description;
         this.value = value;
         this.weight = weight;
-        this.damage = damage;
         this.effects = effects;
+    }
+
+    public Item(String name, String description, int value, int weight) {
+        this(name, description, value, weight, new ArrayList<>());
+    }
+
+    @Override
+    public void act() {
+        super.act();
+        if(isTouching(Player.class)) {
+            Player.pickupItem(this);
+        }
     }
 
     /**
@@ -131,38 +140,11 @@ public abstract class Item {
     }
 
     /**
-     * Getter for item damage.
-     *
-     * @return item damage
-     */
-    public int getDamage() {
-        return damage;
-    }
-
-    /**
-     * Setter for item damage.
-     *
-     * @param damage item damage
-     */
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
-    /**
      * Getter for item effects.
      *
      * @return item effects.
      */
     public List<Effect> getEffects() {
         return effects;
-    }
-
-    /**
-     * Setter for item effects.
-     *
-     * @param effects item effects.
-     */
-    public void setEffects(List<Effect> effects) {
-        this.effects = effects;
     }
 }

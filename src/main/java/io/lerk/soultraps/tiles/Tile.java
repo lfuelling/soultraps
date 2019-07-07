@@ -22,4 +22,10 @@ public interface Tile {
      * @return true if the player is unable to step on the tile
      */
     Boolean isBlocking();
+
+    Type getType();
+
+    enum Type {
+        TREE, OTHER, FLOWING, GROUND, PLANT;
+    }
 }

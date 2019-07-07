@@ -5,7 +5,7 @@ import io.lerk.soultraps.levels.types.DesertLevel;
 import io.lerk.soultraps.mobs.Enemies.Zombie;
 import io.lerk.soultraps.mobs.player.Player;
 import io.lerk.soultraps.mobs.stat1c.Floppy;
-import io.lerk.soultraps.mobs.stat1c.HPPotion;
+import io.lerk.soultraps.items.HPPotion;
 import io.lerk.soultraps.mobs.stat1c.HellPortal;
 import io.lerk.soultraps.mobs.stat1c.Portal;
 import io.lerk.soultraps.sys.dialog.DialogManager;
@@ -67,6 +67,6 @@ public class GenericDesertLevel extends DesertLevel {
         log.info("Adding player...");
         addMob(Player.getSelf());
         log.info("Adding HUD...");
-        addObject(new HUD(), 60, 96);
+        addObject(new HUD(), HUD_X, HUD_Y);
     }
 }

@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import static io.lerk.soultraps.sys.Soultraps.Controls.*;
 import static io.lerk.soultraps.tiles.Tiles.FILE_SUFFIX;
 
 /**
@@ -114,21 +115,26 @@ public class Player extends DialogMob {
         getSelf().setHealth(getSelf().getHealth() + amount);
     }
 
+    public static void pickupItem(Item item) {
+        getSelf().items.add(item);
+        getSelf().getWorld().removeObject(item);
+    }
+
     /**
      * Updates {@link #walking} and {@link #direction} according to currently pressed buttons.
      */
     @Override
     protected void updateWalkingStateNotTalking() {
-        if (Greenfoot.isKeyDown("w")) {
+        if (Greenfoot.isKeyDown(WALK_UP)) {
             walking = true;
             direction = Direction.NORTH;
-        } else if (Greenfoot.isKeyDown("a")) {
+        } else if (Greenfoot.isKeyDown(WALK_LT)) {
             walking = true;
             direction = Direction.WEST;
-        } else if (Greenfoot.isKeyDown("s")) {
+        } else if (Greenfoot.isKeyDown(WALK_DN)) {
             walking = true;
             direction = Direction.SOUTH;
-        } else if (Greenfoot.isKeyDown("d")) {
+        } else if (Greenfoot.isKeyDown(WALK_RT)) {
             walking = true;
             direction = Direction.EAST;
         } else {
@@ -198,13 +204,13 @@ public class Player extends DialogMob {
     }
 
     private void handleAttack() {
-        if (Greenfoot.isKeyDown("up")) {
+        if (Greenfoot.isKeyDown(ATK_UP)) {
             attack.toggleAttack(true, Direction.NORTH);
-        } else if (Greenfoot.isKeyDown("down")) {
+        } else if (Greenfoot.isKeyDown(ATK_DN)) {
             attack.toggleAttack(true, Direction.SOUTH);
-        } else if (Greenfoot.isKeyDown("left")) {
+        } else if (Greenfoot.isKeyDown(ATK_LT)) {
             attack.toggleAttack(true, Direction.WEST);
-        } else if (Greenfoot.isKeyDown("right")) {
+        } else if (Greenfoot.isKeyDown(ATK_RT)) {
             attack.toggleAttack(true, Direction.EAST);
         } else {
             attack.toggleAttack(false, Direction.EAST);
