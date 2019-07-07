@@ -62,7 +62,7 @@ public abstract class Item extends Actor {
     @Override
     public void act() {
         super.act();
-        if(isTouching(Player.class)) {
+        if (isTouching(Player.class)) {
             getWorld().removeObject(this);
             Player.getSelf().addItem(this);
         }

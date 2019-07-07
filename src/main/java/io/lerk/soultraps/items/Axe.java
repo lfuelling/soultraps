@@ -1,9 +1,6 @@
 package io.lerk.soultraps.items;
 
-import greenfoot.Greenfoot;
-import io.lerk.soultraps.levels.playable.GenericGrasslandLevel;
-import io.lerk.soultraps.mobs.player.Player;
-import io.lerk.soultraps.sys.Soultraps;
+import io.lerk.soultraps.sys.ActorUtils;
 import io.lerk.soultraps.tiles.Tile;
 import io.lerk.soultraps.tiles.TileActor;
 
@@ -44,28 +41,10 @@ public class Axe extends Item {
 
     @Override
     public void act() {
-        handleRotation();
+        ActorUtils.handleRotation(this, true);
         if (System.currentTimeMillis() - lastAdded >= 200) {
             getWorld().removeObject(this);
         }
     }
 
-    private void handleRotation() {
-        switch (Player.getSelf().getDirection()) {
-            case NORTH:
-                setLocation(Player.getSelf().getX(), Player.getSelf().getY() - 1);
-                break;
-            case EAST:
-                setLocation(Player.getSelf().getX() + 1, Player.getSelf().getY());
-                break;
-            case SOUTH:
-                setLocation(Player.getSelf().getX(), Player.getSelf().getY() + 1);
-                break;
-            case WEST:
-            default:
-                setLocation(Player.getSelf().getX() - 1, Player.getSelf().getY());
-                break;
-        }
-        setRotation(Player.getSelf().getDirection().getRotation());
-    }
 }
