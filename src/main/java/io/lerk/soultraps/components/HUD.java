@@ -25,7 +25,7 @@ import static io.lerk.soultraps.sys.Soultraps.Controls.*;
  */
 public class HUD extends Actor {
 
-    private static final int WIDTH = 9 * CELL_SIZE;
+    private static final int WIDTH = 11 * CELL_SIZE;
 
     private static final int HEIGHT = 7 * CELL_SIZE;
 
@@ -99,7 +99,11 @@ public class HUD extends Actor {
             textImage.setColor(Color.WHITE);
         }
         textImage.setFont(Fonts.getFont(Fonts.Types.SKYRIM, 32f));
-        textImage.drawString(health + " HP", 0, 24);
+        int inventorySize = Player.getSelf().getItems().size();
+        String hpString = health + " HP (" +
+                ((inventorySize > 0) ? (selectedItem + 1) : selectedItem) +
+                "/" + inventorySize + ")";
+        textImage.drawString(hpString, 0, 24);
         lastHealth = health;
         textImage.setFont(Fonts.getFont(Fonts.Types.SKYRIM, 20f));
         textImage.drawString(getSelectedItemString(), 0, 52);

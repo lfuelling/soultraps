@@ -77,7 +77,9 @@ public class TestLevel extends GenericGrasslandLevel {
         log.debug("Adding DialogManager...");
         addObject(DialogManager.get(), 0, 0);
         log.info("Adding Potions...");
-        addMob(new HPPotion());
+        for (int i = 0; i < 4; i++) {
+            addMob(new HPPotion());
+        }
         log.info("Adding Portal...");
         addMob(new Portal());
         log.info("Adding Hell Portal...");
