@@ -6,7 +6,15 @@
 
 Soultraps is a 2D RPG made with Greenfoot. 
 
-### Levels
+### Story
+
+You are a magician exploring a strange world where planes of existence are connected by portals. You meet an alchemist (among other people) who is in search of the legendary golden potion. 
+
+You also discover that some portals are sending you to strange, hellish places with castles in them. Unfortunately you are not able to step through the flames that appear whenever you get too close to them.
+
+Maybe the inhabitants of the world you are exploring can be of some help?  
+
+### Mechanics
 
 - A single level consists of 128x128 tiles of 16x16px.
 - In each level is a portal to another (the "next" as there is no way back) level.
@@ -14,6 +22,7 @@ Soultraps is a 2D RPG made with Greenfoot.
 - The items collected in each level are saved throughout the game
 - Every level contains a savepoint (this also persists the level)
 - When restarting the game after saving, a "Load Game" button will appear
+- Possible directions are: up, down, left, right
 
 ### Controls
 
