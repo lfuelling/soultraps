@@ -68,7 +68,7 @@ public class Savegame {
         if (!saveFile.exists()) {
             if(!new File(getSavegameDir()).exists()) {
                 if(new File(getSavegameDir()).mkdirs()) {
-                    logger.info("Savegame directory cerated!");
+                    logger.info("Savegame directory created!");
                     if(!new File(getSavegameDir()).canWrite()) {
                         errorShown = true;
                         Platform.runLater(() -> {
@@ -89,7 +89,7 @@ public class Savegame {
 
             }
             try {
-                logger.info("Savefile doesn't exist. Creating directories and file!");
+                logger.info("Savegame doesn't exist. Creating directories and file!");
                 logger.debug("File" + ((saveFile.createNewFile()) ? "" : " not") + " created.");
             } catch (IOException e) {
                 logger.error("Error creating savegame file.", e);

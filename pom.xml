@@ -18,8 +18,7 @@
         <!-- /change -->
 
         <!-- versions -->
-        <greenfoot.version>3.5.4</greenfoot.version>
-        <bluej.version>greenfoot-3.5.4</bluej.version>
+        <cleanfoot.version>3.5.5</cleanfoot.version>
         <slf4j.version>1.7.25</slf4j.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
@@ -41,20 +40,15 @@
     <repositories>
         <repository>
             <id>gammel</id>
-            <url>https://nexus.gammel.cloud/repository/maven-releases/</url>
+            <url>https://nexus.gammel.cloud/repository/maven-public/</url>
         </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>org.greenfoot</groupId>
-            <artifactId>greenfoot</artifactId>
-            <version>${greenfoot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.bluej</groupId>
-            <artifactId>bluej-core</artifactId>
-            <version>${bluej.version}</version>
+            <groupId>sh.lrk</groupId>
+            <artifactId>cleanfoot</artifactId>
+            <version>${cleanfoot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

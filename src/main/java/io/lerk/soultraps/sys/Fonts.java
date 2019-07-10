@@ -1,6 +1,6 @@
 package io.lerk.soultraps.sys;
 
-import greenfoot.SoultrapsFont;
+import greenfoot.Font;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +44,7 @@ public class Fonts {
     public static greenfoot.Font getFont(Types type, float size) {
         try {
             java.awt.Font tmpFont = java.awt.Font.createFont(0, java.awt.Font.class.getResourceAsStream("/fonts/" + type.name + ".ttf"));
-            return new SoultrapsFont(tmpFont.deriveFont(size));
+            return new Font(tmpFont.deriveFont(size));
         } catch (IOException | FontFormatException e) {
             log.error("Unable to load font!", e);
         }
