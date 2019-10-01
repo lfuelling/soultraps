@@ -19,7 +19,7 @@
 
         <!-- versions -->
         <cleanfoot.version>3.5.5</cleanfoot.version>
-        <slf4j.version>1.7.25</slf4j.version>
+        <slf4j.version>1.7.28</slf4j.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.1.2</maven-jar-plugin.version>
         <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
