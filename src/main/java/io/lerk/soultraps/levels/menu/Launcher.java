@@ -63,8 +63,8 @@ public class Launcher extends GrasslandLevel {
         Savegame savegame = Savegame.read();
         if (savegame != null) {
             loadButton.setHandler(() -> {
-                savegame.restorePlayer();
                 Greenfoot.setWorld(savegame.getLevel());
+                savegame.restorePlayer();
                 return null;
             });
             addObject(loadButton, getWidth() / 2, btnY);

@@ -53,16 +53,6 @@ public class Player extends DialogMob {
      */
     private int seqIdx = 0;
 
-    /**
-     * Last saved X position.
-     */
-    private int savedXPos;
-
-    /**
-     * Last saved Y position.
-     */
-    private int savedYPos;
-
     private long lastAttack = 0;
 
     private Attack attack = new WaveAttack();
@@ -117,8 +107,8 @@ public class Player extends DialogMob {
             }
         }));
 
-        self.savedXPos = player.getPosX();
-        self.savedYPos = player.getPosY();
+        self.setLocation(player.getPosX(), player.getPosY());
+        self.setHealth(player.getHealth());
     }
 
     public static void increaseHealth(int amount) {
@@ -227,11 +217,7 @@ public class Player extends DialogMob {
                 attack.toggleAttack(true, Direction.SOUTH);
             } else if (Greenfoot.isKeyDown(ATK_LT)) {
                 attack.toggleAttack(true, Direction.WEST);
-            } else if (Greenfoot.isKeyDown(ATK_RT)) {
-                attack.toggleAttack(true, Direction.EAST);
-            } else {
-                attack.toggleAttack(false, Direction.EAST);
-            }
+            } else attack.toggleAttack(Greenfoot.isKeyDown(ATK_RT), Direction.EAST);
         }
     }
 
@@ -297,24 +283,6 @@ public class Player extends DialogMob {
      */
     public ArrayList<Item> getItems() {
         return items;
-    }
-
-    /**
-     * Getter for last saved X position.
-     *
-     * @return the last saved X position
-     */
-    public int getSavedXPos() {
-        return savedXPos;
-    }
-
-    /**
-     * Getter for last saved Y position.
-     *
-     * @return the last saved Y position
-     */
-    public int getSavedYPos() {
-        return savedYPos;
     }
 
     public void setAttack(Attack attack) {

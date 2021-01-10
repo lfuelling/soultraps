@@ -4,29 +4,22 @@ import java.util.ArrayList;
 
 public class PlayerDTO
 {
-  ArrayList<String> items;
-  int posX, posY;
-  boolean drankGoldenDistillate;
+  final ArrayList<String> items;
+  final int posX, posY, health;
+  final boolean drankGoldenDistillate;
 
-  public PlayerDTO(ArrayList<String> items, int posX, int posY, boolean drankGoldenDistillate)
+  public PlayerDTO(ArrayList<String> items, int posX, int posY, int health, boolean drankGoldenDistillate)
   {
     this.items = items;
     this.posX = posX;
     this.posY = posY;
+    this.health = health;
     this.drankGoldenDistillate = drankGoldenDistillate;
   }
-
-  public PlayerDTO()
-  {}
 
   public ArrayList<String> getItems()
   {
     return items;
-  }
-
-  public void setItems(ArrayList<String> items)
-  {
-    this.items = items;
   }
 
   public int getPosX()
@@ -34,26 +27,16 @@ public class PlayerDTO
     return posX;
   }
 
-  public void setPosX(int posX)
-  {
-    this.posX = posX;
-  }
-
   public int getPosY()
   {
     return posY;
   }
 
-  public void setPosY(int posY)
-  {
-    this.posY = posY;
+  public int getHealth() {
+    return health;
   }
 
   public boolean drankGoldenDistillate() {
     return drankGoldenDistillate;
-  }
-
-  public void setDrankGoldenDistillate(boolean drankGoldenDistillate) {
-    this.drankGoldenDistillate = drankGoldenDistillate;
   }
 }

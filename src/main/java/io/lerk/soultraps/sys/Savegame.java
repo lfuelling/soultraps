@@ -103,7 +103,7 @@ public class Savegame {
           .map(Item::getName)
           .collect(Collectors.toList());
 
-        return new PlayerDTO(new ArrayList<>(collect), player.getX(), player.getY(), player.drankGoldenDistillate());
+        return new PlayerDTO(new ArrayList<>(collect), player.getX(), player.getY(), player.getHealth(), player.drankGoldenDistillate());
     }
 
     private LevelDTO fromLevel(Level level)
@@ -162,7 +162,7 @@ public class Savegame {
     private static String getSavegameDir() {
         String savegameDir;
         String os = (System.getProperty("os.name")).toLowerCase();
-        if (os.contains("WIN")) {
+        if (os.contains("win")) {
             savegameDir = System.getenv("AppData");
         } else {
             savegameDir = System.getProperty("user.home");
