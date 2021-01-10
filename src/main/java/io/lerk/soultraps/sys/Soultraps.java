@@ -6,6 +6,7 @@ import greenfoot.core.Simulation;
 import greenfoot.export.GreenfootScenarioApplication;
 import greenfoot.util.StandalonePropStringManager;
 import io.lerk.soultraps.levels.menu.GameOverScreen;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +20,7 @@ import java.util.Properties;
  *
  * @author Lukas Fülling (lukas@k40s.net)
  */
-public class Soultraps extends GreenfootScenarioApplication
-{
+public class Soultraps extends GreenfootScenarioApplication {
 
     /**
      * This is used to enable debug stuff like button backgrounds.
@@ -37,19 +37,15 @@ public class Soultraps extends GreenfootScenarioApplication
      */
     private static final Properties properties = new Properties();
 
+
     /**
      * Main method.
      *
      * @param args program arguments.
      */
-    public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
-        System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Soultraps");
-        System.setProperty("apple.awt.application.name", "Soultraps");
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
+    public static void main(String[] args) {
         // load properties
         initProperties();
-
         launch(args);
     }
 
@@ -65,12 +61,27 @@ public class Soultraps extends GreenfootScenarioApplication
         }
     }
 
-
     public static void gameOver() {
         Greenfoot.setWorld(new GameOverScreen());
     }
 
-    public class Controls {
+    @Nullable
+    @Override
+    public OnBeforeLaunchListener getOnBeforeLaunchListener() {
+        return () -> {
+            try {
+                System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Soultraps");
+                System.setProperty("apple.laf.useScreenMenuBar", "true");
+                System.setProperty("apple.awt.application.appearance", "system");
+                System.setProperty("apple.awt.application.name", "Soultraps");
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (IllegalAccessException | ClassNotFoundException | UnsupportedLookAndFeelException | InstantiationException e) {
+                log.error("Unable to initialize Look and Feel...", e);
+            }
+        };
+    }
+
+    public static class Controls {
         public static final String CONV_START = "f";
         public static final String CONV_NEXT = "space";
         public static final String USE_ITEM = "r";
