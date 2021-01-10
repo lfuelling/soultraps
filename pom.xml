@@ -229,7 +229,7 @@
                             <plist>
                                 <CFBundleName>${project.name}</CFBundleName>
                                 <CFBundleDisplayName>${project.name}</CFBundleDisplayName>
-                                <CFBundleIconFile>icon-dock.icns</CFBundleIconFile>
+                                <CFBundleIconFile>logo.icns</CFBundleIconFile>
                                 <CFBundleIdentifier>${groupId}.${artifactId}</CFBundleIdentifier>
                                 <CFBundleExecutable>launcher</CFBundleExecutable>
                                 <NSHighResolutionCapable>true</NSHighResolutionCapable>
