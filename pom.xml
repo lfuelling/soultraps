@@ -1,13 +1,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>io.lerk.soultraps</groupId>
     <artifactId>soultraps</artifactId>
     <version>0.0.4-SNAPSHOT</version>
+
     <packaging>jar</packaging>
+
+    <name>Soultraps</name>
     <description>
         Greenfoot RPG.
     </description>
+
+    <url>https://github.com/lfuelling/soultraps</url>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://github.com/lfuelling/soultraps/blob/master/LICENSE.md</url>
+        </license>
+    </licenses>
 
     <properties>
         <java.version>1.8</java.version>
@@ -202,4 +215,45 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>macOS</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>de.perdian.maven.plugins</groupId>
+                        <artifactId>macosappbundler-maven-plugin</artifactId>
+                        <version>1.10.0</version>
+                        <configuration>
+                            <plist>
+                                <CFBundleName>${project.name}</CFBundleName>
+                                <CFBundleDisplayName>${project.name}</CFBundleDisplayName>
+                                <CFBundleIconFile>icon-dock.icns</CFBundleIconFile>
+                                <CFBundleIdentifier>${groupId}.${artifactId}</CFBundleIdentifier>
+                                <CFBundleExecutable>launcher</CFBundleExecutable>
+                                <NSHighResolutionCapable>true</NSHighResolutionCapable>
+                                <JVMMainClassName>io.lerk.soultraps.sys.Soultraps</JVMMainClassName>
+                                <JVMVersion>8</JVMVersion>
+                                <JVMLogLevel>TRACE</JVMLogLevel>
+                            </plist>
+                            <dmg>
+                                <generate>true</generate>
+                                <autoFallback>true</autoFallback>
+                            </dmg>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>bundle</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
