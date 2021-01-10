@@ -106,7 +106,7 @@ public class Portal extends DialogMob {
     }
 
     /**
-     * Stub. The portal has no walking animation.
+     * Animations for the portal.
      */
     @Override
     protected void animateWalking() {

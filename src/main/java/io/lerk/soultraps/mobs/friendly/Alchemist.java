@@ -40,7 +40,7 @@ public class Alchemist extends DialogMob {
         List<GoldenPotion> goldenPotionsInRange = getWorld().getObjects(GoldenPotion.class);
         if (goldenPotionsInRange.size() > 0 && !isTouching(GoldenPotion.class)) {
             goldenPotionsInRange.forEach(p -> {
-                double a = Math.atan2((double)(p.getY() - this.getY()), (double)(p.getX() - this.getX()));
+                double a = Math.atan2(p.getY() - this.getY(), p.getX() - this.getX());
                 direction = Direction.fromDegrees((int)Math.toDegrees(a));
                 walking = true;
             });
@@ -76,7 +76,7 @@ public class Alchemist extends DialogMob {
                     new Message("Golden Potion!"),
                     new Message("It's said to give an exaggerating " + GoldenPotion.AMOUNT + " HP ! ! !"),
                     new Message("When being handled by a professional like me,"),
-                    new Message("it is even said to give magic powers!"),
+                    new Message("it can be distilled to give magic powers!"),
                     new Message("Like in the old legends..."),
                     new Message("*looks far off in the distance*"),
                     new Message("..."),
